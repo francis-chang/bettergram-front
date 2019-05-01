@@ -43,6 +43,7 @@ export const LoginContainer = styled.form`
     display: flex;
     flex-direction: column;
     margin: 1.8rem 0rem;
+    opacity: 0.8;
 `;
 
 export const Input = styled.input`
@@ -99,7 +100,7 @@ export const TitleTitle = styled.div`
     font-size: 4.9rem;
     text-align: center;
 
-    color: white;
+    color: #f0f2f5;
     text-decoration: underline;
     width: 100%;
 `;
@@ -109,5 +110,5 @@ export const TitleText = styled.div`
     text-align: center;
     width: 60%;
     margin: 0 auto;
-    color: white;
+    color: #d1d8e0;
 `;

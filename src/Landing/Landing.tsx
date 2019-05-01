@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as React from "react";
+import { useSpring } from "react-spring";
 import {
     Container,
     Input,
@@ -21,6 +22,8 @@ export const Landing: React.FC<Props> = () => {
         e.preventDefault();
         login();
     };
+
+    const animateForm = useSpring({});
 
     const login = async () => {
         const data = { username, password };
