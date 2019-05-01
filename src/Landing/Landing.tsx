@@ -1,6 +1,13 @@
 import axios from "axios";
 import * as React from "react";
-import { Container, Login, Title } from "./LandingStyles";
+import {
+    Container,
+    Input,
+    Login,
+    LoginContainer,
+    SubmitBtn,
+    Title
+} from "./LandingStyles";
 
 interface Props {}
 
@@ -22,22 +29,25 @@ export const Landing: React.FC<Props> = () => {
         <Container>
             <Title />
             <Login>
-                <form onSubmit={onSubmit}>
-                    <input
+                <LoginContainer onSubmit={onSubmit}>
+                    <Input
                         value={username}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             setUsername(e.target.value);
                         }}
+                        placeholder="Username"
                     />
-                    <input
+                    <Input
                         value={password}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             setPassword(e.target.value);
                         }}
                         type="password"
+                        placeholder="Password"
                     />
-                    <button type="submit">Submit</button>
-                </form>
+
+                    <SubmitBtn type="submit">Log</SubmitBtn>
+                </LoginContainer>
             </Login>
         </Container>
     );
