@@ -6,7 +6,8 @@ import {
     Login,
     LoginContainer,
     SubmitBtn,
-    Title
+    Title,
+    TitleTitle
 } from "./LandingStyles";
 
 interface Props {}
@@ -27,7 +28,9 @@ export const Landing: React.FC<Props> = () => {
     };
     return (
         <Container>
-            <Title />
+            <Title>
+                <TitleTitle>bettergram</TitleTitle>
+            </Title>
             <Login>
                 <LoginContainer onSubmit={onSubmit}>
                     <Input
