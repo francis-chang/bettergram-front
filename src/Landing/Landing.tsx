@@ -7,6 +7,7 @@ import {
     LoginContainer,
     SubmitBtn,
     Title,
+    TitleText,
     TitleTitle
 } from "./LandingStyles";
 
@@ -30,6 +31,7 @@ export const Landing: React.FC<Props> = () => {
         <Container>
             <Title>
                 <TitleTitle>bettergram</TitleTitle>
+                <TitleText>instagram clone for practice and fun</TitleText>
             </Title>
             <Login>
                 <LoginContainer onSubmit={onSubmit}>
