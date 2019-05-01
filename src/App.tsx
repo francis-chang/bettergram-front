@@ -1,7 +1,8 @@
 import React from "react";
+import { Landing } from "./Landing/Landing";
 
 const App: React.FC = () => {
-    return <div>hi</div>;
+    return <Landing />;
 };
 
 export default App;
