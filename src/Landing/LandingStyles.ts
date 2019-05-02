@@ -81,7 +81,6 @@ export const LoginContainer = styled.form`
     display: flex;
     flex-direction: column;
     margin: 1.8rem 0rem;
-    opacity: 0.8;
 `;
 
 export const Input = styled.input`
@@ -107,15 +106,15 @@ export const Input = styled.input`
 export const SubmitBtn = styled.button`
     font-weight: 900;
     margin: 0rem 0.3rem;
-    width: 33.33%;
-    margin-left: 66.66%;
+    width: 66.66%;
+    margin-left: 33.33%;
     color: #e0e5eb;
     background-color: #202730;
     border: none;
     outline: none;
     border-radius: 4px;
     padding: 0.5rem 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-top: 1rem;
     cursor: pointer;
     backface-visibility: hidden;
@@ -157,3 +156,22 @@ export const TitleText = styled.div`
         font-size: 2rem;
     }
 `;
+
+export const GithubLogin = styled.div`
+    font-weight: 900;
+    margin: 0rem 0.3rem;
+    width: 66.66%;
+    margin-left: 33.33%;
+    color: #e0e5eb;
+    background-color: #333;
+    border-radius: 4px;
+    padding: 0.5rem 0.5rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    backface-visibility: hidden;
+    box-shadow: 5px 5px 0px #666;
+    display: flex;
+`;
+
+export const GithubLogo = styled.div``;

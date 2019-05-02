@@ -1,8 +1,12 @@
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faGithubSquare } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
 import { useSpring } from "react-spring";
 import {
     Container,
+    GithubLogin,
     Input,
     Login,
     LoginContainer,
@@ -11,6 +15,8 @@ import {
     TitleText,
     TitleTitle
 } from "./LandingStyles";
+
+library.add(faGithubSquare);
 
 interface Props {}
 
@@ -55,6 +61,9 @@ export const Landing: React.FC<Props> = () => {
                     />
 
                     <SubmitBtn type="submit">Log</SubmitBtn>
+                    <GithubLogin>
+                        <FontAwesomeIcon icon={["fab", "github-square"]} />
+                    </GithubLogin>
                 </LoginContainer>
             </Login>
         </Container>
