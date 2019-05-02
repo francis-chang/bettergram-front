@@ -89,6 +89,7 @@ export const Input = styled.input`
     padding: 0.6rem 0.5rem;
     border: none;
     background-color: #e0e5eb;
+    color: #202730;
     outline: none;
     font-size: 1.4rem;
     margin-top: 1.8rem;
@@ -97,10 +98,14 @@ export const Input = styled.input`
     border-radius: 4px;
 
     &:focus {
-        background-color: #c9ffb7;
+        background-color: #202730;
+        color: #e0e5eb;
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
         box-shadow: 9px 9px 0px #667c99;
+        &::placeholder {
+            color: #e0e5eb;
+        }
     }
 
     &::placeholder {
@@ -209,4 +214,39 @@ export const GithubLogo = styled.div`
 `;
 export const GithubText = styled.div`
     font-size: 1.4rem;
+`;
+
+export const SignUpToggle = styled.button`
+    font-weight: 600;
+    margin: 0rem 0.3rem;
+    width: 100%;
+    color: #e0e5eb;
+    background-color: #202730;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    backface-visibility: hidden;
+    box-shadow: 5px 5px 0px #667c99;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &:hover {
+        transition-duration: 200ms;
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0px #667c99;
+    }
+
+    &:active {
+        transition-duration: 100ms;
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px #667c99;
+    }
+    @media only screen and (max-width: 700px) {
+        padding: 1rem 0.5rem;
+    }
 `;

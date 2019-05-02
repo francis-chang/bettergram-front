@@ -12,6 +12,7 @@ import {
     Input,
     Login,
     LoginContainer,
+    SignUpToggle,
     SubmitBtn,
     Title,
     TitleText,
@@ -65,13 +66,14 @@ export const Landing: React.FC<Props> = () => {
                         placeholder="Password"
                     />
 
-                    <SubmitBtn type="submit">Log in</SubmitBtn>
+                    <SubmitBtn type="submit">Log In</SubmitBtn>
                     <GithubLogin>
                         <GithubLogo>
                             <FontAwesomeIcon icon={["fab", "github"]} />
                         </GithubLogo>
-                        <GithubText>Sign in with Github</GithubText>
+                        <GithubText>Log In with Github</GithubText>
                     </GithubLogin>
+                    <SignUpToggle> Or Sign Up </SignUpToggle>
                 </LoginContainer>
             </Login>
         </Container>
