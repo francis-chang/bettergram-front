@@ -3,7 +3,7 @@ import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
-import { useSpring } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import {
     Container,
     GithubLogin,
@@ -26,19 +26,42 @@ interface Props {}
 export const Landing: React.FC<Props> = () => {
     const [username, setUsername] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
+    const [signup, setSignup] = React.useState<boolean>(false);
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         login();
     };
 
-    const animateForm = useSpring({});
+    const animateForm = useSpring({
+        height: "44rem",
+        width: "100%",
+        padding: "0rem 1.2rem 1.8rem 1.2rem",
+        borderRadius: "4px",
+        backgroundColor: "#e0e5eb",
+        display: "flex",
+        flexDirection: "column",
+        margin: "0rem 0rem",
+        transform: signup ? "translateY(-18rem)" : "translateY(0rem)",
+        position: "relative"
+    });
+
+    const animatedBars = useSpring({
+        borderTop: "10px solid #667c99",
+        transform: signup ? "translateY(18rem)" : "translateY(0rem)",
+        fontSize: "0px",
+        width: "100%",
+        position: "absolute",
+        left: "0%",
+        top: "0%"
+    });
 
     const login = async () => {
         const data = { username, password };
         let response = await axios.post("http://127.0.0.1:5000/login", data);
         console.log(response);
     };
+
     return (
         <Container>
             <Title>
@@ -50,30 +73,44 @@ export const Landing: React.FC<Props> = () => {
             </Title>
             <Login>
                 <LoginContainer onSubmit={onSubmit}>
-                    <Input
-                        value={username}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setUsername(e.target.value);
-                        }}
-                        placeholder="Username"
-                    />
-                    <Input
-                        value={password}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setPassword(e.target.value);
-                        }}
-                        type="password"
-                        placeholder="Password"
-                    />
+                    <animated.div style={animateForm}>
+                        <animated.div style={animatedBars} />
+                        <Input
+                            value={username}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                                setUsername(e.target.value);
+                            }}
+                            placeholder="Username"
+                        />
+                        <Input
+                            value={password}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                                setPassword(e.target.value);
+                            }}
+                            type="password"
+                            placeholder="Password"
+                        />
 
-                    <SubmitBtn type="submit">Log In</SubmitBtn>
-                    <GithubLogin>
-                        <GithubLogo>
-                            <FontAwesomeIcon icon={["fab", "github"]} />
-                        </GithubLogo>
-                        <GithubText>Log In with Github</GithubText>
-                    </GithubLogin>
-                    <SignUpToggle> Or Sign Up </SignUpToggle>
+                        <SubmitBtn type="submit">Log In</SubmitBtn>
+                        <GithubLogin>
+                            <GithubLogo>
+                                <FontAwesomeIcon icon={["fab", "github"]} />
+                            </GithubLogo>
+                            <GithubText>Sign In with Github</GithubText>
+                        </GithubLogin>
+                        <SignUpToggle
+                            onClick={() => {
+                                setSignup(!signup);
+                            }}
+                        >
+                            {" "}
+                            Or Sign Up{" "}
+                        </SignUpToggle>
+                    </animated.div>
                 </LoginContainer>
             </Login>
         </Container>

@@ -9,12 +9,12 @@ export const Global = createGlobalStyle`
     }
     @media only screen and (max-width: 1200px) {
         html {
-            font-size: 12px;
+            font-size: 13px;
         }
     }
     @media only screen and (max-width: 1050px) {
         html {
-            font-size: 10px;
+            font-size: 11px;
         }
     }
     
@@ -75,14 +75,16 @@ export const Login = styled.div`
 `;
 
 export const LoginContainer = styled.form`
-    padding: 1.5rem 1.2rem 1.8rem 1.2rem;
-    border-radius: 4px;
-    background-color: #e0e5eb;
+    max-height: 24rem;
+    width: 100%;
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    margin: 1.8rem 0rem;
+    justify-content: center;
     border-left: 10px solid #667c99;
-    border-top: 10px solid #667c99;
+
+    @media only screen and (max-width: 700px) {
+        max-height: 27rem;
+    }
 `;
 
 export const Input = styled.input`
@@ -173,9 +175,8 @@ export const TitleText = styled.div`
 
 export const GithubLogin = styled.button`
     font-weight: 600;
-    margin: 0rem 0.3rem;
-    width: 66.66%;
-    margin-left: 33.33%;
+    margin: 0rem 0.3rem 1rem 0.3rem;
+    width: 100%;
     color: #e0e5eb;
     background-color: #333;
     border: none;
