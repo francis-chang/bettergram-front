@@ -1,11 +1,27 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const Global = createGlobalStyle`
+    
+    @media only screen and (max-width: 1550px) {
+        html {
+            font-size: 14px;
+        }
+    }
+    @media only screen and (max-width: 1200px) {
+        html {
+            font-size: 12px;
+        }
+    }
+    @media only screen and (max-width: 1050px) {
+        html {
+            font-size: 10px;
+        }
+    }
+    
     @font-face {
         font-family: "Martel";
         src: url("./fonts/NotoSansKR-Black.otf");
     }
-
     body {
         font-family: "Martel";
         background-color: #e0e5eb;
@@ -25,15 +41,37 @@ export const Container = styled.div`
     display: flex;
     padding: 2.5rem 2rem;
     border-radius: 4px;
+
+    @media only screen and (max-width: 1400px) {
+        width: 60%;
+    }
+    @media only screen and (max-width: 1200px) {
+        width: 70%;
+    }
+    @media only screen and (max-width: 1050px) {
+        width: 75%;
+    }
+    @media only screen and (max-width: 700px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: none;
+    }
 `;
 
 export const Title = styled.div`
-    width: 66.66%;
+    width: 60%;
     user-select: none;
+    @media only screen and (max-width: 700px) {
+        width: 100%;
+    }
 `;
 
 export const Login = styled.div`
-    width: 33.33%;
+    width: 40%;
+    @media only screen and (max-width: 700px) {
+        width: 100%;
+    }
 `;
 
 export const LoginContainer = styled.form`
@@ -51,7 +89,7 @@ export const Input = styled.input`
     border-bottom: 2.5px solid black;
     background-color: transparent;
     outline: none;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-top: 1.8rem;
     transition: 250ms ease-out;
 
@@ -103,6 +141,10 @@ export const TitleTitle = styled.div`
     color: #f0f2f5;
     text-decoration: underline;
     width: 100%;
+
+    @media only screen and (max-width: 700px) {
+        font-size: 3.5rem;
+    }
 `;
 
 export const TitleText = styled.div`
@@ -111,4 +153,7 @@ export const TitleText = styled.div`
     width: 60%;
     margin: 0 auto;
     color: #d1d8e0;
+    @media only screen and (max-width: 700px) {
+        font-size: 2rem;
+    }
 `;
