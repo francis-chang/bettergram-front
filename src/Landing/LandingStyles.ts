@@ -157,21 +157,44 @@ export const TitleText = styled.div`
     }
 `;
 
-export const GithubLogin = styled.div`
-    font-weight: 900;
+export const GithubLogin = styled.button`
+    font-weight: 600;
     margin: 0rem 0.3rem;
     width: 66.66%;
     margin-left: 33.33%;
     color: #e0e5eb;
     background-color: #333;
+    border: none;
+    outline: none;
     border-radius: 4px;
-    padding: 0.5rem 0.5rem;
-    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
     margin-top: 1rem;
     cursor: pointer;
     backface-visibility: hidden;
     box-shadow: 5px 5px 0px #666;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &:hover {
+        transition-duration: 200ms;
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0px #666;
+    }
+
+    &:active {
+        transition-duration: 100ms;
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px #666;
+    }
 `;
 
-export const GithubLogo = styled.div``;
+export const GithubLogo = styled.div`
+    color: #f5f5f5;
+    height: 100%;
+    font-size: 2rem;
+`;
+export const GithubText = styled.div`
+    font-size: 1.4rem;
+`;
