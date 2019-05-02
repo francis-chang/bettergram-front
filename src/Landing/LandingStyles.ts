@@ -86,8 +86,9 @@ export const LoginContainer = styled.form`
 `;
 
 export const Input = styled.input`
+    padding: 0.6rem 0.5rem;
     border: none;
-    background-color: transparent;
+    background-color: #e0e5eb;
     outline: none;
     font-size: 1.4rem;
     margin-top: 1.8rem;
@@ -96,7 +97,10 @@ export const Input = styled.input`
     border-radius: 4px;
 
     &:focus {
-        box-shadow: 5px 5px 0px red;
+        background-color: #c9ffb7;
+        transition-duration: 200ms;
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0px #667c99;
     }
 
     &::placeholder {
