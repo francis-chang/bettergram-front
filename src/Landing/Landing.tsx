@@ -107,8 +107,7 @@ export const Landing: React.FC<Props> = () => {
                                 setSignup(!signup);
                             }}
                         >
-                            {" "}
-                            Or Sign Up{" "}
+                            {signup ? "Back to Log in" : "Or Sign Up"}
                         </SignUpToggle>
                     </animated.div>
                 </LoginContainer>
