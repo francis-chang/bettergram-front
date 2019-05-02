@@ -1,5 +1,5 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
@@ -18,7 +18,7 @@ import {
     TitleTitle
 } from "./LandingStyles";
 
-library.add(faGithub);
+library.add(faGithub, faInstagram);
 
 interface Props {}
 
@@ -42,7 +42,10 @@ export const Landing: React.FC<Props> = () => {
         <Container>
             <Title>
                 <TitleTitle>bettergram</TitleTitle>
-                <TitleText>ig clone for fun</TitleText>
+                <TitleText>
+                    <FontAwesomeIcon icon={["fab", "instagram"]} /> instagram
+                    clone
+                </TitleText>
             </Title>
             <Login>
                 <LoginContainer onSubmit={onSubmit}>
