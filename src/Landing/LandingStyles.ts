@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 
 export const Global = createGlobalStyle`
     
-    @media only screen and (max-width: 1550px) {
+    @media only screen and (max-width: 1650px) {
         html {
             font-size: 14px;
         }
@@ -22,6 +22,18 @@ export const Global = createGlobalStyle`
         font-family: "Martel";
         src: url("./fonts/NotoSansKR-Black.otf");
     }
+
+    @keyframes toTop{
+        0%{
+            transform: translateY(4rem);
+            opacity: 0;
+        }
+        100%{
+            transform: translateY(0rem);
+            opacity: 1.0;
+        }
+    }
+    
     body {
         font-family: "Martel";
         background-color: #e0e5eb;
@@ -60,6 +72,9 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
+    animation-name: toTop;
+    animation-duration: 600ms;
+    animation-timing-function: ease-out;
     width: 60%;
     user-select: none;
     @media only screen and (max-width: 700px) {
@@ -75,7 +90,7 @@ export const Login = styled.div`
 `;
 
 export const LoginContainer = styled.form`
-    max-height: 24rem;
+    max-height: 28rem;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -83,14 +98,14 @@ export const LoginContainer = styled.form`
     border-left: 10px solid #667c99;
 
     @media only screen and (max-width: 700px) {
-        max-height: 27rem;
+        max-height: 32rem;
     }
 `;
 
 export const Input = styled.input`
     padding: 0.6rem 0.5rem;
     border: none;
-    background-color: #e0e5eb;
+    background-color: #eff2f5;
     color: #202730;
     outline: none;
     font-size: 1.4rem;
@@ -168,8 +183,43 @@ export const TitleText = styled.div`
     width: 60%;
     margin: 0 auto;
     color: #d1d8e0;
+    margin-bottom: 1rem;
     @media only screen and (max-width: 700px) {
         font-size: 2rem;
+    }
+`;
+export const GoogleLogin = styled.button`
+    font-weight: 600;
+    margin: 0rem 0.3rem 1rem 0.3rem;
+    width: 100%;
+    color: #343434;
+    background-color: #fefefe;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    backface-visibility: hidden;
+    box-shadow: 5px 5px 0px #787878;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &:hover {
+        transition-duration: 200ms;
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0px #787878;
+    }
+
+    &:active {
+        transition-duration: 100ms;
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px #787878;
+    }
+    @media only screen and (max-width: 700px) {
+        padding: 1rem 0.5rem;
     }
 `;
 
@@ -211,8 +261,15 @@ export const GithubLogin = styled.button`
 export const GithubLogo = styled.div`
     color: #f5f5f5;
     height: 100%;
-    font-size: 2rem;
+    font-size: 1.8rem;
 `;
+
+export const GoogleLogo = styled.div`
+    color: #343434;
+    height: 100%;
+    font-size: 1.8rem;
+`;
+
 export const GithubText = styled.div`
     font-size: 1.4rem;
 `;

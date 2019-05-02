@@ -1,25 +1,12 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
-import {
-    Container,
-    GithubLogin,
-    GithubLogo,
-    GithubText,
-    Input,
-    Login,
-    LoginContainer,
-    SignUpToggle,
-    SubmitBtn,
-    Title,
-    TitleText,
-    TitleTitle
-} from "./LandingStyles";
+import { Container, GithubLogin, GithubLogo, GithubText, GoogleLogin, GoogleLogo, Input, Login, LoginContainer, SignUpToggle, SubmitBtn, Title, TitleText, TitleTitle } from "./LandingStyles";
 
-library.add(faGithub, faInstagram);
+library.add(faGithub, faInstagram, faGoogle);
 
 interface Props {}
 
@@ -34,21 +21,21 @@ export const Landing: React.FC<Props> = () => {
     };
 
     const animateForm = useSpring({
-        height: "44rem",
+        height: "50rem",
         width: "100%",
         padding: "0rem 1.2rem 1.8rem 1.2rem",
         borderRadius: "4px",
-        backgroundColor: "#e0e5eb",
+        backgroundColor: "#d0d8e1",
         display: "flex",
         flexDirection: "column",
         margin: "0rem 0rem",
-        transform: signup ? "translateY(-18rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(-22.5rem)" : "translateY(0rem)",
         position: "relative"
     });
 
     const animatedBars = useSpring({
         borderTop: "10px solid #667c99",
-        transform: signup ? "translateY(18rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(22.5rem)" : "translateY(0rem)",
         fontSize: "0px",
         width: "100%",
         position: "absolute",
@@ -102,6 +89,12 @@ export const Landing: React.FC<Props> = () => {
                             </GithubLogo>
                             <GithubText>Sign In with Github</GithubText>
                         </GithubLogin>
+                        <GoogleLogin>
+                            <GoogleLogo>
+                                <FontAwesomeIcon icon={["fab", "google"]} />
+                            </GoogleLogo>
+                            <GithubText>Sign In with Google</GithubText>
+                        </GoogleLogin>
                         <SignUpToggle
                             onClick={() => {
                                 setSignup(!signup);
@@ -109,10 +102,9 @@ export const Landing: React.FC<Props> = () => {
                         >
                             {signup ? "Back to Log in" : "Or Sign Up"}
                         </SignUpToggle>
-                        <Input placeholder="Username"/>
-                        <Input placeholder="Email"/>
-                        <Input placeholder="Password"/>
-
+                        <Input placeholder="Username" />
+                        <Input placeholder="Email" />
+                        <Input placeholder="Password" />
                     </animated.div>
                 </LoginContainer>
             </Login>
