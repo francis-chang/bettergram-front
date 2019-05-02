@@ -81,21 +81,22 @@ export const LoginContainer = styled.form`
     display: flex;
     flex-direction: column;
     margin: 1.8rem 0rem;
+    border-left: 10px solid #667c99;
+    border-top: 10px solid #667c99;
 `;
 
 export const Input = styled.input`
     border: none;
-    border-bottom: 2.5px solid black;
     background-color: transparent;
     outline: none;
     font-size: 1.4rem;
     margin-top: 1.8rem;
     transition: 250ms ease-out;
+    box-shadow: 5px 5px 0px #667c99;
+    border-radius: 4px;
 
     &:focus {
-        border: none;
-        border-bottom: 2.5px solid #fc8f00;
-        user-select: none;
+        box-shadow: 5px 5px 0px red;
     }
 
     &::placeholder {
