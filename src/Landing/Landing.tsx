@@ -109,6 +109,10 @@ export const Landing: React.FC<Props> = () => {
                         >
                             {signup ? "Back to Log in" : "Or Sign Up"}
                         </SignUpToggle>
+                        <Input placeholder="Username"/>
+                        <Input placeholder="Email"/>
+                        <Input placeholder="Password"/>
+
                     </animated.div>
                 </LoginContainer>
             </Login>
