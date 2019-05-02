@@ -90,7 +90,7 @@ export const Login = styled.div`
 `;
 
 export const LoginContainer = styled.form`
-    max-height: 28rem;
+    max-height: 34rem;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -102,6 +102,13 @@ export const LoginContainer = styled.form`
     }
 `;
 
+export const Message = styled.div`
+    font-size: 1.3rem;
+    color: #202730;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+`;
+
 export const Input = styled.input`
     padding: 0.6rem 0.5rem;
     border: none;
@@ -109,7 +116,7 @@ export const Input = styled.input`
     color: #202730;
     outline: none;
     font-size: 1.4rem;
-    margin-top: 1.8rem;
+    margin-bottom: 1.5rem;
     transition: 250ms ease-out;
     box-shadow: 5px 5px 0px #667c99;
     border-radius: 4px;
@@ -132,7 +139,7 @@ export const Input = styled.input`
 
 export const SubmitBtn = styled.button`
     font-weight: 900;
-    margin: 0rem 0.3rem;
+    margin: 0rem 0.3rem 1.5rem 0.3rem;
     width: 66.66%;
     margin-left: 33.33%;
     color: #e0e5eb;
@@ -142,7 +149,6 @@ export const SubmitBtn = styled.button`
     border-radius: 4px;
     padding: 0.5rem 0.5rem;
     font-size: 1.4rem;
-    margin-top: 1rem;
     cursor: pointer;
     backface-visibility: hidden;
     box-shadow: 5px 5px 0px #667c99;
@@ -199,10 +205,9 @@ export const GoogleLogin = styled.button`
     border-radius: 4px;
     padding: 0.5rem 1rem;
     font-size: 1.4rem;
-    margin-top: 1rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px #787878;
+    box-shadow: 5px 5px 0px #aaa;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -210,13 +215,47 @@ export const GoogleLogin = styled.button`
     &:hover {
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
-        box-shadow: 9px 9px 0px #787878;
+        box-shadow: 9px 9px 0px #aaa;
     }
 
     &:active {
         transition-duration: 100ms;
         transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0px #787878;
+        box-shadow: 1px 1px 0px #aaa;
+    }
+    @media only screen and (max-width: 700px) {
+        padding: 1rem 0.5rem;
+    }
+`;
+
+export const TwitterLogin = styled.button`
+    font-weight: 600;
+    margin: 0rem 0.3rem 1rem 0.3rem;
+    width: 100%;
+    color: #fefefe;
+    background-color: #1da1f2;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    backface-visibility: hidden;
+    box-shadow: 5px 5px 0px #0a6ca9;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &:hover {
+        transition-duration: 200ms;
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0px #0a6ca9;
+    }
+
+    &:active {
+        transition-duration: 100ms;
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px #0a6ca9;
     }
     @media only screen and (max-width: 700px) {
         padding: 1rem 0.5rem;
@@ -234,10 +273,9 @@ export const GithubLogin = styled.button`
     border-radius: 4px;
     padding: 0.5rem 1rem;
     font-size: 1.4rem;
-    margin-top: 1rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px #666;
+    box-shadow: 5px 5px 0px #555;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -245,13 +283,13 @@ export const GithubLogin = styled.button`
     &:hover {
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
-        box-shadow: 9px 9px 0px #666;
+        box-shadow: 9px 9px 0px #555;
     }
 
     &:active {
         transition-duration: 100ms;
         transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0px #666;
+        box-shadow: 1px 1px 0px #555;
     }
     @media only screen and (max-width: 700px) {
         padding: 1rem 0.5rem;
@@ -270,13 +308,19 @@ export const GoogleLogo = styled.div`
     font-size: 1.8rem;
 `;
 
+export const TwitterLogo = styled.div`
+    color: #fefefe;
+    height: 100%;
+    font-size: 1.8rem;
+`;
+
 export const GithubText = styled.div`
     font-size: 1.4rem;
 `;
 
 export const SignUpToggle = styled.button`
     font-weight: 600;
-    margin: 0rem 0.3rem;
+    margin: 1rem 0.3rem;
     width: 100%;
     color: #e0e5eb;
     background-color: #202730;

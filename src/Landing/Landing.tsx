@@ -1,12 +1,35 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faGithub, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import {
+    faGithub,
+    faGoogle,
+    faInstagram,
+    faTwitter
+} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
-import { Container, GithubLogin, GithubLogo, GithubText, GoogleLogin, GoogleLogo, Input, Login, LoginContainer, SignUpToggle, SubmitBtn, Title, TitleText, TitleTitle } from "./LandingStyles";
+import {
+    Container,
+    GithubLogin,
+    GithubLogo,
+    GithubText,
+    GoogleLogin,
+    GoogleLogo,
+    Input,
+    Login,
+    LoginContainer,
+    Message,
+    SignUpToggle,
+    SubmitBtn,
+    Title,
+    TitleText,
+    TitleTitle,
+    TwitterLogin,
+    TwitterLogo
+} from "./LandingStyles";
 
-library.add(faGithub, faInstagram, faGoogle);
+library.add(faGithub, faInstagram, faGoogle, faTwitter);
 
 interface Props {}
 
@@ -21,7 +44,7 @@ export const Landing: React.FC<Props> = () => {
     };
 
     const animateForm = useSpring({
-        height: "50rem",
+        height: "65rem",
         width: "100%",
         padding: "0rem 1.2rem 1.8rem 1.2rem",
         borderRadius: "4px",
@@ -29,13 +52,13 @@ export const Landing: React.FC<Props> = () => {
         display: "flex",
         flexDirection: "column",
         margin: "0rem 0rem",
-        transform: signup ? "translateY(-22.5rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(-28.5rem)" : "translateY(0rem)",
         position: "relative"
     });
 
     const animatedBars = useSpring({
         borderTop: "10px solid #667c99",
-        transform: signup ? "translateY(22.5rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(28.5rem)" : "translateY(0rem)",
         fontSize: "0px",
         width: "100%",
         position: "absolute",
@@ -62,6 +85,7 @@ export const Landing: React.FC<Props> = () => {
                 <LoginContainer onSubmit={onSubmit}>
                     <animated.div style={animateForm}>
                         <animated.div style={animatedBars} />
+                        <Message>Log in: </Message>
                         <Input
                             value={username}
                             onChange={(
@@ -95,6 +119,12 @@ export const Landing: React.FC<Props> = () => {
                             </GoogleLogo>
                             <GithubText>Sign In with Google</GithubText>
                         </GoogleLogin>
+                        <TwitterLogin>
+                            <TwitterLogo>
+                                <FontAwesomeIcon icon={["fab", "twitter"]} />
+                            </TwitterLogo>
+                            <GithubText>Sign In with Twitter</GithubText>
+                        </TwitterLogin>
                         <SignUpToggle
                             onClick={() => {
                                 setSignup(!signup);
