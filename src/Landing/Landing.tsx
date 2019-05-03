@@ -10,6 +10,7 @@ import axios from "axios";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
 import {
+    BotMessage,
     Container,
     GithubLogin,
     GithubLogo,
@@ -19,14 +20,12 @@ import {
     Input,
     Login,
     LoginContainer,
-    Message,
     SignUpToggle,
     SubmitBtn,
     Title,
     TitleText,
     TitleTitle,
-    TwitterLogin,
-    TwitterLogo
+    TopMessage
 } from "./LandingStyles";
 
 library.add(faGithub, faInstagram, faGoogle, faTwitter);
@@ -52,13 +51,13 @@ export const Landing: React.FC<Props> = () => {
         display: "flex",
         flexDirection: "column",
         margin: "0rem 0rem",
-        transform: signup ? "translateY(-28.5rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(-23.8rem)" : "translateY(0rem)",
         position: "relative"
     });
 
     const animatedBars = useSpring({
         borderTop: "10px solid #667c99",
-        transform: signup ? "translateY(28.5rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(23.8rem)" : "translateY(0rem)",
         fontSize: "0px",
         width: "100%",
         position: "absolute",
@@ -85,7 +84,7 @@ export const Landing: React.FC<Props> = () => {
                 <LoginContainer onSubmit={onSubmit}>
                     <animated.div style={animateForm}>
                         <animated.div style={animatedBars} />
-                        <Message>Log in: </Message>
+                        <TopMessage>Log in: </TopMessage>
                         <Input
                             value={username}
                             onChange={(
@@ -119,22 +118,20 @@ export const Landing: React.FC<Props> = () => {
                             </GoogleLogo>
                             <GithubText>Sign In with Google</GithubText>
                         </GoogleLogin>
-                        <TwitterLogin>
-                            <TwitterLogo>
-                                <FontAwesomeIcon icon={["fab", "twitter"]} />
-                            </TwitterLogo>
-                            <GithubText>Sign In with Twitter</GithubText>
-                        </TwitterLogin>
                         <SignUpToggle
+                            type="button"
                             onClick={() => {
                                 setSignup(!signup);
                             }}
                         >
                             {signup ? "Back to Log in" : "Or Sign Up"}
                         </SignUpToggle>
+                        <BotMessage>Sign up: </BotMessage>
                         <Input placeholder="Username" />
                         <Input placeholder="Email" />
-                        <Input placeholder="Password" />
+                        <Input type="password" placeholder="Password" />
+                        <Input type="password" placeholder="Re-type-Password" />
+                        <SubmitBtn type="submit">Sign Up</SubmitBtn>
                     </animated.div>
                 </LoginContainer>
             </Login>
