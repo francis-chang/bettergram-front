@@ -96,46 +96,56 @@ export const Title = styled.div`
 `;
 
 export const Login = styled.div`
+    position: relative;
     width: 40%;
     @media only screen and (max-width: 700px) {
         width: 100%;
     }
 `;
 
-export const LoginContainer = styled.form`
+export const LoginContainerLayer = styled.form`
+    width: 100%;
+    height: 100%;
+`;
+
+export const SquareOne = styled.div`
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    z-index: -1;
+    left: 30%;
+    top: 0%;
+    background-color: rgba(52, 178, 20, 0.15);
+    animation: waves 6s infinite linear;
+`;
+
+export const SquareTwo = styled.div`
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    z-index: -1;
+    left: 35%;
+    top: 0%;
+    background-color: rgba(40, 40, 40, 0.2);
+    animation: waves 7s infinite linear;
+`;
+
+export const LoginContainer = styled.div`
     max-height: 29rem;
     width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
     border-left: 10px solid #667c99;
-
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        width: 600px;
-        height: 600px;
-        border-top-left-radius: 40%;
-        border-top-right-radius: 45%;
-        border-bottom-left-radius: 35%;
-        border-bottom-right-radius: 40%;
-        z-index: -1;
-    }
-
-    &::before {
-        left: 40%;
-        bottom: -130%;
-        background-color: rgba(52, 178, 20, 0.15);
-        animation: waves 6s infinite linear;
-    }
-
-    &::after {
-        left: 35%;
-        bottom: -125%;
-        background-color: rgba(40, 40, 40, 0.2);
-        animation: waves 7s infinite linear;
-    }
+    position: relative;
 
     @media only screen and (max-width: 700px) {
         max-height: 33rem;
