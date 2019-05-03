@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router";
 import { animated, useSpring } from "react-spring";
 import {
     BotMessage,
@@ -34,7 +35,7 @@ library.add(faGithub, faInstagram, faGoogle, faTwitter);
 
 interface Props {}
 
-export const Landing: React.FC<Props> = () => {
+const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     const [username, setUsername] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
     const [signup, setSignup] = React.useState<boolean>(false);
@@ -46,6 +47,17 @@ export const Landing: React.FC<Props> = () => {
 
         login();
     };
+
+    React.useEffect(() => {
+        if (localStorage.getItem("access_token")) {
+            props.history.push("/dashboard");
+        }
+        setInterval(() => {
+            if (localStorage.getItem("access_token")) {
+                props.history.push("/dashboard");
+            }
+        }, 1000);
+    }, []);
 
     const animateForm = useSpring({
         height: "65rem",
@@ -79,7 +91,13 @@ export const Landing: React.FC<Props> = () => {
             );
         } catch (err) {
             if (err.response.status === 401 && loginRef.current) {
-                setLoginMessage(err.response.data.message);
+                if (!username) {
+                    setLoginMessage("missing username");
+                } else if (!password) {
+                    setLoginMessage("missing password");
+                } else {
+                    setLoginMessage(err.response.data.message);
+                }
                 loginRef.current.classList.add("shake");
                 setTimeout(() => {
                     if (loginRef.current) {
@@ -98,7 +116,11 @@ export const Landing: React.FC<Props> = () => {
     };
 
     const githubLogin = () => {
-        window.open("http://127.0.0.1:5000/login/github");
+        window.open(
+            "http://127.0.0.1:5000/login/github",
+            "name",
+            "width=500,height=600"
+        );
     };
 
     return (
@@ -144,7 +166,7 @@ export const Landing: React.FC<Props> = () => {
                         <SubmitBtn ref={loginRef} type="submit">
                             Log In
                         </SubmitBtn>
-                        <GithubLogin onClick={githubLogin}>
+                        <GithubLogin onClick={githubLogin} type="button">
                             <GithubLogo>
                                 <FontAwesomeIcon icon={["fab", "github"]} />
                             </GithubLogo>
@@ -171,3 +193,5 @@ export const Landing: React.FC<Props> = () => {
         </Container>
     );
 };
+
+export default withRouter(Landing);

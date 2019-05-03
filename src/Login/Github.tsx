@@ -10,7 +10,9 @@ export const Github: React.FC<Props> = (props: any) => {
         axios
             .get(`http://localhost:5000/login/github/authorized?code=${code}`)
             .then(res => {
-                console.log(res.data);
+                localStorage.setItem("access_token", res.data.access_token);
+                localStorage.setItem("refresh_token", res.data.refresh_token);
+                window.close();
             });
     }, []);
     return <div>hi</div>;
