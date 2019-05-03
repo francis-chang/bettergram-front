@@ -8,9 +8,7 @@ export const Github: React.FC<Props> = (props: any) => {
         const params = new URLSearchParams(props.location.search);
         const code = params.get("code");
         axios
-            .get(
-                `http://localhost:5000/login/github/authorized?code=b015604568ef32ebe060`
-            )
+            .get(`http://localhost:5000/login/github/authorized?code=${code}`)
             .then(res => {
                 console.log(res.data);
             });

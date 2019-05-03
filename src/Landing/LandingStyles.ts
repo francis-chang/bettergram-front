@@ -42,7 +42,37 @@ export const Global = createGlobalStyle`
             transform: rotate(360deg);
         }
     }
-    
+
+    @keyframes shake {
+        0%{
+            background-color: #8c2215;
+        }
+        10%, 90% {
+            
+            transform: translate3d(-1px, 0, 0);
+        }
+        
+        20%, 80% {
+            transform: translate3d(2px, 0, 0);
+        }
+
+        30%, 50%, 70% {
+            transform: translate3d(-4px, 0, 0);
+        }
+
+        40%, 60% {
+            transform: translate3d(4px, 0, 0);
+        }
+        100%{
+            background-color: #202730;
+
+        }
+    }
+
+    .shake {
+        animation: shake 800ms ease-in-out;
+    }
+        
     body {
         font-family: "Martel";
         background-color: #e0e5eb;
@@ -112,7 +142,7 @@ export const SquareOne = styled.div`
     position: absolute;
     width: 600px;
     height: 600px;
-    border-top-left-radius: 40%;
+    border-top-left-radius: 60%;
     border-top-right-radius: 45%;
     border-bottom-left-radius: 35%;
     border-bottom-right-radius: 40%;
@@ -168,7 +198,7 @@ export const BotMessage = styled.div`
 export const Input = styled.input`
     padding: 0.6rem 0.5rem;
     border: none;
-    background-color: #eff2f5;
+    background-color: #d0d8e1;
     color: #202730;
     outline: none;
     font-size: 1.4rem;

@@ -37,6 +37,8 @@ export const Landing: React.FC<Props> = () => {
     const [username, setUsername] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
     const [signup, setSignup] = React.useState<boolean>(false);
+    const [loginMessage, setLoginMessage] = React.useState<string>("");
+    const loginRef = React.useRef<HTMLButtonElement>(null);
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -68,8 +70,22 @@ export const Landing: React.FC<Props> = () => {
 
     const login = async () => {
         const data = { username, password };
-        let response = await axios.post("http://127.0.0.1:5000/login", data);
-        console.log(response);
+        try {
+            let response = await axios.post(
+                "http://127.0.0.1:5000/login",
+                data
+            );
+        } catch (err) {
+            if (err.response.status === 401 && loginRef.current) {
+                setLoginMessage(err.response.data.message);
+                loginRef.current.classList.add("shake");
+                setTimeout(() => {
+                    if (loginRef.current) {
+                        loginRef.current.classList.remove("shake");
+                    }
+                }, 900);
+            }
+        }
     };
 
     const githubLogin = () => {
@@ -91,7 +107,9 @@ export const Landing: React.FC<Props> = () => {
                         <animated.div style={animatedBars} />
                         <SquareOne />
                         {/* <SquareTwo /> */}
-                        <TopMessage>Log in: </TopMessage>
+                        <TopMessage>
+                            {loginMessage ? loginMessage : "Log in:"}
+                        </TopMessage>
                         <Input
                             value={username}
                             onChange={(
@@ -112,7 +130,9 @@ export const Landing: React.FC<Props> = () => {
                             placeholder="Password"
                         />
 
-                        <SubmitBtn type="submit">Log In</SubmitBtn>
+                        <SubmitBtn ref={loginRef} type="submit">
+                            Log In
+                        </SubmitBtn>
                         <GithubLogin onClick={githubLogin}>
                             <GithubLogo>
                                 <FontAwesomeIcon icon={["fab", "github"]} />
