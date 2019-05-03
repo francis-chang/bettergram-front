@@ -102,7 +102,7 @@ export const LoginContainer = styled.form`
     border-left: 10px solid #667c99;
 
     @media only screen and (max-width: 700px) {
-        max-height: 38rem;
+        max-height: 33rem;
     }
 `;
 
