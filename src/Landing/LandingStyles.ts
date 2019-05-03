@@ -33,6 +33,15 @@ export const Global = createGlobalStyle`
             opacity: 1.0;
         }
     }
+
+    @keyframes waves {
+        from { 
+            transform: rotate(0deg);
+        }
+        to { 
+            transform: rotate(360deg);
+        }
+    }
     
     body {
         font-family: "Martel";
@@ -100,6 +109,33 @@ export const LoginContainer = styled.form`
     display: flex;
     justify-content: center;
     border-left: 10px solid #667c99;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-top-left-radius: 40%;
+        border-top-right-radius: 45%;
+        border-bottom-left-radius: 35%;
+        border-bottom-right-radius: 40%;
+        z-index: -1;
+    }
+
+    &::before {
+        left: 40%;
+        bottom: -130%;
+        background-color: rgba(52, 178, 20, 0.15);
+        animation: waves 6s infinite linear;
+    }
+
+    &::after {
+        left: 35%;
+        bottom: -125%;
+        background-color: rgba(40, 40, 40, 0.2);
+        animation: waves 7s infinite linear;
+    }
 
     @media only screen and (max-width: 700px) {
         max-height: 33rem;
