@@ -171,7 +171,7 @@ export const SquareTwo = styled.div`
     animation: waves 7s infinite linear;
 `;
 
-export const LoginContainer = styled.form`
+export const LoginContainer = styled.div`
     max-height: 29rem;
     width: 100%;
     overflow: hidden;
@@ -183,6 +183,12 @@ export const LoginContainer = styled.form`
     @media only screen and (max-width: 700px) {
         max-height: 33rem;
     }
+`;
+
+export const LoginForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `;
 
 export const TopMessage = styled.div`

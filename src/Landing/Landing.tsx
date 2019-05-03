@@ -21,6 +21,7 @@ import {
     Input,
     Login,
     LoginContainer,
+    LoginForm,
     SignUpToggle,
     SquareOne,
     SubmitBtn,
@@ -42,11 +43,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     const [loginMessage, setLoginMessage] = React.useState<string>("");
     const loginRef = React.useRef<HTMLButtonElement>(null);
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        login();
-    };
+    const [regUsername, setRegUsername] = React.useState<string>("");
+    const [email, setEmail] = React.useState<string>("");
+    const [regPassword, setRegPassword] = React.useState<string>("");
+    const [regRePassword, setRegRePassword] = React.useState<string>("");
 
     React.useEffect(() => {
         if (localStorage.getItem("access_token")) {
@@ -59,28 +59,17 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
         }, 1000);
     }, []);
 
-    const animateForm = useSpring({
-        height: "65rem",
-        width: "100%",
-        padding: "0rem 1.2rem 1.8rem 1.2rem",
-        borderRadius: "4px",
-        backgroundColor: "#d0d8e1",
-        display: "flex",
-        flexDirection: "column",
-        margin: "0rem 0rem",
-        transform: signup ? "translateY(-23.8rem)" : "translateY(0rem)",
-        position: "relative"
-    });
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    const animatedBars = useSpring({
-        borderTop: "10px solid #667c99",
-        transform: signup ? "translateY(23.8rem)" : "translateY(0rem)",
-        fontSize: "0px",
-        width: "100%",
-        position: "absolute",
-        left: "0%",
-        top: "0%"
-    });
+        login();
+    };
+
+    const onSignUpSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        register();
+    };
 
     const login = async () => {
         const data = { username, password };
@@ -108,6 +97,12 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
         }
     };
 
+    const register = async () => {
+        const data = {
+            username: regUsername
+        };
+    };
+
     const toggle = () => {
         setSignup(!signup);
         setUsername("");
@@ -123,6 +118,29 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
         );
     };
 
+    const animateForm = useSpring({
+        height: "65rem",
+        width: "100%",
+        padding: "0rem 1.2rem 1.8rem 1.2rem",
+        borderRadius: "4px",
+        backgroundColor: "#d0d8e1",
+        display: "flex",
+        flexDirection: "column",
+        margin: "0rem 0rem",
+        transform: signup ? "translateY(-23.8rem)" : "translateY(0rem)",
+        position: "relative"
+    });
+
+    const animatedBars = useSpring({
+        borderTop: "10px solid #667c99",
+        transform: signup ? "translateY(23.8rem)" : "translateY(0rem)",
+        fontSize: "0px",
+        width: "100%",
+        position: "absolute",
+        left: "0%",
+        top: "0%"
+    });
+
     return (
         <Container>
             <Title>
@@ -133,39 +151,42 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                 </TitleText>
             </Title>
             <Login>
-                <LoginContainer onSubmit={onSubmit}>
+                <LoginContainer>
                     <animated.div style={animateForm}>
                         <animated.div style={animatedBars} />
                         <SquareOne />
-                        {/* <SquareTwo /> */}
-                        {loginMessage ? (
-                            <TopErrorMessage>{loginMessage}</TopErrorMessage>
-                        ) : (
-                            <TopMessage>Log in: </TopMessage>
-                        )}
-                        <Input
-                            value={username}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => {
-                                setUsername(e.target.value);
-                            }}
-                            placeholder="Username"
-                        />
-                        <Input
-                            value={password}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => {
-                                setPassword(e.target.value);
-                            }}
-                            type="password"
-                            placeholder="Password"
-                        />
+                        <LoginForm onSubmit={onSubmit}>
+                            {loginMessage ? (
+                                <TopErrorMessage>
+                                    {loginMessage}
+                                </TopErrorMessage>
+                            ) : (
+                                <TopMessage>Log in: </TopMessage>
+                            )}
+                            <Input
+                                value={username}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                    setUsername(e.target.value);
+                                }}
+                                placeholder="Username"
+                            />
+                            <Input
+                                value={password}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                    setPassword(e.target.value);
+                                }}
+                                type="password"
+                                placeholder="Password"
+                            />
 
-                        <SubmitBtn ref={loginRef} type="submit">
-                            Log In
-                        </SubmitBtn>
+                            <SubmitBtn ref={loginRef} type="submit">
+                                Log In
+                            </SubmitBtn>
+                        </LoginForm>
                         <GithubLogin onClick={githubLogin} type="button">
                             <GithubLogo>
                                 <FontAwesomeIcon icon={["fab", "github"]} />
@@ -181,12 +202,17 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                         <SignUpToggle type="button" onClick={toggle}>
                             {signup ? "Back to Log in" : "Or Sign Up"}
                         </SignUpToggle>
-                        <BotMessage>Sign up: </BotMessage>
-                        <Input placeholder="Username" />
-                        <Input placeholder="Email" />
-                        <Input type="password" placeholder="Password" />
-                        <Input type="password" placeholder="Re-type-Password" />
-                        <SubmitBtn type="submit">Sign Up</SubmitBtn>
+                        <LoginForm onSubmit={onSignUpSubmit}>
+                            <BotMessage>Sign up: </BotMessage>
+                            <Input placeholder="Username" />
+                            <Input placeholder="Email" />
+                            <Input type="password" placeholder="Password" />
+                            <Input
+                                type="password"
+                                placeholder="Re-type-Password"
+                            />
+                            <SubmitBtn type="submit">Sign Up</SubmitBtn>
+                        </LoginForm>
                     </animated.div>
                 </LoginContainer>
             </Login>
