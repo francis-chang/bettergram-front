@@ -72,6 +72,10 @@ export const Landing: React.FC<Props> = () => {
         console.log(response);
     };
 
+    const githubLogin = () => {
+        window.open("http://127.0.0.1:5000/login/github");
+    };
+
     return (
         <Container>
             <Title>
@@ -109,7 +113,7 @@ export const Landing: React.FC<Props> = () => {
                         />
 
                         <SubmitBtn type="submit">Log In</SubmitBtn>
-                        <GithubLogin>
+                        <GithubLogin onClick={githubLogin}>
                             <GithubLogo>
                                 <FontAwesomeIcon icon={["fab", "github"]} />
                             </GithubLogo>
