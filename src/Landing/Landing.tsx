@@ -20,7 +20,6 @@ import {
     Input,
     Login,
     LoginContainer,
-    LoginContainerLayer,
     SignUpToggle,
     SquareOne,
     SquareTwo,
@@ -84,64 +83,59 @@ export const Landing: React.FC<Props> = () => {
                 </TitleText>
             </Title>
             <Login>
-                <LoginContainer>
+                <LoginContainer onSubmit={onSubmit}>
                     <animated.div style={animateForm}>
                         <animated.div style={animatedBars} />
-                        <LoginContainerLayer onSubmit={onSubmit}>
-                            <SquareOne />
-                            <SquareTwo />
-                            <TopMessage>Log in: </TopMessage>
-                            <Input
-                                value={username}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>
-                                ) => {
-                                    setUsername(e.target.value);
-                                }}
-                                placeholder="Username"
-                            />
-                            <Input
-                                value={password}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>
-                                ) => {
-                                    setPassword(e.target.value);
-                                }}
-                                type="password"
-                                placeholder="Password"
-                            />
+                        <SquareOne />
+                        <SquareTwo />
+                        <TopMessage>Log in: </TopMessage>
+                        <Input
+                            value={username}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                                setUsername(e.target.value);
+                            }}
+                            placeholder="Username"
+                        />
+                        <Input
+                            value={password}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                                setPassword(e.target.value);
+                            }}
+                            type="password"
+                            placeholder="Password"
+                        />
 
-                            <SubmitBtn type="submit">Log In</SubmitBtn>
-                            <GithubLogin>
-                                <GithubLogo>
-                                    <FontAwesomeIcon icon={["fab", "github"]} />
-                                </GithubLogo>
-                                <GithubText>Sign In with Github</GithubText>
-                            </GithubLogin>
-                            <GoogleLogin>
-                                <GoogleLogo>
-                                    <FontAwesomeIcon icon={["fab", "google"]} />
-                                </GoogleLogo>
-                                <GithubText>Sign In with Google</GithubText>
-                            </GoogleLogin>
-                            <SignUpToggle
-                                type="button"
-                                onClick={() => {
-                                    setSignup(!signup);
-                                }}
-                            >
-                                {signup ? "Back to Log in" : "Or Sign Up"}
-                            </SignUpToggle>
-                            <BotMessage>Sign up: </BotMessage>
-                            <Input placeholder="Username" />
-                            <Input placeholder="Email" />
-                            <Input type="password" placeholder="Password" />
-                            <Input
-                                type="password"
-                                placeholder="Re-type-Password"
-                            />
-                            <SubmitBtn type="submit">Sign Up</SubmitBtn>
-                        </LoginContainerLayer>
+                        <SubmitBtn type="submit">Log In</SubmitBtn>
+                        <GithubLogin>
+                            <GithubLogo>
+                                <FontAwesomeIcon icon={["fab", "github"]} />
+                            </GithubLogo>
+                            <GithubText>Sign In with Github</GithubText>
+                        </GithubLogin>
+                        <GoogleLogin>
+                            <GoogleLogo>
+                                <FontAwesomeIcon icon={["fab", "google"]} />
+                            </GoogleLogo>
+                            <GithubText>Sign In with Google</GithubText>
+                        </GoogleLogin>
+                        <SignUpToggle
+                            type="button"
+                            onClick={() => {
+                                setSignup(!signup);
+                            }}
+                        >
+                            {signup ? "Back to Log in" : "Or Sign Up"}
+                        </SignUpToggle>
+                        <BotMessage>Sign up: </BotMessage>
+                        <Input placeholder="Username" />
+                        <Input placeholder="Email" />
+                        <Input type="password" placeholder="Password" />
+                        <Input type="password" placeholder="Re-type-Password" />
+                        <SubmitBtn type="submit">Sign Up</SubmitBtn>
                     </animated.div>
                 </LoginContainer>
             </Login>

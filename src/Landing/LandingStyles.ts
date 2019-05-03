@@ -117,9 +117,9 @@ export const SquareOne = styled.div`
     border-bottom-left-radius: 35%;
     border-bottom-right-radius: 40%;
     z-index: -1;
-    left: 30%;
-    top: 0%;
-    background-color: rgba(52, 178, 20, 0.15);
+    left: 20%;
+    top: 10%;
+    background-color: rgba(52, 178, 20, 0.5);
     animation: waves 6s infinite linear;
 `;
 
@@ -132,13 +132,13 @@ export const SquareTwo = styled.div`
     border-bottom-left-radius: 35%;
     border-bottom-right-radius: 40%;
     z-index: -1;
-    left: 35%;
-    top: 0%;
-    background-color: rgba(40, 40, 40, 0.2);
+    left: 30%;
+    top: 15%;
+    background-color: rgba(40, 40, 40, 0.7);
     animation: waves 7s infinite linear;
 `;
 
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.form`
     max-height: 29rem;
     width: 100%;
     overflow: hidden;
@@ -174,7 +174,7 @@ export const Input = styled.input`
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
     transition: 250ms ease-out;
-    box-shadow: 5px 5px 0px #667c99;
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.5);
     border-radius: 4px;
 
     &:focus {
@@ -182,7 +182,7 @@ export const Input = styled.input`
         color: #e0e5eb;
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
-        box-shadow: 9px 9px 0px #667c99;
+        box-shadow: 9px 9px 0px rgba(102, 124, 153, 0.8);
         &::placeholder {
             color: #e0e5eb;
         }
