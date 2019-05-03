@@ -119,7 +119,7 @@ export const SquareOne = styled.div`
     z-index: -1;
     left: 20%;
     top: 10%;
-    background-color: rgba(52, 178, 20, 0.5);
+    background-color: rgba(255, 183, 58, 0.6);
     animation: waves 6s infinite linear;
 `;
 
@@ -134,7 +134,7 @@ export const SquareTwo = styled.div`
     z-index: -1;
     left: 30%;
     top: 15%;
-    background-color: rgba(40, 40, 40, 0.7);
+    background-color: rgba(32, 39, 48, 0.4);
     animation: waves 7s infinite linear;
 `;
 
@@ -263,7 +263,7 @@ export const GoogleLogin = styled.button`
     font-size: 1.4rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px #aaa;
+    box-shadow: 5px 5px 0px rgba(170, 170, 170, 0.5);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -271,13 +271,13 @@ export const GoogleLogin = styled.button`
     &:hover {
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
-        box-shadow: 9px 9px 0px #aaa;
+        box-shadow: 9px 9px 0px rgba(170, 170, 170, 0.8);
     }
 
     &:active {
         transition-duration: 100ms;
         transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0px #aaa;
+        box-shadow: 1px 1px 0px rgba(170, 170, 170, 0.8);
     }
     @media only screen and (max-width: 700px) {
         padding: 1rem 0.5rem;
@@ -331,7 +331,7 @@ export const GithubLogin = styled.button`
     font-size: 1.4rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px #555;
+    box-shadow: 5px 5px 0px rgba(85, 85, 85, 0.5);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -339,13 +339,13 @@ export const GithubLogin = styled.button`
     &:hover {
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
-        box-shadow: 9px 9px 0px #555;
+        box-shadow: 9px 9px 0px rgba(85, 85, 85, 0.8);
     }
 
     &:active {
         transition-duration: 100ms;
         transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0px #555;
+        box-shadow: 1px 1px 0px rgba(85, 85, 85, 0.8);
     }
     @media only screen and (max-width: 700px) {
         padding: 1rem 0.5rem;
@@ -387,7 +387,7 @@ export const SignUpToggle = styled.button`
     font-size: 1.4rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px #667c99;
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.5);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -395,13 +395,13 @@ export const SignUpToggle = styled.button`
     &:hover {
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
-        box-shadow: 9px 9px 0px #667c99;
+        box-shadow: 9px 9px 0px rgba(102, 124, 153, 0.8);
     }
 
     &:active {
         transition-duration: 100ms;
         transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0px #667c99;
+        box-shadow: 1px 1px 0px rgba(102, 124, 153, 0.8);
     }
     @media only screen and (max-width: 700px) {
         padding: 1rem 0.5rem;

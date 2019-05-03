@@ -22,7 +22,6 @@ import {
     LoginContainer,
     SignUpToggle,
     SquareOne,
-    SquareTwo,
     SubmitBtn,
     Title,
     TitleText,
@@ -87,7 +86,7 @@ export const Landing: React.FC<Props> = () => {
                     <animated.div style={animateForm}>
                         <animated.div style={animatedBars} />
                         <SquareOne />
-                        <SquareTwo />
+                        {/* <SquareTwo /> */}
                         <TopMessage>Log in: </TopMessage>
                         <Input
                             value={username}
