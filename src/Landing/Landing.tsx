@@ -26,6 +26,7 @@ import {
     Title,
     TitleText,
     TitleTitle,
+    TopErrorMessage,
     TopMessage
 } from "./LandingStyles";
 
@@ -42,6 +43,7 @@ export const Landing: React.FC<Props> = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         login();
     };
 
@@ -88,6 +90,13 @@ export const Landing: React.FC<Props> = () => {
         }
     };
 
+    const toggle = () => {
+        setSignup(!signup);
+        setUsername("");
+        setPassword("");
+        setLoginMessage("");
+    };
+
     const githubLogin = () => {
         window.open("http://127.0.0.1:5000/login/github");
     };
@@ -107,9 +116,11 @@ export const Landing: React.FC<Props> = () => {
                         <animated.div style={animatedBars} />
                         <SquareOne />
                         {/* <SquareTwo /> */}
-                        <TopMessage>
-                            {loginMessage ? loginMessage : "Log in:"}
-                        </TopMessage>
+                        {loginMessage ? (
+                            <TopErrorMessage>{loginMessage}</TopErrorMessage>
+                        ) : (
+                            <TopMessage>Log in: </TopMessage>
+                        )}
                         <Input
                             value={username}
                             onChange={(
@@ -145,12 +156,7 @@ export const Landing: React.FC<Props> = () => {
                             </GoogleLogo>
                             <GithubText>Sign In with Google</GithubText>
                         </GoogleLogin>
-                        <SignUpToggle
-                            type="button"
-                            onClick={() => {
-                                setSignup(!signup);
-                            }}
-                        >
+                        <SignUpToggle type="button" onClick={toggle}>
                             {signup ? "Back to Log in" : "Or Sign Up"}
                         </SignUpToggle>
                         <BotMessage>Sign up: </BotMessage>

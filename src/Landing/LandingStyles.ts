@@ -45,11 +45,14 @@ export const Global = createGlobalStyle`
 
     @keyframes shake {
         0%{
-            background-color: #8c2215;
+            background-color: #bc2716;
         }
         10%, 90% {
             
             transform: translate3d(-1px, 0, 0);
+        }
+        65% {
+            background-color: #bc2716;
         }
         
         20%, 80% {
@@ -187,6 +190,10 @@ export const TopMessage = styled.div`
     color: #202730;
     margin-bottom: 1rem;
     padding-top: 1rem;
+`;
+
+export const TopErrorMessage = styled(TopMessage)`
+    color: #bc2716;
 `;
 
 export const BotMessage = styled.div`
