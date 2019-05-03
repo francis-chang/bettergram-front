@@ -174,7 +174,7 @@ export const Input = styled.input`
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
     transition: 250ms ease-out;
-    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.5);
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
     border-radius: 4px;
 
     &:focus {
@@ -207,18 +207,18 @@ export const SubmitBtn = styled.button`
     font-size: 1.4rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px #667c99;
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
 
     &:hover {
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
-        box-shadow: 9px 9px 0px #667c99;
+        box-shadow: 9px 9px 0px rgba(102, 124, 153, 0.8);
     }
 
     &:active {
         transition-duration: 100ms;
         transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0px #667c99;
+        box-shadow: 1px 1px 0px rgba(102, 124, 153, 0.8);
     }
 
     @media only screen and (max-width: 700px) {
@@ -263,7 +263,7 @@ export const GoogleLogin = styled.button`
     font-size: 1.4rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px rgba(170, 170, 170, 0.5);
+    box-shadow: 5px 5px 0px rgba(170, 170, 170, 0.7);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -331,7 +331,7 @@ export const GithubLogin = styled.button`
     font-size: 1.4rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px rgba(85, 85, 85, 0.5);
+    box-shadow: 5px 5px 0px rgba(85, 85, 85, 0.7);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -387,7 +387,7 @@ export const SignUpToggle = styled.button`
     font-size: 1.4rem;
     cursor: pointer;
     backface-visibility: hidden;
-    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.5);
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
     display: flex;
     justify-content: space-around;
     align-items: center;
