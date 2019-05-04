@@ -47,6 +47,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     const [email, setEmail] = React.useState<string>("");
     const [regPassword, setRegPassword] = React.useState<string>("");
     const [regRePassword, setRegRePassword] = React.useState<string>("");
+    const [signupMessage, setSignupMessage] = React.useState<string>("");
 
     React.useEffect(() => {
         if (localStorage.getItem("access_token")) {
@@ -98,9 +99,33 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     };
 
     const register = async () => {
+        if (!regUsername || !regPassword || !email) {
+            setSignupMessage("Missing fields");
+            setRegPassword("");
+            setRegRePassword("");
+        } else if (regRePassword !== regPassword) {
+            setSignupMessage("passwords do not match");
+            setRegPassword("");
+            setRegRePassword("");
+        } else if (regPassword.length < 8) {
+            setSignupMessage("password must be greater than 7 characters");
+            setRegPassword("");
+            setRegRePassword("");
+        }
         const data = {
-            username: regUsername
+            username: regUsername,
+            email,
+            password: regPassword
         };
+
+        try {
+            let response = await axios.post(
+                "http://127.0.0.1:5000/register",
+                data
+            );
+        } catch (err) {
+            console.log(err.response);
+        }
     };
 
     const toggle = () => {
@@ -204,12 +229,43 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                         </SignUpToggle>
                         <LoginForm onSubmit={onSignUpSubmit}>
                             <BotMessage>Sign up: </BotMessage>
-                            <Input placeholder="Username" />
-                            <Input placeholder="Email" />
-                            <Input type="password" placeholder="Password" />
+                            <Input
+                                placeholder="Username"
+                                value={regUsername}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                    setRegUsername(e.target.value);
+                                }}
+                            />
+                            <Input
+                                placeholder="Email"
+                                value={email}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                    setEmail(e.target.value);
+                                }}
+                            />
                             <Input
                                 type="password"
-                                placeholder="Re-type-Password"
+                                placeholder="Password"
+                                value={regPassword}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                    setRegPassword(e.target.value);
+                                }}
+                            />
+                            <Input
+                                type="password"
+                                placeholder="Re-type Password"
+                                value={regRePassword}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                    setRegRePassword(e.target.value);
+                                }}
                             />
                             <SubmitBtn type="submit">Sign Up</SubmitBtn>
                         </LoginForm>
