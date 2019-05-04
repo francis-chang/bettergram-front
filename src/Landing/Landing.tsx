@@ -189,6 +189,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 <TopMessage>Log in: </TopMessage>
                             )}
                             <Input
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck={false}
                                 value={username}
                                 onChange={(
                                     e: React.ChangeEvent<HTMLInputElement>
@@ -198,6 +202,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 placeholder="Username"
                             />
                             <Input
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck={false}
                                 value={password}
                                 onChange={(
                                     e: React.ChangeEvent<HTMLInputElement>
@@ -230,6 +238,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                         <LoginForm onSubmit={onSignUpSubmit}>
                             <BotMessage>Sign up: </BotMessage>
                             <Input
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck={false}
                                 placeholder="Username"
                                 value={regUsername}
                                 onChange={(
@@ -239,6 +251,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 }}
                             />
                             <Input
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck={false}
                                 placeholder="Email"
                                 value={email}
                                 onChange={(
@@ -248,6 +264,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 }}
                             />
                             <Input
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck={false}
                                 type="password"
                                 placeholder="Password"
                                 value={regPassword}
@@ -258,6 +278,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 }}
                             />
                             <Input
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck={false}
                                 type="password"
                                 placeholder="Re-type Password"
                                 value={regRePassword}
