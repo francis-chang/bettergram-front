@@ -119,10 +119,14 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
         };
 
         try {
+            await axios.post("http://127.0.0.1:5000/register", data);
             let response = await axios.post(
-                "http://127.0.0.1:5000/register",
+                "http://127.0.0.1:5000/login",
                 data
             );
+            localStorage.setItem("access_token", response.data.access_token);
+            localStorage.setItem("refresh_token", response.data.refresh_token);
+            props.history.push("/dashboard");
         } catch (err) {
             console.log(err.response);
         }
