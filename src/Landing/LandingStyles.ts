@@ -75,11 +75,12 @@ export const Global = createGlobalStyle`
     .shake {
         animation: shake 800ms ease-in-out;
     }
-        
     body {
+        margin: 0px;
         font-family: "Martel";
         background-color: #e0e5eb;
         color: #202730;
+
     }
 `;
 
