@@ -15,9 +15,16 @@ interface Props {}
 
 export const Dashboard: React.FC<Props> = () => {
     const [toggle, setToggle] = React.useState<boolean>(false);
-    React.useEffect(() => {}, []);
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+    const files = acceptedFiles.map(file => (
+        <li key={file.name}>
+            {file.name} - {file.size} bytes
+        </li>
+    ));
+    React.useEffect(() => {
+        console.log(files);
+    },[]);
     const navSlideout = useSpring({
         width: "20rem",
         backgroundColor: "red",
@@ -32,11 +39,9 @@ export const Dashboard: React.FC<Props> = () => {
         setToggle(!toggle);
     };
 
-    const files = acceptedFiles.map(file => (
-        <li key={file.name}>
-            {file.name} - {file.size} bytes
-        </li>
-    ));
+    const onInput = () => {
+        console.log(files);
+    };
 
     return (
         <Container>
@@ -48,9 +53,9 @@ export const Dashboard: React.FC<Props> = () => {
             </NavBarContainer>
             <TopRow>
                 <Upload>
-                    {files.length > 0 ? (
+                    {files.length === 0 ? (
                         <div {...getRootProps({ className: "dropzone" })}>
-                            <input {...getInputProps()} />
+                            <input onChange={onInput} {...getInputProps()} />
                             <p>Drag image files here or Select...</p>
                         </div>
                     ) : (
