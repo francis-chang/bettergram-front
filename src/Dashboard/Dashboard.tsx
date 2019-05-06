@@ -1,7 +1,14 @@
 import * as React from "react";
 import { useDropzone } from "react-dropzone";
 import { animated, useSpring } from "react-spring";
-import { Container, Dash, NavBar, NavBarContainer } from "./DashboardStyled";
+import {
+    Container,
+    NavBar,
+    NavBarContainer,
+    Notifications,
+    TopRow,
+    Upload
+} from "./DashboardStyled";
 
 interface Props {}
 
@@ -38,8 +45,8 @@ export const Dashboard: React.FC<Props> = () => {
                 </NavBar>
                 <animated.div style={navSlideout} />
             </NavBarContainer>
-            <Dash>
-                <section className="container">
+            <TopRow>
+                <Upload>
                     <div {...getRootProps({ className: "dropzone" })}>
                         <input {...getInputProps()} />
                         <p>
@@ -51,8 +58,9 @@ export const Dashboard: React.FC<Props> = () => {
                         <h4>Files</h4>
                         <ul>{files}</ul>
                     </aside>
-                </section>
-            </Dash>
+                </Upload>
+                <Notifications />
+            </TopRow>
         </Container>
     );
 };

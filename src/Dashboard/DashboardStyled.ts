@@ -16,10 +16,21 @@ export const Container = styled.div`
     width: 100%;
 `;
 
-export const Dash = styled.div`
-    width: 100%;
-    padding-left: 5rem;
+export const TopRow = styled.div`
+    max-width: 1500px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+`;
+
+export const Upload = styled.div`
+    width: 50%;
     background-color: red;
-    box-sizing: border-box;
-    height: 100%;
+`;
+
+export const Notifications = styled.div`
+    width: 50%;
+    background-color: green;
+    height: 20rem;
 `;
