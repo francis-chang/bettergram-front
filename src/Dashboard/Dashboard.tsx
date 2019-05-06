@@ -9,6 +9,7 @@ import {
     TopRow,
     Upload
 } from "./DashboardStyled";
+import { PhotoWidget } from "./PhotoWidget";
 
 interface Props {}
 
@@ -47,17 +48,14 @@ export const Dashboard: React.FC<Props> = () => {
             </NavBarContainer>
             <TopRow>
                 <Upload>
-                    <div {...getRootProps({ className: "dropzone" })}>
-                        <input {...getInputProps()} />
-                        <p>
-                            Drag 'n' drop some files here, or click to select
-                            files
-                        </p>
-                    </div>
-                    <aside>
-                        <h4>Files</h4>
-                        <ul>{files}</ul>
-                    </aside>
+                    {files.length > 0 ? (
+                        <div {...getRootProps({ className: "dropzone" })}>
+                            <input {...getInputProps()} />
+                            <p>Drag image files here or Select...</p>
+                        </div>
+                    ) : (
+                        <PhotoWidget />
+                    )}
                 </Upload>
                 <Notifications />
             </TopRow>

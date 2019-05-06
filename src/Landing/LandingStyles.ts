@@ -34,6 +34,16 @@ export const Global = createGlobalStyle`
         }
     }
 
+    @keyframes toTopLong{
+        0%{
+            transform: translateY(25rem);
+        }
+        100%{
+            transform: translateY(0rem);
+
+        }
+    }
+
     @keyframes waves {
         from { 
             transform: rotate(0deg);
@@ -71,6 +81,7 @@ export const Global = createGlobalStyle`
 
         }
     }
+
 
     .shake {
         animation: shake 800ms ease-in-out;

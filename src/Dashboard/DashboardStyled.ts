@@ -26,11 +26,31 @@ export const TopRow = styled.div`
 
 export const Upload = styled.div`
     width: 50%;
-    background-color: red;
+    margin: 1rem;
+    border: 2px dashed black;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    height: 20rem;
+    overflow: hidden;
 `;
 
 export const Notifications = styled.div`
     width: 50%;
     background-color: green;
     height: 20rem;
+`;
+
+export const WidgetContainer = styled.div`
+    z-index: 1;
+    margin: 1rem;
+    width: 100%;
+    height: 15rem;
+    background-color: #202730;
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
+    animation-name: toTopLong;
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.3, 0.9, 0.3, 0.9);
 `;
