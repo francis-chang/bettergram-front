@@ -82,6 +82,10 @@ export const Global = createGlobalStyle`
         color: #202730;
 
     }
+
+    .container{
+        border: 2px solid black;
+    }
 `;
 
 export const Container = styled.div`
