@@ -23,27 +23,30 @@ const Dashboard: React.FC<RouteComponentProps> = (
     const [uploadedPictures, setUploadedPictures] = React.useState<any>([]);
     const token = localStorage.getItem("access_token");
     const onDrop = React.useCallback(async files => {
-        let formData = new FormData();
-        formData.set("caption", "");
-        formData.append("image", files[0]);
-        const headers = {
-            headers: {
-                "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${token}`
+        setUploading(true);
+        for (const file in files) {
+            let formData = new FormData();
+            formData.set("caption", "");
+            formData.append("image", files[file]);
+            const headers = {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`
+                }
+            };
+            try {
+                const response = await axios.post(
+                    "http://127.0.0.1:5000/image",
+                    formData,
+                    headers
+                );
+
+                setUploadedPictures(response.data);
+            } catch (err) {
+                console.log(err.response);
             }
-        };
-        try {
-            setUploading(true);
-            const response = await axios.post(
-                "http://127.0.0.1:5000/image",
-                formData,
-                headers
-            );
-            setUploading(false)
-            setUploadedPictures(response.data);
-        } catch (err) {
-            console.log(err.response);
         }
+        setUploading(false);
     }, []);
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
