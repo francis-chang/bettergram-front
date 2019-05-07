@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "./App";
-import { Dashboard } from "./Dashboard/Dashboard";
+import Dashboard from "./Dashboard/Dashboard";
 import { Global } from "./Landing/LandingStyles";
 import { Github } from "./Login/Github";
 import * as serviceWorker from "./serviceWorker";

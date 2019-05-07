@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDropzone } from "react-dropzone";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import {
     Container,
@@ -13,18 +14,27 @@ import { PhotoWidget } from "./PhotoWidget";
 
 interface Props {}
 
-export const Dashboard: React.FC<Props> = () => {
+const Dashboard: React.FC<RouteComponentProps> = (
+    props: RouteComponentProps
+) => {
     const [toggle, setToggle] = React.useState<boolean>(false);
+    const onDrop = React.useCallback(files => {
+        console.log(files);
+    }, []);
 
-    const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+    const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+        onDrop
+    });
     const files = acceptedFiles.map(file => (
         <li key={file.name}>
             {file.name} - {file.size} bytes
         </li>
     ));
     React.useEffect(() => {
-        console.log(files);
-    },[]);
+        if (!localStorage.getItem("access-token")) {
+            props.history.push("/");
+        }
+    }, []);
     const navSlideout = useSpring({
         width: "20rem",
         backgroundColor: "red",
@@ -39,10 +49,6 @@ export const Dashboard: React.FC<Props> = () => {
         setToggle(!toggle);
     };
 
-    const onInput = () => {
-        console.log(files);
-    };
-
     return (
         <Container>
             <NavBarContainer>
@@ -55,7 +61,7 @@ export const Dashboard: React.FC<Props> = () => {
                 <Upload>
                     {files.length === 0 ? (
                         <div {...getRootProps({ className: "dropzone" })}>
-                            <input onChange={onInput} {...getInputProps()} />
+                            <input {...getInputProps()} />
                             <p>Drag image files here or Select...</p>
                         </div>
                     ) : (
@@ -67,3 +73,5 @@ export const Dashboard: React.FC<Props> = () => {
         </Container>
     );
 };
+
+export default withRouter(Dashboard);
