@@ -1,8 +1,8 @@
-import axios from "axios";
 import * as React from "react";
 import { useDropzone } from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
+import { post } from "../axios";
 import {
     Container,
     NavBar,
@@ -34,17 +34,15 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     Authorization: `Bearer ${token}`
                 }
             };
-            try {
-                const response = await axios.post(
-                    "http://127.0.0.1:5000/image",
-                    formData,
-                    headers
-                );
 
-                setUploadedPictures([...uploadedPictures, response.data]);
-            } catch (err) {
-                console.log(err.response);
-            }
+            const response = await post(
+                "http://127.0.0.1:5000/image",
+                formData,
+                headers
+            );
+            console.log(response);
+
+            setUploadedPictures([...uploadedPictures, response.data]);
         }
         setUploading(false);
     }, []);
