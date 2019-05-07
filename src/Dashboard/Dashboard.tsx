@@ -20,7 +20,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
 ) => {
     const [toggle, setToggle] = React.useState<boolean>(false);
     const [uploading, setUploading] = React.useState<boolean>(false);
-    const [uploadedPictures, setUploadedPictures] = React.useState<any>([]);
+    const [uploadedPictures, setUploadedPictures] = React.useState<any[]>([]);
     const token = localStorage.getItem("access_token");
     const onDrop = React.useCallback(async files => {
         setUploading(true);
@@ -41,7 +41,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     headers
                 );
 
-                setUploadedPictures(response.data);
+                setUploadedPictures([...uploadedPictures, response.data]);
             } catch (err) {
                 console.log(err.response);
             }
@@ -94,7 +94,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     ) : uploading ? (
                         <p>Loading...</p>
                     ) : (
-                        <PhotoWidget />
+                        <PhotoWidget img={uploadedPictures[0]} />
                     )}
                 </Upload>
                 <Notifications />

@@ -54,3 +54,9 @@ export const WidgetContainer = styled.div`
     animation-duration: 500ms;
     animation-timing-function: cubic-bezier(0.3, 0.9, 0.3, 0.9);
 `;
+
+export const Photo = styled.div`
+    width: 185px;
+    height: 185px;
+    background-color: blue;
+`;
