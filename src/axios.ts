@@ -12,11 +12,14 @@ export const post = async (
     headers: any
 ) => {
     try {
-        let response = await axios.post(url, data, headers);
-        return response;
+        let response = await axios.post(
+            `http://127.0.0.1:5000${url}`,
+            data,
+            headers
+        );
+        return { image: response, error: false };
     } catch (err) {
         if (err.response.data.message === "EXPIRED_JWT") {
-            console.log("i got here");
             localStorage.setItem(
                 "access_token",
                 err.response.data.access_token
@@ -29,8 +32,8 @@ export const post = async (
                 data,
                 headers
             );
-            return response;
+            return { image: response, error: false };
         }
+        return { image: { data: "" }, error: true };
     }
-    return { data: "wtf" };
 };

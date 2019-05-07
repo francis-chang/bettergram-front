@@ -35,14 +35,12 @@ const Dashboard: React.FC<RouteComponentProps> = (
                 }
             };
 
-            const response = await post(
-                "http://127.0.0.1:5000/image",
-                formData,
-                headers
-            );
+            const response = await post("/image", formData, headers);
             console.log(response);
 
-            setUploadedPictures([...uploadedPictures, response.data]);
+            if (!response.error) {
+                setUploadedPictures([...uploadedPictures, response.image.data]);
+            }
         }
         setUploading(false);
     }, []);
