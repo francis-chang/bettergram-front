@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as React from "react";
 import { useDropzone } from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -18,8 +19,31 @@ const Dashboard: React.FC<RouteComponentProps> = (
     props: RouteComponentProps
 ) => {
     const [toggle, setToggle] = React.useState<boolean>(false);
-    const onDrop = React.useCallback(files => {
-        console.log(files);
+    const [uploading, setUploading] = React.useState<boolean>(false);
+    const [uploadedPictures, setUploadedPictures] = React.useState<any>([]);
+    const token = localStorage.getItem("access_token");
+    const onDrop = React.useCallback(async files => {
+        let formData = new FormData();
+        formData.set("caption", "");
+        formData.append("image", files[0]);
+        const headers = {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        try {
+            setUploading(true);
+            const response = await axios.post(
+                "http://127.0.0.1:5000/image",
+                formData,
+                headers
+            );
+            setUploading(false)
+            setUploadedPictures(response.data);
+        } catch (err) {
+            console.log(err.response);
+        }
     }, []);
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
@@ -31,7 +55,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
         </li>
     ));
     React.useEffect(() => {
-        if (!localStorage.getItem("access-token")) {
+        if (!localStorage.getItem("access_token")) {
             props.history.push("/");
         }
     }, []);
@@ -49,7 +73,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
         setToggle(!toggle);
     };
 
-    return (
+    return token ? (
         <Container>
             <NavBarContainer>
                 <NavBar>
@@ -64,6 +88,8 @@ const Dashboard: React.FC<RouteComponentProps> = (
                             <input {...getInputProps()} />
                             <p>Drag image files here or Select...</p>
                         </div>
+                    ) : uploading ? (
+                        <p>Loading...</p>
                     ) : (
                         <PhotoWidget />
                     )}
@@ -71,6 +97,8 @@ const Dashboard: React.FC<RouteComponentProps> = (
                 <Notifications />
             </TopRow>
         </Container>
+    ) : (
+        <></>
     );
 };
 
