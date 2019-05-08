@@ -9,7 +9,10 @@ interface Props {
 export const PhotoWidget: React.FC<Props> = props => {
     return (
         <WidgetContainer>
-            <img src={props.img && props.img.upload_url} />
+            <img
+                src={props.img && props.img.upload_url}
+                alt={props.img.caption}
+            />
             <button onClick={props.confirm}>Okay </button>
         </WidgetContainer>
     );

@@ -14,6 +14,6 @@ export const Github: React.FC<Props> = (props: any) => {
                 localStorage.setItem("refresh_token", res.data.refresh_token);
                 window.close();
             });
-    }, []);
+    }, [props.location.search]);
     return <div>hi</div>;
 };

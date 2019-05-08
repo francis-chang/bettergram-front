@@ -58,7 +58,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                 props.history.push("/dashboard");
             }
         }, 1000);
-    }, []);
+    }, [props.history]);
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -74,10 +74,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     const login = async () => {
         const data = { username, password };
         try {
-            let response = await axios.post(
-                "http://127.0.0.1:5000/login",
-                data
-            );
+            await axios.post("http://127.0.0.1:5000/login", data);
         } catch (err) {
             if (err.response.status === 401 && loginRef.current) {
                 if (!username) {
