@@ -7,9 +7,7 @@ interface Props {
 }
 
 export const PhotoWidget: React.FC<Props> = props => {
-    React.useEffect(() => {
-        console.log(props.img);
-    });
+
     return (
         <WidgetContainer>
             <img src={props.img && props.img.upload_url} />

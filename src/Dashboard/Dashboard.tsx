@@ -3,14 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import { post } from "../axios";
-import {
-    Container,
-    NavBar,
-    NavBarContainer,
-    Notifications,
-    TopRow,
-    Upload
-} from "./DashboardStyled";
+import { Container, NavBar, NavBarContainer, Notifications, TopRow, Upload } from "./DashboardStyled";
 import { PhotoWidget } from "./PhotoWidget";
 
 interface Props {}
@@ -39,15 +32,14 @@ const Dashboard: React.FC<RouteComponentProps> = (
             setUploadedPictures(uploadedPop);
             setCurrentPicture(uploadedPop[0]);
         } else if (uploadedPictures.length === 1) {
-            setCurrentPicture(uploadedPictures[0]);
-            setUploadedPictures([]);
-        } else {
             setCurrentPicture(null);
-        }
+            setUploadedPictures([]);
+        } 
     };
 
     const onDrop = React.useCallback(async files => {
-        setUploading(true);
+        setUploading(true); 
+        let uploadedFiles = []
         for (const file in files) {
             let formData = new FormData();
             formData.set("caption", "");
@@ -65,9 +57,10 @@ const Dashboard: React.FC<RouteComponentProps> = (
             }
 
             if (!response.error) {
-                setUploadedPictures([...uploadedPictures, response.image.data]);
+                uploadedFiles.push(response.image.data)
             }
         }
+        setUploadedPictures(uploadedFiles);
         setUploading(false);
     }, []);
 
