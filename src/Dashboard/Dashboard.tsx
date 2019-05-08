@@ -2,6 +2,7 @@ import * as React from "react";
 import { useDropzone } from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { post } from "../axios";
 import {
     Container,
@@ -12,6 +13,7 @@ import {
     Upload
 } from "./DashboardStyled";
 import { PhotoWidget } from "./PhotoWidget";
+import "./styles.css";
 
 interface Props {}
 
@@ -33,9 +35,13 @@ const Dashboard: React.FC<RouteComponentProps> = (
     const token = localStorage.getItem("access_token");
 
     const setCurrentAndPop = () => {
-        if (currentPicture && currentPicture > uploadedPictures.length - 1) {
+        console.log(currentPicture, uploadedPictures.length);
+        if (
+            currentPicture !== null &&
+            currentPicture >= uploadedPictures.length - 1
+        ) {
             setCurrentPicture(null);
-        } else if (currentPicture) {
+        } else if (currentPicture !== null) {
             setCurrentPicture(currentPicture + 1);
         }
     };
@@ -101,7 +107,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
             </NavBarContainer>
             <TopRow>
                 <Upload>
-                    {!currentPicture ? (
+                    {currentPicture === null ? (
                         <div {...getRootProps({ className: "dropzone" })}>
                             <input {...getInputProps()} />
                             <p>Drag image files here or Select...</p>
@@ -109,10 +115,20 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     ) : uploading ? (
                         <p>Loading...</p>
                     ) : (
-                        <PhotoWidget
-                            img={currentPicture}
-                            confirm={setCurrentAndPop}
-                        />
+                        <TransitionGroup className="transition-container">
+                            <CSSTransition
+                                key={currentPicture}
+                                in={currentPicture !== null}
+                                appear={true}
+                                timeout={500}
+                                classNames="fade"
+                            >
+                                <PhotoWidget
+                                    img={uploadedPictures[currentPicture]}
+                                    confirm={setCurrentAndPop}
+                                />
+                            </CSSTransition>
+                        </TransitionGroup>
                     )}
                 </Upload>
                 <Notifications />

@@ -94,6 +94,8 @@ export const Global = createGlobalStyle`
     .container{
         border: 2px solid black;
     }
+
+
 `;
 
 export const Container = styled.div`

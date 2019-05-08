@@ -50,9 +50,9 @@ export const WidgetContainer = styled.div`
     height: 15rem;
     background-color: #202730;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
-    animation-name: toTopLong;
+    /* animation-name: toTopLong;
     animation-duration: 500ms;
-    animation-timing-function: cubic-bezier(0.3, 0.9, 0.3, 0.9);
+    animation-timing-function: cubic-bezier(0.3, 0.9, 0.3, 0.9); */
 `;
 
 export const Photo = styled.div`
