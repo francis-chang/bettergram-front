@@ -25,12 +25,11 @@ export const TopRow = styled.div`
 `;
 
 export const Upload = styled.div`
-    width: 50%;
+    width: 60%;
     margin: 1rem;
     border: 2px dashed black;
     border-radius: 4px;
     display: flex;
-    align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     height: 20rem;
@@ -38,21 +37,23 @@ export const Upload = styled.div`
 `;
 
 export const Notifications = styled.div`
-    width: 50%;
+    width: 40%;
     background-color: green;
     height: 20rem;
 `;
 
 export const WidgetContainer = styled.div`
-    z-index: 1;
-    margin: 1rem;
-    width: 100%;
+    margin: 2.5rem 1rem 2.5rem 1.8rem;
     height: 15rem;
     background-color: #202730;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
     /* animation-name: toTopLong;
     animation-duration: 500ms;
     animation-timing-function: cubic-bezier(0.3, 0.9, 0.3, 0.9); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 1rem;
 `;
 
 export const Photo = styled.div`

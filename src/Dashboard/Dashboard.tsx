@@ -35,7 +35,6 @@ const Dashboard: React.FC<RouteComponentProps> = (
     const token = localStorage.getItem("access_token");
 
     const setCurrentAndPop = () => {
-        console.log(currentPicture, uploadedPictures.length);
         if (
             currentPicture !== null &&
             currentPicture >= uploadedPictures.length - 1
@@ -120,8 +119,9 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                 key={currentPicture}
                                 in={currentPicture !== null}
                                 appear={true}
-                                timeout={500}
+                                timeout={750}
                                 classNames="fade"
+                                unmountOnExit
                             >
                                 <PhotoWidget
                                     img={uploadedPictures[currentPicture]}
