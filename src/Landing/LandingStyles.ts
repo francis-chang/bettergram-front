@@ -94,6 +94,37 @@ export const Global = createGlobalStyle`
     .container{
         border: 2px solid black;
     }
+    .fade-appear {
+    transform: translateY(20rem);
+    }
+    .fade-appear.fade-appear-active {
+        transform: translateY(0rem);
+
+        transition: 500ms cubic-bezier(0.3, 0.9, 0.3, 0.9);
+    }
+
+    .fade-enter {
+        transform: translateY(20rem);
+    }
+    .fade-enter.fade-enter-active {
+        transform: translateY(0rem);
+        transition: 500ms cubic-bezier(0.3, 0.9, 0.3, 0.9) 250ms;
+    }
+
+    .fade-exit {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+    .fade-exit.fade-exit-active {
+        transform: translateY(-20rem);
+        transition: 500ms cubic-bezier(0.3, 0.9, 0.3, 0.9);
+    }
+    .fade-exit-done {
+    }
+    .transition-container {
+        width: 100%;
+        position: relative;
+    }
 
 
 `;
