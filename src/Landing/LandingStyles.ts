@@ -18,10 +18,6 @@ export const Global = createGlobalStyle`
         }
     }
     
-    @font-face {
-        font-family: "Martel";
-        src: url("./fonts/NotoSansKR-Black.otf");
-    }
 
     @keyframes toTop{
         0%{
@@ -88,7 +84,8 @@ export const Global = createGlobalStyle`
     }
     body {
         margin: 0px;
-        font-family: "Martel";
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: bold;
         background-color: #e0e5eb;
         color: #202730;
 
