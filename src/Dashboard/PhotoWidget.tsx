@@ -3,6 +3,7 @@ import { WidgetContainer } from "./DashboardStyled";
 
 interface Props {
     img: any;
+    confirm: () => void;
 }
 
 export const PhotoWidget: React.FC<Props> = props => {
@@ -12,6 +13,7 @@ export const PhotoWidget: React.FC<Props> = props => {
     return (
         <WidgetContainer>
             <img src={props.img && props.img.upload_url} />
+            <button onClick={props.confirm}>Okay </button>
         </WidgetContainer>
     );
 };

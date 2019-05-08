@@ -15,13 +15,37 @@ import { PhotoWidget } from "./PhotoWidget";
 
 interface Props {}
 
+type ImageFile = {
+    image: File;
+    error: boolean;
+};
+
 const Dashboard: React.FC<RouteComponentProps> = (
     props: RouteComponentProps
 ) => {
     const [toggle, setToggle] = React.useState<boolean>(false);
     const [uploading, setUploading] = React.useState<boolean>(false);
     const [uploadedPictures, setUploadedPictures] = React.useState<any[]>([]);
+    const [
+        currentPicture,
+        setCurrentPicture
+    ] = React.useState<ImageFile | null>(null);
+
     const token = localStorage.getItem("access_token");
+
+    const setCurrentAndPop = () => {
+        if (uploadedPictures.length > 1) {
+            const uploadedPop = uploadedPictures.slice(1);
+            setUploadedPictures(uploadedPop);
+            setCurrentPicture(uploadedPop[0]);
+        } else if (uploadedPictures.length === 1) {
+            setCurrentPicture(uploadedPictures[0]);
+            setUploadedPictures([]);
+        } else {
+            setCurrentPicture(null);
+        }
+    };
+
     const onDrop = React.useCallback(async files => {
         setUploading(true);
         for (const file in files) {
@@ -36,7 +60,9 @@ const Dashboard: React.FC<RouteComponentProps> = (
             };
 
             const response = await post("/image", formData, headers);
-            console.log(response);
+            if (!currentPicture) {
+                setCurrentPicture(response.image.data);
+            }
 
             if (!response.error) {
                 setUploadedPictures([...uploadedPictures, response.image.data]);
@@ -82,7 +108,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
             </NavBarContainer>
             <TopRow>
                 <Upload>
-                    {files.length === 0 ? (
+                    {!currentPicture ? (
                         <div {...getRootProps({ className: "dropzone" })}>
                             <input {...getInputProps()} />
                             <p>Drag image files here or Select...</p>
@@ -90,7 +116,10 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     ) : uploading ? (
                         <p>Loading...</p>
                     ) : (
-                        <PhotoWidget img={uploadedPictures[0]} />
+                        <PhotoWidget
+                            img={currentPicture}
+                            confirm={setCurrentAndPop}
+                        />
                     )}
                 </Upload>
                 <Notifications />
