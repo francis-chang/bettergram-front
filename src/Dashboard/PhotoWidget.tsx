@@ -1,3 +1,6 @@
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCheck, faCheckDouble } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import {
     ActionContainer,
@@ -9,14 +12,26 @@ import {
     WidgetContainer
 } from "./DashboardStyled";
 
+library.add(faCheck, faCheckDouble);
+
 interface Props {
     track: string;
     img: any;
-    confirm: () => void;
+    confirm: (hasCaption: boolean, caption: string) => void;
+    current: number;
 }
 
 export const PhotoWidget: React.FC<Props> = props => {
     const [caption, setCaption] = React.useState("");
+
+    const updateCaption = () => {
+        console.log(caption);
+        if (caption === "") {
+            props.confirm(false, caption);
+        } else {
+            props.confirm(true, caption);
+        }
+    };
     return (
         <WidgetContainer>
             <ImageContainer>
@@ -39,8 +54,16 @@ export const PhotoWidget: React.FC<Props> = props => {
                     />
                 </InputContainer>
                 <Buttons>
-                    <SaveButton onClick={props.confirm}>Save </SaveButton>
-                    <SaveButton onClick={props.confirm}>Save All </SaveButton>
+                    <SaveButton onClick={updateCaption}>
+                        <FontAwesomeIcon icon="check" />
+                        <div>Save</div>
+                    </SaveButton>
+                    {props.current > 1 && (
+                        <SaveButton onClick={updateCaption}>
+                            <FontAwesomeIcon icon="check-double" />
+                            <div>Save All</div>
+                        </SaveButton>
+                    )}
                 </Buttons>
             </ActionContainer>
         </WidgetContainer>

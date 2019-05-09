@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as React from "react";
 import { useDropzone } from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -33,7 +34,23 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
     const token = localStorage.getItem("access_token");
 
-    const setCurrentAndPop = () => {
+    const setCurrentAndPop = (hasCaption: boolean, caption: string) => {
+        if (hasCaption) {
+            const id = uploadedPictures[currentPicture!].id;
+            const data = { caption };
+            const headers = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            };
+            try {
+                axios.put(`http://127.0.0.1:5000/image/${id}`, data, headers);
+            } catch (err) {
+                console.log(err.response);
+            }
+        }
+
         if (
             currentPicture !== null &&
             currentPicture >= uploadedPictures.length - 1
@@ -130,6 +147,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                     }`}
                                     img={uploadedPictures[currentPicture]}
                                     confirm={setCurrentAndPop}
+                                    current={currentPicture}
                                 />
                             </CSSTransition>
                         </TransitionGroup>
