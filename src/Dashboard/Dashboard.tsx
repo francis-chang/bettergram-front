@@ -125,6 +125,9 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                 unmountOnExit
                             >
                                 <PhotoWidget
+                                    track={`${currentPicture + 1} / ${
+                                        uploadedPictures.length
+                                    }`}
                                     img={uploadedPictures[currentPicture]}
                                     confirm={setCurrentAndPop}
                                 />

@@ -1,12 +1,22 @@
 import * as React from "react";
-import { ActionContainer, Buttons, ImageContainer, Input, InputContainer, WidgetContainer } from "./DashboardStyled";
+import {
+    ActionContainer,
+    Buttons,
+    ImageContainer,
+    Input,
+    InputContainer,
+    SaveButton,
+    WidgetContainer
+} from "./DashboardStyled";
 
 interface Props {
+    track: string;
     img: any;
     confirm: () => void;
 }
 
 export const PhotoWidget: React.FC<Props> = props => {
+    const [caption, setCaption] = React.useState("");
     return (
         <WidgetContainer>
             <ImageContainer>
@@ -18,12 +28,19 @@ export const PhotoWidget: React.FC<Props> = props => {
                 />
             </ImageContainer>
             <ActionContainer>
+                <div>{props.track}</div>
                 <InputContainer>
-                    <Input placeholder="Enter Caption:"/>
+                    <Input
+                        placeholder="Enter Caption:"
+                        value={caption}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setCaption(e.target.value);
+                        }}
+                    />
                 </InputContainer>
-                <Buttons >
-
-                    <button onClick={props.confirm}>Okay </button>
+                <Buttons>
+                    <SaveButton onClick={props.confirm}>Save </SaveButton>
+                    <SaveButton onClick={props.confirm}>Save All </SaveButton>
                 </Buttons>
             </ActionContainer>
         </WidgetContainer>

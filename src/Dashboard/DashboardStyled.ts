@@ -45,8 +45,8 @@ export const Notifications = styled.div`
 export const WidgetContainer = styled.div`
     margin: 2.5rem 1rem 2.5rem 1.8rem;
     height: 15rem;
-    background-color: #3d4a5c;
-    box-shadow: 8px 8px 0px rgba(102, 124, 153, 0.7);
+    background-color: #202730;
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
     /* animation-name: toTopLong;
     animation-duration: 500ms;
     animation-timing-function: cubic-bezier(0.3, 0.9, 0.3, 0.9); */
@@ -68,23 +68,25 @@ export const ImageContainer = styled.div`
 `;
 
 export const ActionContainer = styled.div`
+    color: #e0e5eb;
     flex-grow: 1;
     margin: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
 `;
 
 export const InputContainer = styled.div`
     width: 100%;
-    padding: 1rem 2rem 0rem 0.5rem;
+    padding: 1rem 3rem 0rem 0.5rem;
     box-sizing: border-box;
 `;
 
 export const Input = styled.input`
     border: none;
     width: 100%;
-    background-color: #d0d8e1;
-    color: #202730;
+    background-color: #202730;
+    color: #d0d8e1;
     outline: none;
     font-size: 1.4rem;
     padding: 0.5rem;
@@ -93,25 +95,61 @@ export const Input = styled.input`
     border-radius: 4px;
 
     &:focus {
-        background-color: #202730;
-        color: #e0e5eb;
+        background-color: #e0e5eb;
+        color: #202730;
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
         box-shadow: 9px 9px 0px rgba(102, 124, 153, 0.8);
         &::placeholder {
-            color: #e0e5eb;
+            color: #202730;
         }
     }
 
     &::placeholder {
-        color: #202730;
+        color: #d0d8e1;
     }
 `;
 
 export const Buttons = styled.div`
-    width: 100%;
+    width: 90%;
     display: flex;
     padding: 1rem 0.5rem 1rem;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 1rem;
+`;
+
+export const SaveButton = styled.button`
+    font-weight: 900;
+    margin: 0rem 1rem 1.5rem 0.3rem;
+    width: 12rem;
+    color: #202730;
+    background-color: #92a4b9;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    backface-visibility: hidden;
+    box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
+
+    &:hover {
+        transition-duration: 200ms;
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0px rgba(102, 124, 153, 0.8);
+    }
+
+    &:active {
+        transition-duration: 100ms;
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px rgba(102, 124, 153, 0.8);
+    }
+
+    @media only screen and (max-width: 700px) {
+        padding: 1rem 0.5rem;
+    }
 `;
 
 export const Photo = styled.div`
