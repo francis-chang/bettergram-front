@@ -147,7 +147,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                     }`}
                                     img={uploadedPictures[currentPicture]}
                                     confirm={setCurrentAndPop}
-                                    current={currentPicture}
+                                    current={uploadedPictures.length}
                                 />
                             </CSSTransition>
                         </TransitionGroup>

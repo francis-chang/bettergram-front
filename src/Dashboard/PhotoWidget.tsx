@@ -24,8 +24,8 @@ interface Props {
 export const PhotoWidget: React.FC<Props> = props => {
     const [caption, setCaption] = React.useState("");
 
-    const updateCaption = () => {
-        console.log(caption);
+    const updateCaption = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (caption === "") {
             props.confirm(false, caption);
         } else {
@@ -44,27 +44,32 @@ export const PhotoWidget: React.FC<Props> = props => {
             </ImageContainer>
             <ActionContainer>
                 <div>{props.track}</div>
-                <InputContainer>
-                    <Input
-                        placeholder="Enter Caption:"
-                        value={caption}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setCaption(e.target.value);
-                        }}
-                    />
-                </InputContainer>
-                <Buttons>
-                    <SaveButton onClick={updateCaption}>
-                        <FontAwesomeIcon icon="check" />
-                        <div>Save</div>
-                    </SaveButton>
-                    {props.current > 1 && (
-                        <SaveButton onClick={updateCaption}>
-                            <FontAwesomeIcon icon="check-double" />
-                            <div>Save All</div>
+                <form onSubmit={updateCaption} style={{ width: "100%" }}>
+                    <InputContainer>
+                        <Input
+                            autoFocus
+                            placeholder="Enter Caption:"
+                            value={caption}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                                setCaption(e.target.value);
+                            }}
+                        />
+                    </InputContainer>
+                    <Buttons>
+                        <SaveButton type="submit">
+                            <FontAwesomeIcon icon="check" />
+                            <div>Save</div>
                         </SaveButton>
-                    )}
-                </Buttons>
+                        {props.current > 1 && (
+                            <SaveButton type="button">
+                                <FontAwesomeIcon icon="check-double" />
+                                <div>Save All</div>
+                            </SaveButton>
+                        )}
+                    </Buttons>
+                </form>
             </ActionContainer>
         </WidgetContainer>
     );
