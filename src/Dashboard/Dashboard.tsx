@@ -6,6 +6,7 @@ import { animated, useSpring } from "react-spring";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { post } from "../axios";
 import {
+    CenterWidget,
     Container,
     NavBar,
     NavBarContainer,
@@ -125,12 +126,25 @@ const Dashboard: React.FC<RouteComponentProps> = (
             <TopRow>
                 <Upload>
                     {uploading ? (
-                        <p>Loading...</p>
+                        <CenterWidget>
+                            <svg className="spinner" viewBox="0 0 50 50">
+                                <circle
+                                    className="path"
+                                    cx="25"
+                                    cy="25"
+                                    r="20"
+                                    fill="none"
+                                    strokeWidth="5"
+                                />
+                            </svg>
+                        </CenterWidget>
                     ) : currentPicture === null ? (
-                        <div {...getRootProps({ className: "dropzone" })}>
+                        <CenterWidget
+                            {...getRootProps({ className: "dropzone" })}
+                        >
                             <input {...getInputProps()} />
                             <p>Drag image files here or Select...</p>
-                        </div>
+                        </CenterWidget>
                     ) : (
                         <TransitionGroup className="transition-container">
                             <CSSTransition
@@ -148,6 +162,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                     img={uploadedPictures[currentPicture]}
                                     confirm={setCurrentAndPop}
                                     current={uploadedPictures.length}
+                                    setCurrentPicture={setCurrentPicture}
                                 />
                             </CSSTransition>
                         </TransitionGroup>

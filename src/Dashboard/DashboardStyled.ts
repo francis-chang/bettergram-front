@@ -34,6 +34,7 @@ export const Upload = styled.div`
     font-size: 1.5rem;
     height: 20rem;
     overflow: hidden;
+    cursor: pointer;
 `;
 
 export const Notifications = styled.div`
@@ -158,4 +159,10 @@ export const Photo = styled.div`
     width: 185px;
     height: 185px;
     background-color: blue;
+`;
+
+export const CenterWidget = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;

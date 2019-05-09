@@ -19,6 +19,7 @@ interface Props {
     img: any;
     confirm: (hasCaption: boolean, caption: string) => void;
     current: number;
+    setCurrentPicture: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export const PhotoWidget: React.FC<Props> = props => {
@@ -63,7 +64,10 @@ export const PhotoWidget: React.FC<Props> = props => {
                             <div>Save</div>
                         </SaveButton>
                         {props.current > 1 && (
-                            <SaveButton type="button">
+                            <SaveButton
+                                type="button"
+                                onClick={() => props.setCurrentPicture(null)}
+                            >
                                 <FontAwesomeIcon icon="check-double" />
                                 <div>Save All</div>
                             </SaveButton>
