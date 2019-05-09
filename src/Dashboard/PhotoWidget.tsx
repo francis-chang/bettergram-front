@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-    ActionContainer,
-    ImageContainer,
-    WidgetContainer
-} from "./DashboardStyled";
+import { ActionContainer, Buttons, ImageContainer, Input, InputContainer, WidgetContainer } from "./DashboardStyled";
 
 interface Props {
     img: any;
@@ -22,7 +18,13 @@ export const PhotoWidget: React.FC<Props> = props => {
                 />
             </ImageContainer>
             <ActionContainer>
-                <button onClick={props.confirm}>Okay </button>
+                <InputContainer>
+                    <Input placeholder="Enter Caption:"/>
+                </InputContainer>
+                <Buttons >
+
+                    <button onClick={props.confirm}>Okay </button>
+                </Buttons>
             </ActionContainer>
         </WidgetContainer>
     );
