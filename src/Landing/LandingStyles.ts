@@ -120,6 +120,7 @@ export const Global = createGlobalStyle`
         transition: 500ms cubic-bezier(0.3, 0.9, 0.3, 0.9);
     }
     .fade-exit-done {
+        
     }
     .transition-container {
         width: 100%;

@@ -4,9 +4,15 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { post } from "../axios";
-import { Container, NavBar, NavBarContainer, Notifications, TopRow, Upload } from "./DashboardStyled";
+import {
+    Container,
+    NavBar,
+    NavBarContainer,
+    Notifications,
+    TopRow,
+    Upload
+} from "./DashboardStyled";
 import { PhotoWidget } from "./PhotoWidget";
-import "./styles.css";
 
 interface Props {}
 
@@ -57,6 +63,8 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
                 if (!response.error) {
                     uploadedFiles.push(response.image.data);
+                    //this one liner caches the image
+                    new Image().src = response.image.data.upload_url;
                 }
             }
             setUploadedPictures(uploadedFiles);
@@ -99,12 +107,14 @@ const Dashboard: React.FC<RouteComponentProps> = (
             </NavBarContainer>
             <TopRow>
                 <Upload>
-                    { uploading ? <p>Loading...</p> : currentPicture === null ?
+                    {uploading ? (
+                        <p>Loading...</p>
+                    ) : currentPicture === null ? (
                         <div {...getRootProps({ className: "dropzone" })}>
-                        <input {...getInputProps()} />
-                        <p>Drag image files here or Select...</p>
-                    </div> :
-                    (
+                            <input {...getInputProps()} />
+                            <p>Drag image files here or Select...</p>
+                        </div>
+                    ) : (
                         <TransitionGroup className="transition-container">
                             <CSSTransition
                                 key={currentPicture}
@@ -120,9 +130,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                 />
                             </CSSTransition>
                         </TransitionGroup>
-                    )
-                }
-    
+                    )}
                 </Upload>
                 <Notifications />
             </TopRow>
