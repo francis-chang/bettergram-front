@@ -78,13 +78,18 @@ export const Global = createGlobalStyle`
         }
     }
 
+    @font-face {
+        font-family: "noto";
+        src: url("./fonts/NotoSansKR-Black.otf");
+    }
+
 
     .shake {
         animation: shake 800ms ease-in-out;
     }
     body {
         margin: 0px;
-        font-family: 'Noto Sans', sans-serif;
+        font-family: 'noto', sans-serif;
         font-weight: bold;
         background-color: #e0e5eb;
         color: #202730;
@@ -233,6 +238,7 @@ export const LoginContainer = styled.div`
 `;
 
 export const LoginForm = styled.form`
+    margin-top: 0.3rem;
     display: flex;
     flex-direction: column;
     width: 100%;
