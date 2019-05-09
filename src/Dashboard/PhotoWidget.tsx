@@ -1,5 +1,9 @@
 import * as React from "react";
-import { WidgetContainer } from "./DashboardStyled";
+import {
+    ActionContainer,
+    ImageContainer,
+    WidgetContainer
+} from "./DashboardStyled";
 
 interface Props {
     img: any;
@@ -9,11 +13,17 @@ interface Props {
 export const PhotoWidget: React.FC<Props> = props => {
     return (
         <WidgetContainer>
-            <img
-                src={props.img && props.img.upload_url}
-                alt={props.img.caption}
-            />
-            <button onClick={props.confirm}>Okay </button>
+            <ImageContainer>
+                <img
+                    src={props.img && props.img.upload_url}
+                    alt={props.img.caption}
+                    width="100%"
+                    height="100%"
+                />
+            </ImageContainer>
+            <ActionContainer>
+                <button onClick={props.confirm}>Okay </button>
+            </ActionContainer>
         </WidgetContainer>
     );
 };

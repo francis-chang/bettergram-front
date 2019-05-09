@@ -95,7 +95,7 @@ export const Global = createGlobalStyle`
         border: 2px solid black;
     }
     .fade-appear {
-    transform: translateY(20rem);
+        transform: translateY(20rem);
     }
     .fade-appear.fade-appear-active {
         transform: translateY(0rem);

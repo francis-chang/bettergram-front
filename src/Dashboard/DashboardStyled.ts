@@ -54,6 +54,23 @@ export const WidgetContainer = styled.div`
     top: 0;
     left: 0;
     right: 1rem;
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ImageContainer = styled.div`
+    
+    margin: 1rem;
+    width: 10rem;
+    height: 10rem;
+`;
+
+export const ActionContainer = styled.div`
+    flex-grow: 1;
+    margin: 1;
+
 `;
 
 export const Photo = styled.div`
