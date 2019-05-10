@@ -2,18 +2,16 @@ import axios from "axios";
 import * as React from "react";
 import { useDropzone } from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { animated, useSpring } from "react-spring";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { post } from "../axios";
 import {
     CenterWidget,
     Container,
-    NavBar,
-    NavBarContainer,
     Notifications,
     TopRow,
     Upload
 } from "./DashboardStyled";
+import { Navigation } from "./Navbar";
 import { PhotoWidget } from "./PhotoWidget";
 
 interface Props {}
@@ -26,7 +24,6 @@ type ImageFile = {
 const Dashboard: React.FC<RouteComponentProps> = (
     props: RouteComponentProps
 ) => {
-    const [toggle, setToggle] = React.useState<boolean>(false);
     const [uploading, setUploading] = React.useState<boolean>(false);
     const [uploadedPictures, setUploadedPictures] = React.useState<any[]>([]);
     const [currentPicture, setCurrentPicture] = React.useState<number | null>(
@@ -101,28 +98,10 @@ const Dashboard: React.FC<RouteComponentProps> = (
             props.history.push("/");
         }
     }, [props.history]);
-    const navSlideout = useSpring({
-        width: "20rem",
-        backgroundColor: "red",
-        height: "100vh",
-        position: "absolute",
-        top: "0%",
-        left: "0%",
-        transform: toggle ? "translateX(5rem)" : "translateX(-15rem)"
-    });
-
-    const onClickToggle = () => {
-        setToggle(!toggle);
-    };
 
     return token ? (
         <Container>
-            <NavBarContainer>
-                <NavBar>
-                    <button onClick={onClickToggle}>Toggle</button>
-                </NavBar>
-                <animated.div style={navSlideout} />
-            </NavBarContainer>
+            <Navigation />
             <TopRow>
                 <Upload>
                     {uploading ? (

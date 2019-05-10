@@ -7,8 +7,23 @@ export const NavBar = styled.div`
     left: 0px;
     top: 0px;
     z-index: 3;
-    background-color: blue;
+    background-color: #202730;
 `;
+
+export const NavigationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30rem;
+`;
+
+export const NavigationIcon = styled.div`
+    font-size: 1.8rem;
+    color: white;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+`;
+
 export const NavBarContainer = styled.div`
     position: relative;
 `;
@@ -44,6 +59,7 @@ export const Notifications = styled.div`
 `;
 
 export const WidgetContainer = styled.div`
+    cursor: default;
     margin: 2.5rem 1rem 2.5rem 1.8rem;
     height: 15rem;
     background-color: #202730;
