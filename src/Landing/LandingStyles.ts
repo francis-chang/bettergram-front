@@ -83,6 +83,15 @@ export const Global = createGlobalStyle`
         src: url("./fonts/NotoSansKR-Black.otf");
     }
 
+    /* input{
+        font-family: 'noto', sans-serif;
+        font-weight: bold;
+    }
+
+    button{
+        font-family: 'noto', sans-serif;
+        font-weight: bold;
+    } */
 
     .shake {
         animation: shake 800ms ease-in-out;

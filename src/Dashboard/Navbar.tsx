@@ -15,6 +15,8 @@ import {
     NavigationIcon
 } from "./DashboardStyled";
 import {
+    NavBarInput,
+    NavBarSubmitButton,
     SettingsContainer,
     SettingsExit,
     SettingsItem,
@@ -44,12 +46,22 @@ export const Navigation: React.FC<Props> = () => {
     });
 
     const onClickToggle = () => {
+        if(emailOpen){
+            setEmailOpen(false)
+        }
+        if(passwordOpen){
+            setPasswordOpen(false)
+        }
         setToggle(!toggle);
     };
 
     const animateEmail = useSpring({
-        height: emailOpen ? "10rem" : "0rem",
-        overflow: "hidden"
+        height: emailOpen ? "15rem" : "0rem",
+        overflow: "hidden",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column"
     });
 
     const animatePassword = useSpring({
@@ -87,7 +99,9 @@ export const Navigation: React.FC<Props> = () => {
                         UPDATE EMAIL
                     </SettingsItem>
                     <animated.div style={animateEmail}>
-                        check me out
+                        <NavBarInput placeholder="Password" />
+                        <NavBarInput placeholder="New Email" />
+                        <NavBarSubmitButton>Submit</NavBarSubmitButton>
                     </animated.div>
                     <SettingsItem>UPDATE PASSWORD</SettingsItem>
                     <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>
