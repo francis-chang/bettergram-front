@@ -17,6 +17,7 @@ import {
 import {
     SettingsContainer,
     SettingsExit,
+    SettingsItem,
     SettingsTitle,
     SettingsTitleTitle
 } from "./NavbarStyling";
@@ -29,7 +30,7 @@ export const Navigation: React.FC<Props> = () => {
     const [toggle, setToggle] = React.useState<boolean>(false);
     const navSlideout = useSpring({
         width: "20rem",
-        backgroundColor: "#3d4a5c",
+        backgroundColor: "#333e4d",
         height: "100vh",
         position: "absolute",
         top: "0%",
@@ -60,10 +61,14 @@ export const Navigation: React.FC<Props> = () => {
                 <SettingsContainer>
                     <SettingsTitle>
                         <SettingsTitleTitle>SETTINGS</SettingsTitleTitle>
-                        <SettingsExit>
+                        <SettingsExit onClick={onClickToggle}>
                             <FontAwesomeIcon icon="times" />
                         </SettingsExit>
                     </SettingsTitle>
+                    <SettingsItem>NON-VERIFIED ACCOUNT</SettingsItem>
+                    <SettingsItem>UPDATE EMAIL</SettingsItem>
+                    <SettingsItem>UPDATE PASSWORD</SettingsItem>
+                    <SettingsItem>DELETE ACCOUNT</SettingsItem>
                 </SettingsContainer>
             </animated.div>
         </NavBarContainer>
