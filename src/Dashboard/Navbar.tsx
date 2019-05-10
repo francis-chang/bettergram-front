@@ -1,5 +1,9 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons";
+import {
+    faImages,
+    faSignOutAlt,
+    faUserCog
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
@@ -10,7 +14,7 @@ import {
     NavigationIcon
 } from "./DashboardStyled";
 
-library.add(faUserCog);
+library.add(faUserCog, faSignOutAlt, faImages);
 
 interface Props {}
 
@@ -36,6 +40,12 @@ export const Navigation: React.FC<Props> = () => {
                 <NavigationContainer>
                     <NavigationIcon onClick={onClickToggle}>
                         <FontAwesomeIcon icon="user-cog" />
+                    </NavigationIcon>
+                    <NavigationIcon onClick={onClickToggle}>
+                        <FontAwesomeIcon icon="images" />
+                    </NavigationIcon>
+                    <NavigationIcon onClick={onClickToggle}>
+                        <FontAwesomeIcon icon="sign-out-alt" />
                     </NavigationIcon>
                 </NavigationContainer>
             </NavBar>

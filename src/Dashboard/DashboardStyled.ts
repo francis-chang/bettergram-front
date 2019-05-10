@@ -27,6 +27,7 @@ export const NavigationIcon = styled.div`
 export const NavBarContainer = styled.div`
     position: relative;
 `;
+
 export const Container = styled.div`
     width: 100%;
 `;
