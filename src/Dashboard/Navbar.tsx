@@ -2,6 +2,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
     faImages,
     faSignOutAlt,
+    faTimes,
     faUserCog
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,8 +14,14 @@ import {
     NavigationContainer,
     NavigationIcon
 } from "./DashboardStyled";
+import {
+    SettingsContainer,
+    SettingsExit,
+    SettingsTitle,
+    SettingsTitleTitle
+} from "./NavbarStyling";
 
-library.add(faUserCog, faSignOutAlt, faImages);
+library.add(faUserCog, faSignOutAlt, faImages, faTimes);
 
 interface Props {}
 
@@ -41,15 +48,24 @@ export const Navigation: React.FC<Props> = () => {
                     <NavigationIcon onClick={onClickToggle}>
                         <FontAwesomeIcon icon="user-cog" />
                     </NavigationIcon>
-                    <NavigationIcon onClick={onClickToggle}>
+                    <NavigationIcon>
                         <FontAwesomeIcon icon="images" />
                     </NavigationIcon>
-                    <NavigationIcon onClick={onClickToggle}>
+                    <NavigationIcon>
                         <FontAwesomeIcon icon="sign-out-alt" />
                     </NavigationIcon>
                 </NavigationContainer>
             </NavBar>
-            <animated.div style={navSlideout} />
+            <animated.div style={navSlideout}>
+                <SettingsContainer>
+                    <SettingsTitle>
+                        <SettingsTitleTitle>SETTINGS</SettingsTitleTitle>
+                        <SettingsExit>
+                            <FontAwesomeIcon icon="times" />
+                        </SettingsExit>
+                    </SettingsTitle>
+                </SettingsContainer>
+            </animated.div>
         </NavBarContainer>
     );
 };

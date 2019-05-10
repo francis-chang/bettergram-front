@@ -26,6 +26,7 @@ export const NavigationIcon = styled.div`
 
 export const NavBarContainer = styled.div`
     position: relative;
+    z-index: 4;
 `;
 
 export const Container = styled.div`

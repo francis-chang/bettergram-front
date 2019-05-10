@@ -122,7 +122,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                             {...getRootProps({ className: "dropzone" })}
                         >
                             <input {...getInputProps()} />
-                            <p>Drag image files here or Select...</p>
+                            Drag image files here or Select...
                         </CenterWidget>
                     ) : (
                         <TransitionGroup className="transition-container">
