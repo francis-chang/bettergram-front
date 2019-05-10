@@ -10,6 +10,21 @@ export const SettingsContainer = styled.div`
 export const SettingsItem = styled.div`
     padding: 0.5rem 1rem;
     font-size: 1.3rem;
+    cursor: pointer;
+    transition-duration: 250ms;
+    &:hover {
+    }
+`;
+
+export const SettingsItemDelete = styled(SettingsItem)`
+    color: #ff7575;
+`;
+
+export const SettingsItemVerification = styled(SettingsItem)`
+    cursor: default;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #ffa556;
 `;
 
 export const SettingsTitle = styled.div`

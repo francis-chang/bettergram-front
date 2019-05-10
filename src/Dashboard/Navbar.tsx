@@ -18,6 +18,8 @@ import {
     SettingsContainer,
     SettingsExit,
     SettingsItem,
+    SettingsItemDelete,
+    SettingsItemVerification,
     SettingsTitle,
     SettingsTitleTitle
 } from "./NavbarStyling";
@@ -28,6 +30,9 @@ interface Props {}
 
 export const Navigation: React.FC<Props> = () => {
     const [toggle, setToggle] = React.useState<boolean>(false);
+    const [emailOpen, setEmailOpen] = React.useState<boolean>(false);
+    const [passwordOpen, setPasswordOpen] = React.useState<boolean>(false);
+
     const navSlideout = useSpring({
         width: "20rem",
         backgroundColor: "#333e4d",
@@ -41,6 +46,16 @@ export const Navigation: React.FC<Props> = () => {
     const onClickToggle = () => {
         setToggle(!toggle);
     };
+
+    const animateEmail = useSpring({
+        height: emailOpen ? "10rem" : "0rem",
+        overflow: "hidden"
+    });
+
+    const animatePassword = useSpring({
+        height: passwordOpen ? "auto" : "0rem",
+        overflow: "hidden"
+    });
 
     return (
         <NavBarContainer>
@@ -65,10 +80,17 @@ export const Navigation: React.FC<Props> = () => {
                             <FontAwesomeIcon icon="times" />
                         </SettingsExit>
                     </SettingsTitle>
-                    <SettingsItem>NON-VERIFIED ACCOUNT</SettingsItem>
-                    <SettingsItem>UPDATE EMAIL</SettingsItem>
+                    <SettingsItemVerification>
+                        NON-VERIFIED ACCOUNT
+                    </SettingsItemVerification>
+                    <SettingsItem onClick={() => setEmailOpen(!emailOpen)}>
+                        UPDATE EMAIL
+                    </SettingsItem>
+                    <animated.div style={animateEmail}>
+                        check me out
+                    </animated.div>
                     <SettingsItem>UPDATE PASSWORD</SettingsItem>
-                    <SettingsItem>DELETE ACCOUNT</SettingsItem>
+                    <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>
                 </SettingsContainer>
             </animated.div>
         </NavBarContainer>
