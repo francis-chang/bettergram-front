@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
+import styled from "styled-components";
 import {
     NavBar,
     NavBarContainer,
@@ -56,13 +57,16 @@ export const Navigation: React.FC<Props> = () => {
     };
 
     const animateEmail = useSpring({
-        height: emailOpen ? "15rem" : "0rem",
-        overflow: "hidden",
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        flexDirection: "column"
+        height: emailOpen ? "13rem" : "0rem",
+        overflow: "hidden"
     });
+    const Email = styled.div`
+        height: 13rem;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+    `;
 
     const animatePassword = useSpring({
         height: passwordOpen ? "auto" : "0rem",
@@ -99,9 +103,12 @@ export const Navigation: React.FC<Props> = () => {
                         UPDATE EMAIL
                     </SettingsItem>
                     <animated.div style={animateEmail}>
+                    <Email>
+
                         <NavBarInput placeholder="PASSWORD" type="password" />
                         <NavBarInput placeholder="NEW EMAIL" />
                         <NavBarSubmitButton>Submit</NavBarSubmitButton>
+                    </Email>
                     </animated.div>
                     <SettingsItem>UPDATE PASSWORD</SettingsItem>
                     <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>

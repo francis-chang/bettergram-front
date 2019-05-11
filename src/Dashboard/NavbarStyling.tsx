@@ -59,7 +59,7 @@ export const NavBarInputContainer = styled.div`
 
 export const NavBarInput = styled.input`
     margin-bottom: 1rem;
-    padding: 0.8rem 0.4rem;
+    padding: 0.5rem 0.4rem;
     margin-right: 1rem;
     width: 17rem;
     box-sizing: border-box;
@@ -97,7 +97,7 @@ export const NavBarInput = styled.input`
 export const NavBarSubmitButton = styled.button`
     border: none;
     outline: none;
-    padding: 0.8rem 0.5rem;
+    padding: 0.5rem;
     background-color: #333e4d;
     color: #e0e5eb;
     font-size: 1.2rem;
