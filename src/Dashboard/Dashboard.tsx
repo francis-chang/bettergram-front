@@ -9,7 +9,8 @@ import {
     Container,
     Notifications,
     TopRow,
-    Upload
+    Upload,
+    UploadLayer
 } from "./DashboardStyled";
 import { Navigation } from "./Navbar";
 import { PhotoWidget } from "./PhotoWidget";
@@ -104,48 +105,50 @@ const Dashboard: React.FC<RouteComponentProps> = (
             <Navigation />
             <TopRow>
                 <Upload>
-                    {uploading ? (
-                        <CenterWidget>
-                            <svg className="spinner" viewBox="0 0 50 50">
-                                <circle
-                                    className="path"
-                                    cx="25"
-                                    cy="25"
-                                    r="20"
-                                    fill="none"
-                                    strokeWidth="5"
-                                />
-                            </svg>
-                        </CenterWidget>
-                    ) : currentPicture === null ? (
-                        <CenterWidget
-                            {...getRootProps({ className: "dropzone" })}
-                        >
-                            <input {...getInputProps()} />
-                            Drag image files here or Select...
-                        </CenterWidget>
-                    ) : (
-                        <TransitionGroup className="transition-container">
-                            <CSSTransition
-                                key={currentPicture}
-                                in={currentPicture !== null}
-                                appear={true}
-                                timeout={750}
-                                classNames="fade"
-                                unmountOnExit
+                    <UploadLayer>
+                        {uploading ? (
+                            <CenterWidget>
+                                <svg className="spinner" viewBox="0 0 50 50">
+                                    <circle
+                                        className="path"
+                                        cx="25"
+                                        cy="25"
+                                        r="20"
+                                        fill="none"
+                                        strokeWidth="5"
+                                    />
+                                </svg>
+                            </CenterWidget>
+                        ) : currentPicture === null ? (
+                            <CenterWidget
+                                {...getRootProps({ className: "dropzone" })}
                             >
-                                <PhotoWidget
-                                    track={`${currentPicture + 1} / ${
-                                        uploadedPictures.length
-                                    }`}
-                                    img={uploadedPictures[currentPicture]}
-                                    confirm={setCurrentAndPop}
-                                    current={uploadedPictures.length}
-                                    setCurrentPicture={setCurrentPicture}
-                                />
-                            </CSSTransition>
-                        </TransitionGroup>
-                    )}
+                                <input {...getInputProps()} />
+                                BROWSE OR DRAGE IMAGES HERE
+                            </CenterWidget>
+                        ) : (
+                            <TransitionGroup className="transition-container">
+                                <CSSTransition
+                                    key={currentPicture}
+                                    in={currentPicture !== null}
+                                    appear={true}
+                                    timeout={750}
+                                    classNames="fade"
+                                    unmountOnExit
+                                >
+                                    <PhotoWidget
+                                        track={`${currentPicture + 1} / ${
+                                            uploadedPictures.length
+                                        }`}
+                                        img={uploadedPictures[currentPicture]}
+                                        confirm={setCurrentAndPop}
+                                        current={uploadedPictures.length}
+                                        setCurrentPicture={setCurrentPicture}
+                                    />
+                                </CSSTransition>
+                            </TransitionGroup>
+                        )}
+                    </UploadLayer>
                 </Upload>
                 <Notifications />
             </TopRow>

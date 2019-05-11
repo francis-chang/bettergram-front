@@ -39,19 +39,33 @@ export const TopRow = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    position: relative;
 `;
 
 export const Upload = styled.div`
     width: 60%;
     margin: 1rem;
-    border: 2px dashed black;
+    background-color: #202730;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     font-size: 1.5rem;
     height: 20rem;
     overflow: hidden;
+    box-shadow: 10px 10px 0px #667c99;
     cursor: pointer;
+`;
+
+export const UploadLayer = styled.div`
+    margin: 1.5rem;
+    width: 100%;
+    border-radius: 4px;
+    border-left: 10px solid #667c99;
+    border-top: 10px solid #667c99;
+    background-color: #e0e5eb;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
 `;
 
 export const Notifications = styled.div`
@@ -62,13 +76,11 @@ export const Notifications = styled.div`
 
 export const WidgetContainer = styled.div`
     cursor: default;
-    margin: 2.5rem 1rem 2.5rem 1.8rem;
-    height: 15rem;
+    margin: 0.5rem 1rem 1rem 1.5rem;
+    padding: 1rem 0rem;
+    height: 13rem;
     background-color: #202730;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
-    /* animation-name: toTopLong;
-    animation-duration: 500ms;
-    animation-timing-function: cubic-bezier(0.3, 0.9, 0.3, 0.9); */
     position: absolute;
     top: 0;
     left: 0;
@@ -184,4 +196,5 @@ export const CenterWidget = styled.div`
     justify-content: center;
     align-items: center;
     outline: none;
+    font-size: 1.3rem;
 `;

@@ -46,11 +46,11 @@ export const Navigation: React.FC<Props> = () => {
     });
 
     const onClickToggle = () => {
-        if(emailOpen){
-            setEmailOpen(false)
+        if (emailOpen) {
+            setEmailOpen(false);
         }
-        if(passwordOpen){
-            setPasswordOpen(false)
+        if (passwordOpen) {
+            setPasswordOpen(false);
         }
         setToggle(!toggle);
     };
@@ -59,7 +59,7 @@ export const Navigation: React.FC<Props> = () => {
         height: emailOpen ? "15rem" : "0rem",
         overflow: "hidden",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: "column"
     });
@@ -99,8 +99,8 @@ export const Navigation: React.FC<Props> = () => {
                         UPDATE EMAIL
                     </SettingsItem>
                     <animated.div style={animateEmail}>
-                        <NavBarInput placeholder="Password" />
-                        <NavBarInput placeholder="New Email" />
+                        <NavBarInput placeholder="PASSWORD" type="password" />
+                        <NavBarInput placeholder="NEW EMAIL" />
                         <NavBarSubmitButton>Submit</NavBarSubmitButton>
                     </animated.div>
                     <SettingsItem>UPDATE PASSWORD</SettingsItem>

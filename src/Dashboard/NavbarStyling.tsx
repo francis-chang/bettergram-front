@@ -59,16 +59,23 @@ export const NavBarInputContainer = styled.div`
 
 export const NavBarInput = styled.input`
     margin-bottom: 1rem;
-    padding: 0.8rem 0.8rem;
-    width: 18rem;
+    padding: 0.8rem 0.4rem;
+    margin-right: 1rem;
+    width: 17rem;
     box-sizing: border-box;
     border: none;
-    background-color: #202730;
+    background-color: #333e4d;
     color: #e0e5eb;
     outline: none;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     border-radius: 4px;
+    &:hover {
+        transition-duration: 200ms;
+        transform: translate(-2px, -2px);
+        box-shadow: 9px 9px 0px rgba(102, 124, 153, 0.8);
+        background-color: #202730;
+    }
 
     &::placeholder {
         color: #e0e5eb;
@@ -91,9 +98,9 @@ export const NavBarSubmitButton = styled.button`
     border: none;
     outline: none;
     padding: 0.8rem 0.5rem;
-    background-color: #202730;
+    background-color: #333e4d;
     color: #e0e5eb;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     width: 11rem;
     border-radius: 4px;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
@@ -103,6 +110,7 @@ export const NavBarSubmitButton = styled.button`
         transition-duration: 200ms;
         transform: translate(-2px, -2px);
         box-shadow: 9px 9px 0px rgba(102, 124, 153, 0.8);
+        background-color: #202730;
     }
 
     &:active {
