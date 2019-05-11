@@ -103,12 +103,14 @@ export const Navigation: React.FC<Props> = () => {
                         UPDATE EMAIL
                     </SettingsItem>
                     <animated.div style={animateEmail}>
-                    <Email>
-
-                        <NavBarInput placeholder="PASSWORD" type="password" />
-                        <NavBarInput placeholder="NEW EMAIL" />
-                        <NavBarSubmitButton>Submit</NavBarSubmitButton>
-                    </Email>
+                        <Email>
+                            <NavBarInput
+                                placeholder="PASSWORD"
+                                type="password"
+                            />
+                            <NavBarInput placeholder="NEW EMAIL" />
+                            <NavBarSubmitButton>Submit</NavBarSubmitButton>
+                        </Email>
                     </animated.div>
                     <SettingsItem>UPDATE PASSWORD</SettingsItem>
                     <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>

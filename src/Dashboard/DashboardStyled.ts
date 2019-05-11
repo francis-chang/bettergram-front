@@ -196,5 +196,13 @@ export const CenterWidget = styled.div`
     justify-content: center;
     align-items: center;
     outline: none;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+`;
+
+export const DropButton = styled.div`
+    padding: 0.5rem 0.8rem;
+    background-color: #202730;
+    color: #e0e5eb;
+    border-radius: 4px;
+    box-shadow: 7px 7px 0px rgba(102, 124, 153, 0.8);
 `;

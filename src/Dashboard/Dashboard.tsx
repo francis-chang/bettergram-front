@@ -10,7 +10,8 @@ import {
     Notifications,
     TopRow,
     Upload,
-    UploadLayer
+    UploadLayer,
+    DropButton
 } from "./DashboardStyled";
 import { Navigation } from "./Navbar";
 import { PhotoWidget } from "./PhotoWidget";
@@ -124,7 +125,10 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                 {...getRootProps({ className: "dropzone" })}
                             >
                                 <input {...getInputProps()} />
+                                <DropButton>
+
                                 BROWSE OR DRAGE IMAGES HERE
+                                </DropButton>
                             </CenterWidget>
                         ) : (
                             <TransitionGroup className="transition-container">
