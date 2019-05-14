@@ -6,6 +6,7 @@ import {
     faUserCog
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
@@ -16,6 +17,7 @@ import {
     NavigationIcon
 } from "./DashboardStyled";
 import {
+    LoginForm,
     NavBarInput,
     NavBarSubmitButton,
     SettingsContainer,
@@ -38,6 +40,10 @@ export const Navigation: React.FC<Props> = (props: Props) => {
     const [toggle, setToggle] = React.useState<boolean>(false);
     const [emailOpen, setEmailOpen] = React.useState<boolean>(false);
     const [passwordOpen, setPasswordOpen] = React.useState<boolean>(false);
+    const [username, setUsername] = React.useState<string>("");
+    const [password, setPassword] = React.useState<string>("");
+    const [loginMessage, setLoginMessage] = React.useState<string>("");
+    const loginRef = React.useRef<HTMLButtonElement>(null);
 
     const navSlideout = useSpring({
         width: "20rem",
@@ -75,6 +81,7 @@ export const Navigation: React.FC<Props> = (props: Props) => {
         height: emailOpen ? "13rem" : "0rem",
         overflow: "hidden"
     });
+
     const Email = styled.div`
         height: 13rem;
         display: flex;
@@ -87,6 +94,30 @@ export const Navigation: React.FC<Props> = (props: Props) => {
         height: passwordOpen ? "13rem" : "0rem",
         overflow: "hidden"
     });
+
+    const login = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const data = { username, password };
+        try {
+            const response = await axios.post(
+                "http://127.0.0.1:5000/login",
+                data
+            );
+            localStorage.setItem("access_token", response.data.access_token);
+            localStorage.setItem("refresh_token", response.data.refresh_token);
+        } catch (err) {
+            if (err.response.status === 401 && loginRef.current) {
+                setLoginMessage(err.response.data.message);
+
+                loginRef.current.classList.add("shake");
+                setTimeout(() => {
+                    if (loginRef.current) {
+                        loginRef.current.classList.remove("shake");
+                    }
+                }, 900);
+            }
+        }
+    };
 
     return (
         <NavBarContainer>
@@ -142,8 +173,13 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                         </SettingsExit>
                     </SettingsTitle>
                     <SettingsItem>
-                        <NavBarInput placeholder="USERNAME" />
-                        <NavBarInput placeholder="PASSWORD" />
+                        <LoginForm onSubmit={login}>
+                            <NavBarInput placeholder="USERNAME" />
+                            <NavBarInput placeholder="PASSWORD" />
+                            <NavBarSubmitButton ref={loginRef} type="submit">
+                                LOG IN
+                            </NavBarSubmitButton>
+                        </LoginForm>
                     </SettingsItem>
                 </SettingsContainer>
             </animated.div>

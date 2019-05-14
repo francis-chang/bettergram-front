@@ -74,7 +74,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     const login = async () => {
         const data = { username, password };
         try {
-            await axios.post("http://127.0.0.1:5000/login", data);
+            const response = await axios.post("http://127.0.0.1:5000/login", data);
+            localStorage.setItem("access_token", response.data.access_token);
+            localStorage.setItem("refresh_token", response.data.refresh_token);
+            props.history.push("/dashboard");
         } catch (err) {
             if (err.response.status === 401 && loginRef.current) {
                 if (!username) {

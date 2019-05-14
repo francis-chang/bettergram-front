@@ -123,3 +123,11 @@ export const NavBarSubmitButton = styled.button`
         padding: 1rem 0.5rem;
     }
 `;
+
+export const LoginForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 10rem;
+`;
