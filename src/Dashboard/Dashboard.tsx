@@ -78,7 +78,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     if (!needCred) {
                         setNeedCred(true);
                     }
-                    setData([...data, { formData, headers }]);
+                    setData(prev => [...prev, { formData, headers }]);
                 } else {
                     uploadedFiles.push(response.image.data);
                     //this one liner caches the image

@@ -128,6 +128,7 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                 uploadedFiles.push(response.image.data);
                 //this one liner caches the image
                 new Image().src = response.image.data.upload_url;
+                props.setCurrentPicture(0);
             });
             props.setUploadedPictures(uploadedFiles);
             props.setUploading(false);
