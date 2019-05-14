@@ -29,9 +29,11 @@ import {
 
 library.add(faUserCog, faSignOutAlt, faImages, faTimes);
 
-interface Props {}
+interface Props {
+    needCredentials: boolean;
+}
 
-export const Navigation: React.FC<Props> = () => {
+export const Navigation: React.FC<Props> = (props: Props) => {
     const [toggle, setToggle] = React.useState<boolean>(false);
     const [emailOpen, setEmailOpen] = React.useState<boolean>(false);
     const [passwordOpen, setPasswordOpen] = React.useState<boolean>(false);
@@ -44,6 +46,18 @@ export const Navigation: React.FC<Props> = () => {
         top: "0%",
         left: "0%",
         transform: toggle ? "translateX(5rem)" : "translateX(-15rem)"
+    });
+
+    const credentialsSlideout = useSpring({
+        width: "20rem",
+        backgroundColor: "#333e4d",
+        height: "100vh",
+        position: "absolute",
+        top: "0%",
+        left: "0%",
+        transform: props.needCredentials
+            ? "translateX(5rem)"
+            : "translateX(-15rem)"
     });
 
     const onClickToggle = () => {
@@ -69,7 +83,7 @@ export const Navigation: React.FC<Props> = () => {
     `;
 
     const animatePassword = useSpring({
-        height: passwordOpen ? "auto" : "0rem",
+        height: passwordOpen ? "13rem" : "0rem",
         overflow: "hidden"
     });
 
@@ -116,6 +130,7 @@ export const Navigation: React.FC<Props> = () => {
                     <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>
                 </SettingsContainer>
             </animated.div>
+            <animated.div style={credentialsSlideout} />
         </NavBarContainer>
     );
 };

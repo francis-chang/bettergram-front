@@ -7,11 +7,11 @@ import { post } from "../axios";
 import {
     CenterWidget,
     Container,
+    DropButton,
     Notifications,
     TopRow,
     Upload,
-    UploadLayer,
-    DropButton
+    UploadLayer
 } from "./DashboardStyled";
 import { Navigation } from "./Navbar";
 import { PhotoWidget } from "./PhotoWidget";
@@ -31,6 +31,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
     const [currentPicture, setCurrentPicture] = React.useState<number | null>(
         null
     );
+    const [needCred, setNeedCred] = React.useState<boolean>(false);
 
     const token = localStorage.getItem("access_token");
 
@@ -77,15 +78,20 @@ const Dashboard: React.FC<RouteComponentProps> = (
                 };
 
                 const response = await post("/image", formData, headers);
-
-                if (!response.error) {
+                if (response.error) {
+                    if (!needCred) {
+                        setNeedCred(true);
+                    }
+                } else {
                     uploadedFiles.push(response.image.data);
                     //this one liner caches the image
                     new Image().src = response.image.data.upload_url;
+                    if (!currentPicture) {
+                        setCurrentPicture(0);
+                    }
                 }
             }
             setUploadedPictures(uploadedFiles);
-            setCurrentPicture(0);
             setUploading(false);
         },
         [token]
@@ -103,7 +109,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
     return token ? (
         <Container>
-            <Navigation />
+            <Navigation needCredentials={needCred} />
             <TopRow>
                 <Upload>
                     <UploadLayer>
@@ -126,8 +132,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                             >
                                 <input {...getInputProps()} />
                                 <DropButton>
-
-                                BROWSE OR DRAGE IMAGES HERE
+                                    BROWSE OR DRAGE IMAGES HERE
                                 </DropButton>
                             </CenterWidget>
                         ) : (
