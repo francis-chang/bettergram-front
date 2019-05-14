@@ -174,8 +174,8 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                     </SettingsTitle>
                     <SettingsItem>
                         <LoginForm onSubmit={login}>
-                            <NavBarInput placeholder="USERNAME" />
-                            <NavBarInput placeholder="PASSWORD" />
+                            <NavBarInput placeholder="USERNAME" value={username} onChange={(e)=>setUsername(e.target.value)}/>
+                            <NavBarInput placeholder="PASSWORD" type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                             <NavBarSubmitButton ref={loginRef} type="submit">
                                 LOG IN
                             </NavBarSubmitButton>
