@@ -10,6 +10,7 @@ import axios from "axios";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
+import { post } from "../axios";
 import {
     NavBar,
     NavBarContainer,
@@ -34,6 +35,11 @@ library.add(faUserCog, faSignOutAlt, faImages, faTimes);
 interface Props {
     needCredentials: boolean;
     setNeedCred: React.Dispatch<React.SetStateAction<boolean>>;
+    data: DataType[];
+    setData: React.Dispatch<React.SetStateAction<DataType[]>>;
+    setCurrentPicture: React.Dispatch<React.SetStateAction<number | null>>;
+    setUploadedPictures: React.Dispatch<React.SetStateAction<any[]>>;
+    setUploading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Navigation: React.FC<Props> = (props: Props) => {
@@ -97,6 +103,7 @@ export const Navigation: React.FC<Props> = (props: Props) => {
 
     const login = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         const data = { username, password };
         try {
             const response = await axios.post(
@@ -105,6 +112,25 @@ export const Navigation: React.FC<Props> = (props: Props) => {
             );
             localStorage.setItem("access_token", response.data.access_token);
             localStorage.setItem("refresh_token", response.data.refresh_token);
+            let uploadedFiles: any[] = [];
+            props.setNeedCred(false);
+            props.setUploading(true);
+            await props.data.forEach(async dat => {
+                const headers = {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "access_token"
+                        )}`
+                    }
+                };
+                const response = await post("/image", dat.formData, headers);
+                uploadedFiles.push(response.image.data);
+                //this one liner caches the image
+                new Image().src = response.image.data.upload_url;
+            });
+            props.setUploadedPictures(uploadedFiles);
+            props.setUploading(false);
         } catch (err) {
             if (err.response.status === 401 && loginRef.current) {
                 setLoginMessage(err.response.data.message);
@@ -174,8 +200,17 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                     </SettingsTitle>
                     <SettingsItem>
                         <LoginForm onSubmit={login}>
-                            <NavBarInput placeholder="USERNAME" value={username} onChange={(e)=>setUsername(e.target.value)}/>
-                            <NavBarInput placeholder="PASSWORD" type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                            <NavBarInput
+                                placeholder="USERNAME"
+                                value={username}
+                                onChange={e => setUsername(e.target.value)}
+                            />
+                            <NavBarInput
+                                placeholder="PASSWORD"
+                                type="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
                             <NavBarSubmitButton ref={loginRef} type="submit">
                                 LOG IN
                             </NavBarSubmitButton>

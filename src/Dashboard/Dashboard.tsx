@@ -18,11 +18,6 @@ import { PhotoWidget } from "./PhotoWidget";
 
 interface Props {}
 
-type ImageFile = {
-    image: File;
-    error: boolean;
-};
-
 const Dashboard: React.FC<RouteComponentProps> = (
     props: RouteComponentProps
 ) => {
@@ -32,6 +27,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
         null
     );
     const [needCred, setNeedCred] = React.useState<boolean>(false);
+    const [data, setData] = React.useState<DataType[]>([]);
 
     const token = localStorage.getItem("access_token");
 
@@ -82,6 +78,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     if (!needCred) {
                         setNeedCred(true);
                     }
+                    setData([...data, { formData, headers }]);
                 } else {
                     uploadedFiles.push(response.image.data);
                     //this one liner caches the image
@@ -109,7 +106,15 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
     return token ? (
         <Container>
-            <Navigation needCredentials={needCred} setNeedCred={setNeedCred} />
+            <Navigation
+                needCredentials={needCred}
+                setNeedCred={setNeedCred}
+                data={data}
+                setUploadedPictures={setUploadedPictures}
+                setUploading={setUploading}
+                setCurrentPicture={setCurrentPicture}
+                setData={setData}
+            />
             <TopRow>
                 <Upload>
                     <UploadLayer>
