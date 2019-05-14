@@ -31,6 +31,7 @@ library.add(faUserCog, faSignOutAlt, faImages, faTimes);
 
 interface Props {
     needCredentials: boolean;
+    setNeedCred: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Navigation: React.FC<Props> = (props: Props) => {
@@ -130,7 +131,22 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                     <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>
                 </SettingsContainer>
             </animated.div>
-            <animated.div style={credentialsSlideout} />
+            <animated.div style={credentialsSlideout}>
+                <SettingsContainer>
+                    <SettingsTitle>
+                        <SettingsTitleTitle>
+                            LOGIN TO PROCEED
+                        </SettingsTitleTitle>
+                        <SettingsExit onClick={() => props.setNeedCred(false)}>
+                            <FontAwesomeIcon icon="times" />
+                        </SettingsExit>
+                    </SettingsTitle>
+                    <SettingsItem>
+                        <NavBarInput placeholder="USERNAME" />
+                        <NavBarInput placeholder="PASSWORD" />
+                    </SettingsItem>
+                </SettingsContainer>
+            </animated.div>
         </NavBarContainer>
     );
 };

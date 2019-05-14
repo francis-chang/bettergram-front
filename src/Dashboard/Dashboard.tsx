@@ -109,7 +109,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
     return token ? (
         <Container>
-            <Navigation needCredentials={needCred} />
+            <Navigation needCredentials={needCred} setNeedCred={setNeedCred} />
             <TopRow>
                 <Upload>
                     <UploadLayer>
