@@ -152,13 +152,13 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
         display: "flex",
         flexDirection: "column",
         margin: "0rem 0rem",
-        transform: signup ? "translateY(-23.8rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(-26rem)" : "translateY(0rem)",
         position: "relative"
     });
 
     const animatedBars = useSpring({
         borderTop: "10px solid #667c99",
-        transform: signup ? "translateY(23.8rem)" : "translateY(0rem)",
+        transform: signup ? "translateY(26rem)" : "translateY(0rem)",
         fontSize: "0px",
         width: "100%",
         position: "absolute",
@@ -199,7 +199,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 ) => {
                                     setUsername(e.target.value);
                                 }}
-                                placeholder="Username"
+                                placeholder="USERNAME"
                             />
                             <Input
                                 autoComplete="off"
@@ -213,7 +213,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                     setPassword(e.target.value);
                                 }}
                                 type="password"
-                                placeholder="Password"
+                                placeholder="PASSWORD"
                             />
 
                             <SubmitBtn ref={loginRef} type="submit">
@@ -233,16 +233,16 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                             <GithubText>Sign In with Google</GithubText>
                         </GoogleLogin>
                         <SignUpToggle type="button" onClick={toggle}>
-                            {signup ? "Back to Log in" : "Or Sign Up"}
+                            {signup ? "LOG IN" : "SIGN UP"}
                         </SignUpToggle>
                         <LoginForm onSubmit={onSignUpSubmit}>
-                            <BotMessage>Sign up: </BotMessage>
+                            <BotMessage>SIGN UP: </BotMessage>
                             <Input
                                 autoComplete="off"
                                 autoCorrect="off"
                                 autoCapitalize="off"
                                 spellCheck={false}
-                                placeholder="Username"
+                                placeholder="USERNAME"
                                 value={regUsername}
                                 onChange={(
                                     e: React.ChangeEvent<HTMLInputElement>
@@ -255,7 +255,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 autoCorrect="off"
                                 autoCapitalize="off"
                                 spellCheck={false}
-                                placeholder="Email"
+                                placeholder="EMAIL"
                                 value={email}
                                 onChange={(
                                     e: React.ChangeEvent<HTMLInputElement>
@@ -269,7 +269,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 autoCapitalize="off"
                                 spellCheck={false}
                                 type="password"
-                                placeholder="Password"
+                                placeholder="PASSWORD"
                                 value={regPassword}
                                 onChange={(
                                     e: React.ChangeEvent<HTMLInputElement>
@@ -283,7 +283,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                 autoCapitalize="off"
                                 spellCheck={false}
                                 type="password"
-                                placeholder="Re-type Password"
+                                placeholder="RETYPE PASSWORD"
                                 value={regRePassword}
                                 onChange={(
                                     e: React.ChangeEvent<HTMLInputElement>
@@ -291,7 +291,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                                     setRegRePassword(e.target.value);
                                 }}
                             />
-                            <SubmitBtn type="submit">Sign Up</SubmitBtn>
+                            <SubmitBtn type="submit">SIGN UP</SubmitBtn>
                         </LoginForm>
                     </animated.div>
                 </LoginContainer>

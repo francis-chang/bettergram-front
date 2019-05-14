@@ -203,7 +203,7 @@ export const Container = styled.div`
     @media only screen and (max-width: 1050px) {
         width: 75%;
     }
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 800px) {
         top: 25rem;
         flex-direction: column;
         justify-content: center;
@@ -221,7 +221,7 @@ export const Title = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 800px) {
         width: 100%;
     }
 `;
@@ -229,7 +229,7 @@ export const Title = styled.div`
 export const Login = styled.div`
     position: relative;
     width: 40%;
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 800px) {
         width: 100%;
     }
 `;
@@ -270,7 +270,7 @@ export const SquareTwo = styled.div`
 `;
 
 export const LoginContainer = styled.div`
-    max-height: 29rem;
+    max-height: 31.5rem;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -278,7 +278,7 @@ export const LoginContainer = styled.div`
     border-left: 10px solid #667c99;
     position: relative;
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 800px) {
         max-height: 33rem;
     }
 `;
@@ -291,6 +291,7 @@ export const LoginForm = styled.form`
 `;
 
 export const TopMessage = styled.div`
+    text-transform: uppercase;
     font-size: 1.3rem;
     color: #202730;
     margin-bottom: 1rem;
@@ -308,16 +309,19 @@ export const BotMessage = styled.div`
 `;
 
 export const Input = styled.input`
+    margin: 0rem 0.3rem;
+    box-sizing: border-box;
     padding: 0.6rem 0.5rem;
     border: none;
     background-color: #d0d8e1;
     color: #202730;
     outline: none;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin-bottom: 1.5rem;
     transition: 250ms ease-out;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
     border-radius: 4px;
+    width: 100%;
 
     &:focus {
         background-color: #202730;
@@ -338,6 +342,7 @@ export const Input = styled.input`
 export const SubmitBtn = styled.button`
     font-weight: 900;
     margin: 0rem 0.3rem 1.5rem 0.3rem;
+    box-sizing: border-box;
     width: 66.66%;
     margin-left: 33.33%;
     color: #e0e5eb;
@@ -363,7 +368,7 @@ export const SubmitBtn = styled.button`
         box-shadow: 1px 1px 0px rgba(102, 124, 153, 0.8);
     }
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 800px) {
         padding: 1rem 0.5rem;
     }
 `;
@@ -376,7 +381,7 @@ export const TitleTitle = styled.div`
     text-decoration: underline;
     width: 100%;
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 800px) {
         font-size: 3.5rem;
     }
 `;
@@ -402,7 +407,7 @@ export const GoogleLogin = styled.button`
     outline: none;
     border-radius: 4px;
     padding: 0.5rem 1rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
     backface-visibility: hidden;
     box-shadow: 5px 5px 0px rgba(170, 170, 170, 0.7);
@@ -470,7 +475,7 @@ export const GithubLogin = styled.button`
     outline: none;
     border-radius: 4px;
     padding: 0.5rem 1rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
     backface-visibility: hidden;
     box-shadow: 5px 5px 0px rgba(85, 85, 85, 0.7);
@@ -526,7 +531,7 @@ export const SignUpToggle = styled.button`
     outline: none;
     border-radius: 4px;
     padding: 0.5rem 1rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
     backface-visibility: hidden;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
