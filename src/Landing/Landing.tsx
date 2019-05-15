@@ -51,7 +51,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     React.useEffect(() => {
         if (localStorage.getItem("access_token")) {
-            if (!localStorage.getItem("github_acivated")) {
+            if (localStorage.getItem("github_activated") === "false") {
                 props.history.push("/config_user");
             } else {
                 props.history.push("/dashboard");
@@ -59,7 +59,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
         }
         setInterval(() => {
             if (localStorage.getItem("access_token")) {
-                if (!localStorage.getItem("github_acivated")) {
+                if (localStorage.getItem("github_activated") === "false") {
                     props.history.push("/config_user");
                 } else {
                     props.history.push("/dashboard");

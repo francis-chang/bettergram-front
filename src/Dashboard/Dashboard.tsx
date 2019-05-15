@@ -33,7 +33,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
     React.useEffect(() => {
         fetchUserInfo();
-    });
+    }, []);
 
     const fetchUserInfo = async () => {
         try {
