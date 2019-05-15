@@ -276,9 +276,12 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                             <FontAwesomeIcon icon="times" />
                         </SettingsExit>
                     </SettingsTitle>
-                    <SettingsItemVerification>
-                        NON-VERIFIED ACCOUNT
-                    </SettingsItemVerification>
+
+                    {!localStorage.getItem("verified") && (
+                        <SettingsItemVerification>
+                            NON-VERIFIED ACCOUNT
+                        </SettingsItemVerification>
+                    )}
                     <SettingsItem onClick={toggleEmailDrop}>
                         UPDATE EMAIL
                         <FontAwesomeIcon

@@ -31,6 +31,27 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
     const token = localStorage.getItem("access_token");
 
+    React.useEffect(() => {
+        fetchUserInfo();
+    });
+
+    const fetchUserInfo = async () => {
+        try {
+            const headers = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            };
+            const response = await axios.get(
+                "http://127.0.0.1:5000/userinfo",
+                headers
+            );
+            localStorage.setItem("verified", response.data.is_verified);
+            localStorage.setItem("user_id", response.data.user_id);
+        } catch (err) {
+            console.log(err.message);
+        }
+    };
     const setCurrentAndPop = (hasCaption: boolean, caption: string) => {
         if (hasCaption) {
             const id = uploadedPictures[currentPicture!].id;

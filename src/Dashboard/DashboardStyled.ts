@@ -154,6 +154,7 @@ export const Buttons = styled.div`
 export const SaveButton = styled.button`
     display: flex;
     justify-content: space-around;
+    align-items: center;
     font-weight: 900;
     margin: 0rem 1rem 1.5rem 0.3rem;
     width: 12rem;
