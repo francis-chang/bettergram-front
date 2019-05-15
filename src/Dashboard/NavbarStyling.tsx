@@ -12,7 +12,13 @@ export const SettingsItem = styled.div`
     font-size: 1.3rem;
     cursor: pointer;
     transition-duration: 250ms;
-    &:hover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 1.5rem;
+    &:hover .arrow {
+        transition-duration: 250ms;
+        color: #ffa556;
     }
 `;
 

@@ -1,5 +1,7 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
+    faArrowCircleDown,
+    faArrowCircleUp,
     faImages,
     faSignOutAlt,
     faTimes,
@@ -30,7 +32,14 @@ import {
     SettingsTitleTitle
 } from "./NavbarStyling";
 
-library.add(faUserCog, faSignOutAlt, faImages, faTimes);
+library.add(
+    faUserCog,
+    faSignOutAlt,
+    faImages,
+    faTimes,
+    faArrowCircleUp,
+    faArrowCircleDown
+);
 
 interface Props {
     needCredentials: boolean;
@@ -84,12 +93,20 @@ export const Navigation: React.FC<Props> = (props: Props) => {
     };
 
     const animateEmail = useSpring({
-        height: emailOpen ? "13rem" : "0rem",
+        height: emailOpen ? "16rem" : "0rem",
         overflow: "hidden"
     });
 
     const Email = styled.div`
-        height: 13rem;
+        height: 16rem;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+    `;
+
+    const PasswordDropDown = styled.div`
+        height: 20rem;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -97,9 +114,23 @@ export const Navigation: React.FC<Props> = (props: Props) => {
     `;
 
     const animatePassword = useSpring({
-        height: passwordOpen ? "13rem" : "0rem",
+        height: passwordOpen ? "20rem" : "0rem",
         overflow: "hidden"
     });
+
+    const toggleEmailDrop = () => {
+        if (passwordOpen) {
+            setPasswordOpen(false);
+        }
+        setEmailOpen(!emailOpen);
+    };
+
+    const togglePasswordDrop = () => {
+        if (emailOpen) {
+            setEmailOpen(false);
+        }
+        setPasswordOpen(!passwordOpen);
+    };
 
     const login = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -172,11 +203,20 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                     <SettingsItemVerification>
                         NON-VERIFIED ACCOUNT
                     </SettingsItemVerification>
-                    <SettingsItem onClick={() => setEmailOpen(!emailOpen)}>
+                    <SettingsItem onClick={toggleEmailDrop}>
                         UPDATE EMAIL
+                        <FontAwesomeIcon
+                            icon={
+                                emailOpen
+                                    ? "arrow-circle-up"
+                                    : "arrow-circle-down"
+                            }
+                            className="arrow"
+                        />
                     </SettingsItem>
                     <animated.div style={animateEmail}>
                         <Email>
+                            <NavBarInput placeholder="USERNAME" />
                             <NavBarInput
                                 placeholder="PASSWORD"
                                 type="password"
@@ -185,7 +225,29 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                             <NavBarSubmitButton>Submit</NavBarSubmitButton>
                         </Email>
                     </animated.div>
-                    <SettingsItem>UPDATE PASSWORD</SettingsItem>
+                    <SettingsItem onClick={togglePasswordDrop}>
+                        UPDATE PASSWORD
+                        <FontAwesomeIcon
+                            icon={
+                                passwordOpen
+                                    ? "arrow-circle-up"
+                                    : "arrow-circle-down"
+                            }
+                            className="arrow"
+                        />
+                    </SettingsItem>
+                    <animated.div style={animatePassword}>
+                        <PasswordDropDown>
+                            <NavBarInput placeholder="USERNAME" />
+                            <NavBarInput
+                                placeholder="PASSWORD"
+                                type="password"
+                            />
+                            <NavBarInput placeholder="NEW PASSWORD" />
+                            <NavBarInput placeholder="RETYPE NEW PASSWORD" />
+                            <NavBarSubmitButton>Submit</NavBarSubmitButton>
+                        </PasswordDropDown>
+                    </animated.div>
                     <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>
                 </SettingsContainer>
             </animated.div>
