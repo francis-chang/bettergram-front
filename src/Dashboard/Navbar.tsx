@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
 import { animated, useSpring } from "react-spring";
-import styled from "styled-components";
 import { post } from "../axios";
 import {
     NavBar,
@@ -20,9 +19,11 @@ import {
     NavigationIcon
 } from "./DashboardStyled";
 import {
+    Email,
     LoginForm,
     NavBarInput,
     NavBarSubmitButton,
+    PasswordDropDown,
     SettingsContainer,
     SettingsExit,
     SettingsItem,
@@ -57,6 +58,13 @@ export const Navigation: React.FC<Props> = (props: Props) => {
     const [passwordOpen, setPasswordOpen] = React.useState<boolean>(false);
     const [username, setUsername] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
+    const [changeEmailUsername, setChangeEmailUsername] = React.useState<
+        string
+    >("");
+    const [changeEmailPassword, setChangeEmailPassword] = React.useState<
+        string
+    >("");
+    const [changeEmail, setChangeEmail] = React.useState<string>("");
     const [loginMessage, setLoginMessage] = React.useState<string>("");
     const loginRef = React.useRef<HTMLButtonElement>(null);
 
@@ -97,22 +105,6 @@ export const Navigation: React.FC<Props> = (props: Props) => {
         overflow: "hidden"
     });
 
-    const Email = styled.div`
-        height: 16rem;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-    `;
-
-    const PasswordDropDown = styled.div`
-        height: 20rem;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-    `;
-
     const animatePassword = useSpring({
         height: passwordOpen ? "20rem" : "0rem",
         overflow: "hidden"
@@ -130,6 +122,46 @@ export const Navigation: React.FC<Props> = (props: Props) => {
             setEmailOpen(false);
         }
         setPasswordOpen(!passwordOpen);
+    };
+
+    const emailLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const data = {
+            username: changeEmailUsername,
+            password: changeEmailPassword
+        };
+        try {
+            const response = await axios.post(
+                "http://127.0.0.1:5000/login",
+                data
+            );
+            localStorage.setItem("access_token", response.data.access_token);
+            localStorage.setItem("refresh_token", response.data.refresh_token);
+            const headers = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${response.data.access_token}`
+                }
+            };
+            const updateEmailResponse = await axios.put(
+                "http://127.0.0.1:5000/user",
+                { email: changeEmail },
+                headers
+            );
+            console.log(updateEmailResponse.data);
+        } catch (err) {
+            console.log(err.response);
+        }
+    };
+
+    const onChangeEmailUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setChangeEmailUsername(e.target.value);
+    };
+    const onChangeEmailPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setChangeEmailPassword(e.target.value);
+    };
+    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setChangeEmail(e.target.value);
     };
 
     const login = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -215,14 +247,26 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                         />
                     </SettingsItem>
                     <animated.div style={animateEmail}>
-                        <Email>
-                            <NavBarInput placeholder="USERNAME" />
+                        <Email onSubmit={emailLogin}>
+                            <NavBarInput
+                                placeholder="USERNAME"
+                                value={changeEmailUsername}
+                                onChange={onChangeEmailUser}
+                            />
                             <NavBarInput
                                 placeholder="PASSWORD"
                                 type="password"
+                                value={changeEmailPassword}
+                                onChange={onChangeEmailPassword}
                             />
-                            <NavBarInput placeholder="NEW EMAIL" />
-                            <NavBarSubmitButton>Submit</NavBarSubmitButton>
+                            <NavBarInput
+                                placeholder="NEW EMAIL"
+                                value={changeEmail}
+                                onChange={onChangeEmail}
+                            />
+                            <NavBarSubmitButton type="submit">
+                                Submit
+                            </NavBarSubmitButton>
                         </Email>
                     </animated.div>
                     <SettingsItem onClick={togglePasswordDrop}>

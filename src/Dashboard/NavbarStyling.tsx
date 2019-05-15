@@ -137,3 +137,19 @@ export const LoginForm = styled.form`
     justify-content: space-around;
     height: 10rem;
 `;
+
+export const Email = styled.form`
+    height: 16rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+`;
+
+export const PasswordDropDown = styled.form`
+    height: 20rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+`;
