@@ -51,10 +51,16 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     React.useEffect(() => {
         if (localStorage.getItem("access_token")) {
-            props.history.push("/dashboard");
+            if (localStorage.getItem("github_acivated")) {
+                props.history.push("/config_user");
+            } else {
+                props.history.push("/dashboard");
+            }
         }
         setInterval(() => {
-            if (localStorage.getItem("access_token")) {
+            if (localStorage.getItem("github_acivated")) {
+                props.history.push("/config_user");
+            } else {
                 props.history.push("/dashboard");
             }
         }, 1000);
@@ -80,6 +86,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
             );
             localStorage.setItem("access_token", response.data.access_token);
             localStorage.setItem("refresh_token", response.data.refresh_token);
+
             props.history.push("/dashboard");
         } catch (err) {
             if (err.response.status === 401 && loginRef.current) {

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "./App";
 import Dashboard from "./Dashboard/Dashboard";
+import { ConfigUser } from "./Dashboard/ConfigUser";
 import { Global } from "./Landing/LandingStyles";
 import { Github } from "./Login/Github";
 import * as serviceWorker from "./serviceWorker";
@@ -13,6 +14,7 @@ const Index = (
         <Route path="/" exact component={App} />
         <Route path="/github/authorize" component={Github} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/config_user" component={ConfigUser} />
     </Router>
 );
 

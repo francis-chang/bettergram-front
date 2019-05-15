@@ -268,6 +268,7 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                     </NavigationIcon>
                 </NavigationContainer>
             </NavBar>
+
             <animated.div style={navSlideout}>
                 <SettingsContainer>
                     <SettingsTitle>
