@@ -2,17 +2,17 @@ import styled, { createGlobalStyle } from "styled-components";
 
 export const Global = createGlobalStyle`
     
-    @media only screen and (max-width: 1650px) {
+    @media only screen and (max-width: 1750px) {
         html {
             font-size: 14px;
         }
     }
-    @media only screen and (max-width: 1200px) {
+    @media only screen and (max-width: 1530px) {
         html {
             font-size: 13px;
         }
     }
-    @media only screen and (max-width: 1050px) {
+    @media only screen and (max-width: 1450px) {
         html {
             font-size: 11px;
         }

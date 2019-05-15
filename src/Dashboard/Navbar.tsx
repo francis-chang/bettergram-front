@@ -67,6 +67,16 @@ export const Navigation: React.FC<Props> = (props: Props) => {
     const [changeEmail, setChangeEmail] = React.useState<string>("");
     const [loginMessage, setLoginMessage] = React.useState<string>("");
     const loginRef = React.useRef<HTMLButtonElement>(null);
+    const [changePasswordUser, setChangePasswordUser] = React.useState<string>(
+        ""
+    );
+    const [changePasswordPassword, setChangePasswordPassword] = React.useState<
+        string
+    >("");
+    const [changeNewPassword, setChangeNewPassword] = React.useState<string>(
+        ""
+    );
+    const [changeRePassword, setChangeRePassword] = React.useState<string>("");
 
     const navSlideout = useSpring({
         width: "20rem",
@@ -146,6 +156,40 @@ export const Navigation: React.FC<Props> = (props: Props) => {
             const updateEmailResponse = await axios.put(
                 "http://127.0.0.1:5000/user",
                 { email: changeEmail },
+                headers
+            );
+            console.log(updateEmailResponse.data);
+        } catch (err) {
+            console.log(err.response);
+        }
+    };
+
+    const passwordLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const data = {
+            username: changePasswordUser,
+            password: changePasswordPassword
+        };
+        try {
+            const response = await axios.post(
+                "http://127.0.0.1:5000/login",
+                data
+            );
+            localStorage.setItem("access_token", response.data.access_token);
+            localStorage.setItem("refresh_token", response.data.refresh_token);
+            const headers = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${response.data.access_token}`
+                }
+            };
+
+            if (changeNewPassword !== changeRePassword) {
+                throw "password is not the same";
+            }
+            const updateEmailResponse = await axios.put(
+                "http://127.0.0.1:5000/user",
+                { password: changeNewPassword },
                 headers
             );
             console.log(updateEmailResponse.data);
@@ -281,15 +325,41 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                         />
                     </SettingsItem>
                     <animated.div style={animatePassword}>
-                        <PasswordDropDown>
-                            <NavBarInput placeholder="USERNAME" />
+                        <PasswordDropDown onSubmit={passwordLogin}>
+                            <NavBarInput
+                                placeholder="USERNAME"
+                                value={changePasswordUser}
+                                onChange={e =>
+                                    setChangePasswordUser(e.target.value)
+                                }
+                            />
                             <NavBarInput
                                 placeholder="PASSWORD"
                                 type="password"
+                                value={changePasswordPassword}
+                                onChange={e =>
+                                    setChangePasswordPassword(e.target.value)
+                                }
                             />
-                            <NavBarInput placeholder="NEW PASSWORD" />
-                            <NavBarInput placeholder="RETYPE NEW PASSWORD" />
-                            <NavBarSubmitButton>Submit</NavBarSubmitButton>
+                            <NavBarInput
+                                placeholder="NEW PASSWORD"
+                                value={changeNewPassword}
+                                type="password"
+                                onChange={e =>
+                                    setChangeNewPassword(e.target.value)
+                                }
+                            />
+                            <NavBarInput
+                                placeholder="RETYPE NEW PASSWORD"
+                                type="password"
+                                value={changeRePassword}
+                                onChange={e =>
+                                    setChangeRePassword(e.target.value)
+                                }
+                            />
+                            <NavBarSubmitButton type="submit">
+                                Submit
+                            </NavBarSubmitButton>
                         </PasswordDropDown>
                     </animated.div>
                     <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>
