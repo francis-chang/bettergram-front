@@ -198,6 +198,9 @@ export const CenterWidget = styled.div`
     align-items: center;
     outline: none;
     font-size: 1.5rem;
+    animation-name: toTop;
+    animation-duration: 600ms;
+    animation-timing-function: ease-out;
 `;
 
 export const DropButton = styled.div`

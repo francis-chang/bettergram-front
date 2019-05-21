@@ -1,36 +1,11 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-    faGithub,
-    faGoogle,
-    faInstagram,
-    faTwitter
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faGoogle, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { animated, useSpring } from "react-spring";
-import {
-    BotMessage,
-    Container,
-    GithubLogin,
-    GithubLogo,
-    GithubText,
-    GoogleLogin,
-    GoogleLogo,
-    Input,
-    Login,
-    LoginContainer,
-    LoginForm,
-    SignUpToggle,
-    SquareOne,
-    SubmitBtn,
-    Title,
-    TitleText,
-    TitleTitle,
-    TopErrorMessage,
-    TopMessage
-} from "./LandingStyles";
+import { BotMessage, Container, GithubLogin, GithubLogo, GithubText, GoogleLogin, GoogleLogo, Input, Login, LoginContainer, LoginForm, SignUpToggle, SquareOne, SubmitBtn, Title, TitleText, TitleTitle, TopErrorMessage, TopMessage } from "./LandingStyles";
 
 library.add(faGithub, faInstagram, faGoogle, faTwitter);
 
@@ -193,6 +168,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
             <Login>
                 <LoginContainer>
                     <animated.div style={animateForm}>
+                        
                         <animated.div style={animatedBars} />
                         <SquareOne />
                         <LoginForm onSubmit={onSubmit}>

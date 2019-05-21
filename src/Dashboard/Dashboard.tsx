@@ -10,8 +10,7 @@ import {
     DropButton,
     Notifications,
     TopRow,
-    Upload,
-    UploadLayer
+    Upload
 } from "./DashboardStyled";
 import { Navigation } from "./Navbar";
 import { PhotoWidget } from "./PhotoWidget";
@@ -28,6 +27,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
     );
     const [needCred, setNeedCred] = React.useState<boolean>(false);
     const [data, setData] = React.useState<DataType[]>([]);
+    const PhotoWidgetRef = React.createRef<React.FunctionComponent>();
 
     const token = localStorage.getItem("access_token");
 
@@ -95,6 +95,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                 };
 
                 const response = await post("/image", formData, headers);
+                setUploading(false);
                 if (response.error) {
                     if (!needCred) {
                         setNeedCred(true);
@@ -109,8 +110,8 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     }
                 }
             }
+
             setUploadedPictures(uploadedFiles);
-            setUploading(false);
         },
         [token]
     );
@@ -138,7 +139,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
             />
             <TopRow>
                 <Upload>
-                    <UploadLayer>
+                    <TransitionGroup className="transition-container">
                         {uploading ? (
                             <CenterWidget>
                                 <svg className="spinner" viewBox="0 0 50 50">
@@ -162,28 +163,26 @@ const Dashboard: React.FC<RouteComponentProps> = (
                                 </DropButton>
                             </CenterWidget>
                         ) : (
-                            <TransitionGroup className="transition-container">
-                                <CSSTransition
-                                    key={currentPicture}
-                                    in={currentPicture !== null}
-                                    appear={true}
-                                    timeout={750}
-                                    classNames="fade"
-                                    unmountOnExit
-                                >
-                                    <PhotoWidget
-                                        track={`${currentPicture + 1} / ${
-                                            uploadedPictures.length
-                                        }`}
-                                        img={uploadedPictures[currentPicture]}
-                                        confirm={setCurrentAndPop}
-                                        current={uploadedPictures.length}
-                                        setCurrentPicture={setCurrentPicture}
-                                    />
-                                </CSSTransition>
-                            </TransitionGroup>
+                            <CSSTransition
+                                key={currentPicture}
+                                in={currentPicture !== null}
+                                appear={true}
+                                timeout={1000}
+                                classNames="fade"
+                                unmountOnExit
+                            >
+                                <PhotoWidget
+                                    track={`${currentPicture + 1} / ${
+                                        uploadedPictures.length
+                                    }`}
+                                    img={uploadedPictures[currentPicture]}
+                                    confirm={setCurrentAndPop}
+                                    current={uploadedPictures.length}
+                                    setCurrentPicture={setCurrentPicture}
+                                />
+                            </CSSTransition>
                         )}
-                    </UploadLayer>
+                    </TransitionGroup>
                 </Upload>
                 <Notifications />
             </TopRow>

@@ -38,7 +38,7 @@ export const PhotoWidget: React.FC<Props> = props => {
             <ImageContainer>
                 <img
                     src={props.img && props.img.upload_url}
-                    alt={props.img.caption}
+                    alt={props.img && props.img.caption}
                     width="100%"
                     height="100%"
                 />

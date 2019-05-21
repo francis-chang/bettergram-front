@@ -171,11 +171,21 @@ export const Global = createGlobalStyle`
         transition: 500ms cubic-bezier(0.3, 0.9, 0.3, 0.9);
     }
     .fade-exit-done {
+        transform: translateY(-20rem);
+        transition: 500ms cubic-bezier(0.3, 0.9, 0.3, 0.9);
         
     }
     .transition-container {
-        width: 100%;
         position: relative;
+        margin: 1.5rem;
+        width: 100%;
+        border-radius: 4px;
+        border-left: 10px solid #667c99;
+        border-top: 10px solid #667c99;
+        background-color: #e0e5eb;
+        display: flex;
+        overflow: hidden;
+        justify-content: center;
     }
 
 
