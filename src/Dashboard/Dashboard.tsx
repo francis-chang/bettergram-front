@@ -27,7 +27,6 @@ const Dashboard: React.FC<RouteComponentProps> = (
     );
     const [needCred, setNeedCred] = React.useState<boolean>(false);
     const [data, setData] = React.useState<DataType[]>([]);
-    const PhotoWidgetRef = React.createRef<React.FunctionComponent>();
 
     const token = localStorage.getItem("access_token");
 
@@ -79,6 +78,9 @@ const Dashboard: React.FC<RouteComponentProps> = (
         }
     };
 
+    // the reason against promise.all in this case is that
+    // the order of the images is necessary and promise.all
+    // does not guarentee the order
     const onDrop = React.useCallback(
         async files => {
             setUploading(true);
