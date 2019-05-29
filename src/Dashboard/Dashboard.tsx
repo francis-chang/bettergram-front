@@ -8,8 +8,8 @@ import {
     CenterWidget,
     Container,
     DropButton,
+    MainContainer,
     Notifications,
-    TopRow,
     Upload
 } from "./DashboardStyled";
 import { Navigation } from "./Navbar";
@@ -139,7 +139,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                 setCurrentPicture={setCurrentPicture}
                 setData={setData}
             />
-            <TopRow>
+            <MainContainer>
                 <Upload>
                     <TransitionGroup className="transition-container">
                         {uploading ? (
@@ -187,7 +187,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
                     </TransitionGroup>
                 </Upload>
                 <Notifications />
-            </TopRow>
+            </MainContainer>
         </Container>
     ) : (
         <></>

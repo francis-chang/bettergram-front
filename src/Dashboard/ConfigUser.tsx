@@ -44,9 +44,7 @@ const ConfigUser: React.FC<RouteComponentProps> = (
     };
     return (
         <Container>
-            <Message>
-                Before proceeding we ask that you enter these fields
-            </Message>
+            <Message>{message}</Message>
             <form onSubmit={submit}>
                 <Input
                     placeholder="EMAIL"

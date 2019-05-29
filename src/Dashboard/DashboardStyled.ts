@@ -33,11 +33,13 @@ export const Container = styled.div`
     width: 100%;
 `;
 
-export const TopRow = styled.div`
+export const MainContainer = styled.div`
     max-width: 1500px;
     width: 80%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 0 auto;
     position: relative;
 `;

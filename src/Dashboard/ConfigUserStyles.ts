@@ -7,11 +7,12 @@ export const Container = styled.div`
     transform: translate(-50%, -50%);
     width: 30rem;
     height: 40rem;
-    background-color: black;
+    background-color: #202730;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: #e0e5eb;
 `;
 
 export const Message = styled.div`

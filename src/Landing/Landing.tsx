@@ -57,7 +57,7 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                 props.history.push("/dashboard");
             }
         }
-        setInterval(() => {
+        const intervalCheck = setInterval(() => {
             if (localStorage.getItem("access_token")) {
                 if (localStorage.getItem("github_activated") === "false") {
                     props.history.push("/config_user");
@@ -66,6 +66,10 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
                 }
             }
         }, 1000);
+
+        return function cleanup() {
+            window.clearInterval(intervalCheck);
+        };
     }, [props.history]);
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
