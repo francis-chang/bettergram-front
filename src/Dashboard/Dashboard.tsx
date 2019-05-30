@@ -10,6 +10,7 @@ import {
     DropButton,
     MainContainer,
     Notifications,
+    OffsetContainer,
     Upload
 } from "./DashboardStyled";
 import { Navigation } from "./Navbar";
@@ -139,55 +140,60 @@ const Dashboard: React.FC<RouteComponentProps> = (
                 setCurrentPicture={setCurrentPicture}
                 setData={setData}
             />
-            <MainContainer>
-                <Upload>
-                    <TransitionGroup className="transition-container">
-                        {uploading ? (
-                            <CenterWidget>
-                                <svg className="spinner" viewBox="0 0 50 50">
-                                    <circle
-                                        className="path"
-                                        cx="25"
-                                        cy="25"
-                                        r="20"
-                                        fill="none"
-                                        strokeWidth="5"
+            <OffsetContainer>
+                <MainContainer>
+                    <Upload>
+                        <TransitionGroup className="transition-container">
+                            {uploading ? (
+                                <CenterWidget>
+                                    <svg
+                                        className="spinner"
+                                        viewBox="0 0 50 50"
+                                    >
+                                        <circle
+                                            className="path"
+                                            cx="25"
+                                            cy="25"
+                                            r="20"
+                                            fill="none"
+                                            strokeWidth="5"
+                                        />
+                                    </svg>
+                                </CenterWidget>
+                            ) : currentPicture === null ? (
+                                <CenterWidget
+                                    {...getRootProps({ className: "dropzone" })}
+                                >
+                                    <input {...getInputProps()} />
+                                    <DropButton>
+                                        BROWSE OR DRAG IMAGES HERE
+                                    </DropButton>
+                                </CenterWidget>
+                            ) : (
+                                <CSSTransition
+                                    key={currentPicture}
+                                    in={currentPicture !== null}
+                                    appear={true}
+                                    timeout={1000}
+                                    classNames="fade"
+                                    unmountOnExit
+                                >
+                                    <PhotoWidget
+                                        track={`${currentPicture + 1} / ${
+                                            uploadedPictures.length
+                                        }`}
+                                        img={uploadedPictures[currentPicture]}
+                                        confirm={setCurrentAndPop}
+                                        current={uploadedPictures.length}
+                                        setCurrentPicture={setCurrentPicture}
                                     />
-                                </svg>
-                            </CenterWidget>
-                        ) : currentPicture === null ? (
-                            <CenterWidget
-                                {...getRootProps({ className: "dropzone" })}
-                            >
-                                <input {...getInputProps()} />
-                                <DropButton>
-                                    BROWSE OR DRAGE IMAGES HERE
-                                </DropButton>
-                            </CenterWidget>
-                        ) : (
-                            <CSSTransition
-                                key={currentPicture}
-                                in={currentPicture !== null}
-                                appear={true}
-                                timeout={1000}
-                                classNames="fade"
-                                unmountOnExit
-                            >
-                                <PhotoWidget
-                                    track={`${currentPicture + 1} / ${
-                                        uploadedPictures.length
-                                    }`}
-                                    img={uploadedPictures[currentPicture]}
-                                    confirm={setCurrentAndPop}
-                                    current={uploadedPictures.length}
-                                    setCurrentPicture={setCurrentPicture}
-                                />
-                            </CSSTransition>
-                        )}
-                    </TransitionGroup>
-                </Upload>
-                <Notifications />
-            </MainContainer>
+                                </CSSTransition>
+                            )}
+                        </TransitionGroup>
+                    </Upload>
+                    <Notifications />
+                </MainContainer>
+            </OffsetContainer>
         </Container>
     ) : (
         <></>

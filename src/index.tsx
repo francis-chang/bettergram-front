@@ -6,12 +6,14 @@ import ConfigUser from "./Dashboard/ConfigUser";
 import Dashboard from "./Dashboard/Dashboard";
 import { Global } from "./Landing/LandingStyles";
 import { Github } from "./Login/Github";
+import Page from "./Page/Page";
 import * as serviceWorker from "./serviceWorker";
 
 const Index = (
     <Router>
         <Global />
         <Route path="/" exact component={App} />
+        <Route path="/:id" component={Page} />
         <Route path="/github/authorize" component={Github} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/config_user" component={ConfigUser} />

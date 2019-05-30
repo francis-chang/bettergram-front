@@ -32,6 +32,9 @@ export const NavBarContainer = styled.div`
 export const Container = styled.div`
     width: 100%;
 `;
+export const OffsetContainer = styled.div`
+    margin-left: 5rem;
+`;
 
 export const MainContainer = styled.div`
     max-width: 1500px;
@@ -56,6 +59,10 @@ export const Upload = styled.div`
     overflow: hidden;
     box-shadow: 10px 10px 0px #667c99;
     cursor: pointer;
+
+    @media only screen and (max-width: 1050px) {
+        width: 90%;
+    }
 `;
 
 export const UploadLayer = styled.div`
@@ -71,9 +78,13 @@ export const UploadLayer = styled.div`
 `;
 
 export const Notifications = styled.div`
+    margin-top: 1rem;
     width: 40%;
-    background-color: green;
+    background-color: #202730;
     height: 20rem;
+    box-shadow: 10px 10px 0px #667c99;
+    width: 60%;
+    border-radius: 4px;
 `;
 
 export const WidgetContainer = styled.div`
@@ -199,10 +210,11 @@ export const CenterWidget = styled.div`
     justify-content: center;
     align-items: center;
     outline: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     animation-name: toTop;
     animation-duration: 600ms;
     animation-timing-function: ease-out;
+    width: 100%;
 `;
 
 export const DropButton = styled.div`
@@ -211,4 +223,6 @@ export const DropButton = styled.div`
     color: #e0e5eb;
     border-radius: 4px;
     box-shadow: 7px 7px 0px rgba(102, 124, 153, 0.8);
+    max-width: 70%;
+    text-align: center;
 `;

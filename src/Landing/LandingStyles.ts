@@ -14,7 +14,7 @@ export const Global = createGlobalStyle`
     }
     @media only screen and (max-width: 1450px) {
         html {
-            font-size: 11px;
+            font-size: 12px;
         }
     }
     
@@ -302,7 +302,7 @@ export const LoginForm = styled.form`
 
 export const TopMessage = styled.div`
     text-transform: uppercase;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #202730;
     margin-bottom: 1rem;
     padding-top: 1rem;
@@ -361,7 +361,7 @@ export const SubmitBtn = styled.button`
     outline: none;
     border-radius: 4px;
     padding: 0.5rem 0.5rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
     backface-visibility: hidden;
     box-shadow: 5px 5px 0px rgba(102, 124, 153, 0.7);
@@ -528,7 +528,7 @@ export const TwitterLogo = styled.div`
 `;
 
 export const GithubText = styled.div`
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 `;
 
 export const SignUpToggle = styled.button`
