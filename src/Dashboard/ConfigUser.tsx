@@ -38,7 +38,7 @@ const ConfigUser: React.FC<RouteComponentProps> = (
                 response.data.github_verified
             );
         } catch (err) {
-            console.log(err.data);
+            setMessage(err.data.message);
         }
         props.history.push("/");
     };

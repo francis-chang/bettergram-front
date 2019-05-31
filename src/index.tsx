@@ -13,7 +13,7 @@ const Index = (
     <Router>
         <Global />
         <Route path="/" exact component={App} />
-        <Route path="/:username" component={Page} />
+        <Route path="/u/:username" component={Page} />
         <Route path="/github/authorize" component={Github} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/config_user" component={ConfigUser} />
