@@ -6,11 +6,12 @@ interface Props {
     caption?: string;
     x: number;
     y: number;
+    height: number;
 }
 
 export const Image: React.FC<Props> = props => {
     return (
-        <ImageContainer x={props.x} y={props.y}>
+        <ImageContainer x={props.x} y={props.y} height={props.height}>
             <img src={props.src} />
         </ImageContainer>
     );

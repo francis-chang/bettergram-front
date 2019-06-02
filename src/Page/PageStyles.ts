@@ -3,6 +3,7 @@ import styled from "styled-components";
 type ImageProps = {
     x: number;
     y: number;
+    height: number;
 };
 
 export const Container = styled.div`
@@ -15,4 +16,8 @@ export const ImageContainer = styled.div<ImageProps>`
     position: absolute;
     top: ${props => props.y}px;
     left: ${props => props.x}px;
+    height: ${props => props.height}px;
+    animation-name: toTop;
+    animation-duration: 800ms;
+    animation-timing-function: ease-in-out;
 `;
