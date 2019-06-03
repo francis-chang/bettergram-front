@@ -52,7 +52,7 @@ export const SettingsExit = styled.div`
     transition-duration: 300ms;
     &:hover {
         transform: rotate(90deg);
-        color: #f94545;
+        color: #ff7575;
     }
 `;
 

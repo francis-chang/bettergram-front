@@ -185,7 +185,7 @@ export const Navigation: React.FC<Props> = (props: Props) => {
             };
 
             if (changeNewPassword !== changeRePassword) {
-                throw "password is not the same";
+                throw new Error("password is not the same");
             }
             const updateEmailResponse = await axios.put(
                 "http://127.0.0.1:5000/user",

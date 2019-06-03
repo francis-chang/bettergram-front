@@ -32,6 +32,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
     const token = localStorage.getItem("access_token");
 
     React.useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         fetchUserInfo();
     }, []);
 
@@ -116,7 +117,7 @@ const Dashboard: React.FC<RouteComponentProps> = (
 
             setUploadedPictures(uploadedFiles);
         },
-        [token]
+        [token, currentPicture]
     );
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
