@@ -280,7 +280,7 @@ export const SquareTwo = styled.div`
 `;
 
 export const LoginContainer = styled.div`
-    max-height: 31.5rem;
+    max-height: 31.4rem;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -288,8 +288,8 @@ export const LoginContainer = styled.div`
     border-left: 10px solid #667c99;
     position: relative;
 
-    @media only screen and (max-width: 800px) {
-        max-height: 33rem;
+    @media only screen and (max-width: 750px) {
+        max-height: 35rem;
     }
 `;
 
