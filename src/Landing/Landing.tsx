@@ -93,6 +93,8 @@ const Landing: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
             localStorage.setItem("access_token", response.data.access_token);
             localStorage.setItem("refresh_token", response.data.refresh_token);
 
+            localStorage.setItem("username", response.data.username);
+
             props.history.push("/dashboard");
         } catch (err) {
             if (err.response.status === 401 && loginRef.current) {

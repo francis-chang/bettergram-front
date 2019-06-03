@@ -17,6 +17,7 @@ export const Github: React.FC<Props> = (props: any) => {
                     "github_activated",
                     res.data.github_activated
                 );
+                localStorage.setItem("username", res.data.username);
                 window.close();
             });
     }, [props.location.search]);

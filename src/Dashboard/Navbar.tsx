@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import { post } from "../axios";
 import {
@@ -42,7 +43,7 @@ library.add(
     faArrowCircleDown
 );
 
-interface Props {
+interface Props extends RouteComponentProps<any> {
     needCredentials: boolean;
     setNeedCred: React.Dispatch<React.SetStateAction<boolean>>;
     data: DataType[];
@@ -52,7 +53,7 @@ interface Props {
     setUploading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Navigation: React.FC<Props> = (props: Props) => {
+const Navigation: React.FC<Props> = (props: Props) => {
     const [toggle, setToggle] = React.useState<boolean>(false);
     const [emailOpen, setEmailOpen] = React.useState<boolean>(false);
     const [passwordOpen, setPasswordOpen] = React.useState<boolean>(false);
@@ -132,6 +133,10 @@ export const Navigation: React.FC<Props> = (props: Props) => {
             setEmailOpen(false);
         }
         setPasswordOpen(!passwordOpen);
+    };
+
+    const toPage = () => {
+        props.history.push(`u/${localStorage.getItem("username")}`);
     };
 
     const emailLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -260,7 +265,7 @@ export const Navigation: React.FC<Props> = (props: Props) => {
                     <NavigationIcon onClick={onClickToggle}>
                         <FontAwesomeIcon icon="user-cog" />
                     </NavigationIcon>
-                    <NavigationIcon>
+                    <NavigationIcon onClick={toPage}>
                         <FontAwesomeIcon icon="images" />
                     </NavigationIcon>
                     <NavigationIcon>
@@ -402,3 +407,5 @@ export const Navigation: React.FC<Props> = (props: Props) => {
         </NavBarContainer>
     );
 };
+
+export default withRouter(Navigation);

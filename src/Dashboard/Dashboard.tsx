@@ -13,7 +13,7 @@ import {
     OffsetContainer,
     Upload
 } from "./DashboardStyled";
-import { Navigation } from "./Navbar";
+import Navigation from "./Navbar";
 import { PhotoWidget } from "./PhotoWidget";
 
 interface Props {}
