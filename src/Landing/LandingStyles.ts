@@ -214,7 +214,7 @@ export const Container = styled.div`
         width: 75%;
     }
     @media only screen and (max-width: 800px) {
-        top: 25rem;
+        top: 27rem;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -404,7 +404,7 @@ export const TitleText = styled.div`
     color: #d1d8e0;
     margin-bottom: 1rem;
     @media only screen and (max-width: 700px) {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 `;
 export const GoogleLogin = styled.button`

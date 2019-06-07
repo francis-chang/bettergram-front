@@ -9,7 +9,6 @@ import {
     Container,
     DropButton,
     MainContainer,
-    Notifications,
     OffsetContainer,
     Upload
 } from "./DashboardStyled";
@@ -192,7 +191,6 @@ const Dashboard: React.FC<RouteComponentProps> = (
                             )}
                         </TransitionGroup>
                     </Upload>
-                    <Notifications />
                 </MainContainer>
             </OffsetContainer>
         </Container>

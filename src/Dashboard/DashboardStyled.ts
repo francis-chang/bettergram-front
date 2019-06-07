@@ -33,7 +33,7 @@ export const Container = styled.div`
     width: 100%;
 `;
 export const OffsetContainer = styled.div`
-    margin-left: 5rem;
+    /* margin-left: 5rem; */
 `;
 
 export const MainContainer = styled.div`
@@ -49,7 +49,8 @@ export const MainContainer = styled.div`
 
 export const Upload = styled.div`
     width: 60%;
-    margin: 1rem;
+    margin-left: 5rem;
+    margin-top: 7%;
     background-color: #202730;
     border-radius: 4px;
     display: flex;

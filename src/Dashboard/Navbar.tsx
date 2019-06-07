@@ -258,6 +258,21 @@ const Navigation: React.FC<Props> = (props: Props) => {
         }
     };
 
+    const logout = async () => {
+        const headers = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
+            }
+        };
+        try {
+            await axios.get("http://127.0.0.1:5000/logout", headers);
+            localStorage.clear();
+            props.history.push("/");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <NavBarContainer>
             <NavBar>
@@ -268,7 +283,7 @@ const Navigation: React.FC<Props> = (props: Props) => {
                     <NavigationIcon onClick={toPage}>
                         <FontAwesomeIcon icon="images" />
                     </NavigationIcon>
-                    <NavigationIcon>
+                    <NavigationIcon onClick={logout}>
                         <FontAwesomeIcon icon="sign-out-alt" />
                     </NavigationIcon>
                 </NavigationContainer>
