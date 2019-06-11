@@ -24,6 +24,14 @@ export const SettingsItem = styled.div`
 
 export const SettingsItemDelete = styled(SettingsItem)`
     color: #ff7575;
+    position: relative;
+    overflow: hidden;
+`;
+
+export const SettingsDeleteConfirm = styled(SettingsItem)`
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
 `;
 
 export const SettingsItemVerification = styled(SettingsItem)`

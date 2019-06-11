@@ -26,6 +26,7 @@ import {
     NavBarSubmitButton,
     PasswordDropDown,
     SettingsContainer,
+    SettingsDeleteConfirm,
     SettingsExit,
     SettingsItem,
     SettingsItemDelete,
@@ -59,6 +60,7 @@ const Navigation: React.FC<Props> = (props: Props) => {
     const [passwordOpen, setPasswordOpen] = React.useState<boolean>(false);
     const [username, setUsername] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
+    const [confirm, setConfirm] = React.useState<boolean>(false);
     const [changeEmailUsername, setChangeEmailUsername] = React.useState<
         string
     >("");
@@ -119,6 +121,14 @@ const Navigation: React.FC<Props> = (props: Props) => {
     const animatePassword = useSpring({
         height: passwordOpen ? "20rem" : "0rem",
         overflow: "hidden"
+    });
+
+    const animateConfirm = useSpring({
+        position: "absolute",
+        top: confirm ? "0%" : "-100%",
+        left: "0rem",
+        width: "100%",
+        padding: "0.5rem 0.7rem"
     });
 
     const toggleEmailDrop = () => {
@@ -273,6 +283,22 @@ const Navigation: React.FC<Props> = (props: Props) => {
         }
     };
 
+    const del = async () => {
+        const headers = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
+            }
+        };
+        try {
+            await axios.delete(
+                `http://127.0.0.1:5000/u/${localStorage.getItem("username")}`,
+                headers
+            );
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <NavBarContainer>
             <NavBar>
@@ -386,7 +412,14 @@ const Navigation: React.FC<Props> = (props: Props) => {
                             </NavBarSubmitButton>
                         </PasswordDropDown>
                     </animated.div>
-                    <SettingsItemDelete>DELETE ACCOUNT</SettingsItemDelete>
+                    <SettingsItemDelete onClick={() => setConfirm(true)}>
+                        DELETE ACCOUNT
+                    </SettingsItemDelete>
+                    <SettingsDeleteConfirm>
+                        <animated.div style={animateConfirm}>
+                            ARE YOU SURE?
+                        </animated.div>
+                    </SettingsDeleteConfirm>
                 </SettingsContainer>
             </animated.div>
             <animated.div style={credentialsSlideout}>
