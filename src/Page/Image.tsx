@@ -12,7 +12,11 @@ interface Props {
 export const Image: React.FC<Props> = props => {
     return (
         <ImageContainer x={props.x} y={props.y} height={props.height}>
-            <img src={props.src} alt={props.caption ? props.caption : ""} />
+            <img
+                src={props.src}
+                alt={props.caption ? props.caption : ""}
+                width="100%"
+            />
         </ImageContainer>
     );
 };

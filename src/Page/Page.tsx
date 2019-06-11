@@ -35,6 +35,8 @@ const Page: React.FC<RouteComponentProps<RouteParams>> = (
         window.innerHeight
     );
     const [images, setImages] = useState<Image[]>([]);
+    const [addEL, setAddEL] = useState<boolean>(false);
+    const [gotten, setGotten] = useState<boolean>(false);
     const [sets, setSets] = useState<Column[]>([
         { currentHeight: 0, x: 0, images: [] },
         { currentHeight: 0, x: 450, images: [] },
@@ -47,8 +49,12 @@ const Page: React.FC<RouteComponentProps<RouteParams>> = (
         );
         const allImages = res.data.images;
         setImages(allImages);
+        setGotten(true);
+    };
+
+    const handleImages = () => {
         const slicedSet = sets.slice();
-        for (let x = 0; x < allImages.length; x++) {
+        for (let x = 0; x < images.length; x++) {
             let shortestCol = 0;
             let shortestColHeight = sets[0].currentHeight;
             for (let y = 0; y < sets.length; y++) {
@@ -58,29 +64,47 @@ const Page: React.FC<RouteComponentProps<RouteParams>> = (
                 }
             }
             const imageToBePushed = {
-                url: allImages[x].url,
+                url: images[x].url,
                 y: slicedSet[shortestCol].currentHeight,
-                height: allImages[x].height
+                height: images[x].height
             };
 
             slicedSet[shortestCol].images.push(imageToBePushed);
-            slicedSet[shortestCol].currentHeight += allImages[x].height;
+            slicedSet[shortestCol].currentHeight += images[x].height;
         }
         setSets(slicedSet);
     };
 
     useEffect(() => {
-        if (images.length < 1) {
-            get();
+        if (gotten) {
+            handleImages();
+            setGotten(false);
         }
         const setHeight = () => {
             setCurrentHeight(window.scrollY + window.innerHeight);
         };
-        window.addEventListener("scroll", setHeight);
+        const setColumns = () => {
+            if (window.innerWidth < 1400) {
+                console.log("cool");
+                setSets([
+                    { currentHeight: 0, x: 0, images: [] },
+                    { currentHeight: 0, x: 450, images: [] },
+                    { currentHeight: 0, x: 900, images: [] }
+                ]);
+                setGotten(true);
+            }
+        };
+        if (!addEL) {
+            get();
+            window.addEventListener("scroll", setHeight);
+            window.addEventListener("resize", setColumns);
+            setAddEL(true);
+        }
         return function cleanup() {
             window.removeEventListener("scroll", setHeight);
+            // window.removeEventListener("resize", setColumns);
         };
-    });
+    }, [gotten, addEL, handleImages, get]);
 
     return (
         <Container>

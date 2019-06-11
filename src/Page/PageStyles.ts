@@ -17,6 +17,7 @@ export const ImageContainer = styled.div<ImageProps>`
     top: ${props => props.y}px;
     left: ${props => props.x}px;
     height: ${props => props.height}px;
+    width: 25%;
     animation-name: toTop;
     animation-duration: 800ms;
     animation-timing-function: ease-in-out;

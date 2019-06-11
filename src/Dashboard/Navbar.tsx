@@ -27,6 +27,7 @@ import {
     PasswordDropDown,
     SettingsContainer,
     SettingsDeleteConfirm,
+    SettingsDeleteConfirmButton,
     SettingsExit,
     SettingsItem,
     SettingsItemDelete,
@@ -128,7 +129,10 @@ const Navigation: React.FC<Props> = (props: Props) => {
         top: confirm ? "0%" : "-100%",
         left: "0rem",
         width: "100%",
-        padding: "0.5rem 0.7rem"
+        padding: "0.5rem 0.7rem",
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
     });
 
     const toggleEmailDrop = () => {
@@ -291,11 +295,15 @@ const Navigation: React.FC<Props> = (props: Props) => {
         };
         try {
             await axios.delete(
-                `http://127.0.0.1:5000/u/${localStorage.getItem("username")}`,
+                `http://127.0.0.1:5000/user/${localStorage.getItem(
+                    "username"
+                )}`,
                 headers
             );
+            localStorage.clear();
+            props.history.push("/");
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
         }
     };
 
@@ -412,12 +420,23 @@ const Navigation: React.FC<Props> = (props: Props) => {
                             </NavBarSubmitButton>
                         </PasswordDropDown>
                     </animated.div>
-                    <SettingsItemDelete onClick={() => setConfirm(true)}>
+                    <SettingsItemDelete onClick={() => setConfirm(!confirm)}>
                         DELETE ACCOUNT
                     </SettingsItemDelete>
                     <SettingsDeleteConfirm>
                         <animated.div style={animateConfirm}>
-                            ARE YOU SURE?
+                            <SettingsDeleteConfirmButton
+                                confirm={true}
+                                onClick={del}
+                            >
+                                DELETE
+                            </SettingsDeleteConfirmButton>
+                            <SettingsDeleteConfirmButton
+                                confirm={false}
+                                onClick={() => setConfirm(!confirm)}
+                            >
+                                CANCEL
+                            </SettingsDeleteConfirmButton>
                         </animated.div>
                     </SettingsDeleteConfirm>
                 </SettingsContainer>

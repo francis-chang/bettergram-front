@@ -34,6 +34,15 @@ export const SettingsDeleteConfirm = styled(SettingsItem)`
     height: 3rem;
 `;
 
+export const SettingsDeleteConfirmButton = styled.div<{ confirm: boolean }>`
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #ff7575;
+    border-radius: 4px;
+    color: ${p => (p.confirm ? "#333e4d" : "#ff7575")};
+    background-color: ${p => (p.confirm ? "#ff7575" : "#333e4d")};
+`;
+
 export const SettingsItemVerification = styled(SettingsItem)`
     cursor: default;
     text-align: center;
