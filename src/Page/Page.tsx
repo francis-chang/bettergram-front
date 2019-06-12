@@ -108,7 +108,7 @@ const Page: React.FC<RouteComponentProps<RouteParams>> = (
 
     return (
         <Container>
-            {sets.map(set => {
+            {/* {sets.map(set => {
                 return set.images.map(image => {
                     if (image.y < currentHeight) {
                         return (
@@ -123,7 +123,7 @@ const Page: React.FC<RouteComponentProps<RouteParams>> = (
                     }
                     return null;
                 });
-            })}
+            })} */}
         </Container>
     );
 };

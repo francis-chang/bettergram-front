@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
+import { Image } from "./Image";
+import { Container, ImageColumn } from "./PageStyles";
 
 interface RouteParams {
     username: string;
@@ -97,10 +99,15 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
     });
 
     return (
-        <div>
-            Hi
-            <div>Hello</div>
-        </div>
+        <Container>
+            {imageList.map(images => (
+                <ImageColumn width={imageList.length}>
+                    {images.map(image => (
+                        <Image src={image.url} />
+                    ))}
+                </ImageColumn>
+            ))}
+        </Container>
     );
 };
 

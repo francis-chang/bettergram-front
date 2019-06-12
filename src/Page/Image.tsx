@@ -4,14 +4,11 @@ import { ImageContainer } from "./PageStyles";
 interface Props {
     src: string;
     caption?: string;
-    x: number;
-    y: number;
-    height: number;
 }
 
-export const Image: React.FC<Props> = props => {
+export const Image: React.FC<Props> = (props: Props) => {
     return (
-        <ImageContainer x={props.x} y={props.y} height={props.height}>
+        <ImageContainer>
             <img
                 src={props.src}
                 alt={props.caption ? props.caption : ""}
