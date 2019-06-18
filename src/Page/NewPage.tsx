@@ -38,19 +38,34 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
     const getCols = () => {
         const width = window.innerWidth;
         if (width <= 450) {
-            setNumCols(1);
-            setHeightList([0]);
+            if (numCols !== 1) {
+                setNumCols(1);
+                setHeightList([0]);
+                setImageList([]);
+                setColsSet(true);
+            }
         } else if (width > 450 && width <= 900) {
-            setNumCols(2);
-            setHeightList([0, 0]);
+            if (numCols !== 2) {
+                setNumCols(2);
+                setHeightList([0, 0]);
+                setImageList([]);
+                setColsSet(true);
+            }
         } else if (width > 900 && width <= 1350) {
-            setNumCols(3);
-            setHeightList([0, 0, 0]);
+            if (numCols !== 3) {
+                setNumCols(3);
+                setHeightList([0, 0, 0]);
+                setImageList([]);
+                setColsSet(true);
+            }
         } else {
-            setNumCols(4);
-            setHeightList([0, 0, 0, 0]);
+            if (numCols !== 4) {
+                setHeightList([0, 0, 0, 0]);
+                setNumCols(4);
+                setImageList([]);
+                setColsSet(true);
+            }
         }
-        setColsSet(true);
     };
 
     const findShortestCol = (hList: number[]) => {
@@ -100,10 +115,10 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
 
     return (
         <Container>
-            {imageList.map(images => (
-                <ImageColumn width={imageList.length}>
+            {imageList.map((images, i) => (
+                <ImageColumn key={i} numCols={numCols}>
                     {images.map(image => (
-                        <Image src={image.url} />
+                        <Image key={image.url} src={image.url} />
                     ))}
                 </ImageColumn>
             ))}
