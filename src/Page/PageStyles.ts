@@ -5,6 +5,9 @@ type ImageProps = {
     y: number;
     height: number;
 };
+type FirstImages = {
+    first: boolean;
+};
 
 type ContainerProps = {
     numCols: number;
@@ -17,8 +20,8 @@ export const Container = styled.div`
     display: flex;
 `;
 
-export const ImageContainer = styled.div`
-    animation-name: toTop;
+export const ImageContainer = styled.div<FirstImages>`
+    animation-name: ${p => (p.first ? "none" : "toTop")};
     animation-duration: 800ms;
     animation-timing-function: ease-in-out;
     font-size: 0px;

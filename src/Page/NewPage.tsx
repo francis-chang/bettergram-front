@@ -138,15 +138,15 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
         <Container>
             {imageList.map((images, i) => (
                 <ImageColumn key={i} numCols={numCols}>
-                    {images.map(image => {
+                    {images.map((image, i) => {
                         const width = window.innerWidth;
                         if (
                             width < 1800 &&
                             (image.y * width) / 1800 < currentHeight
                         ) {
-                            return <Image key={image.url} src={image.url} />;
+                            return <Image first={i===0?true: false} key={image.url} src={image.url} />;
                         } else if (image.y < currentHeight) {
-                            return <Image key={image.url} src={image.url} />;
+                            return <Image first={i===0?true: false} key={image.url} src={image.url} />;
                         }
                     })}
                 </ImageColumn>
