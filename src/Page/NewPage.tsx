@@ -42,37 +42,44 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
         setColsSet(true);
     };
 
-    const getCols = () => {
-        const width = window.innerWidth;
-        if (width <= 450) {
-            if (numCols !== 1) {
-                setNumCols(1);
-                setHeightList([0]);
-                setImageList([]);
-                setColsSet(true);
-            }
-        } else if (width > 450 && width <= 900) {
-            if (numCols !== 2) {
-                setNumCols(2);
-                setHeightList([0, 0]);
-                setImageList([]);
-                setColsSet(true);
-            }
-        } else if (width > 900 && width <= 1350) {
-            if (numCols !== 3) {
-                setNumCols(3);
-                setHeightList([0, 0, 0]);
-                setImageList([]);
-                setColsSet(true);
-            }
-        } else {
-            if (numCols !== 4) {
-                setHeightList([0, 0, 0, 0]);
-                setNumCols(4);
-                setImageList([]);
-                setColsSet(true);
-            }
-        }
+    let resizeTimer: number;
+    const getCols = (resize: boolean) => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(
+            () => {
+                const width = window.innerWidth;
+                if (width <= 450) {
+                    if (numCols !== 1) {
+                        setNumCols(1);
+                        setHeightList([0]);
+                        setImageList([]);
+                        setColsSet(true);
+                    }
+                } else if (width > 450 && width <= 900) {
+                    if (numCols !== 2) {
+                        setNumCols(2);
+                        setHeightList([0, 0]);
+                        setImageList([]);
+                        setColsSet(true);
+                    }
+                } else if (width > 900 && width <= 1350) {
+                    if (numCols !== 3) {
+                        setNumCols(3);
+                        setHeightList([0, 0, 0]);
+                        setImageList([]);
+                        setColsSet(true);
+                    }
+                } else {
+                    if (numCols !== 4) {
+                        setHeightList([0, 0, 0, 0]);
+                        setNumCols(4);
+                        setImageList([]);
+                        setColsSet(true);
+                    }
+                }
+            },
+            resize ? 0 : 250
+        );
     };
 
     const findShortestCol = (hList: number[]) => {
@@ -96,7 +103,6 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
         for (let x = 0; x < images.length; x++) {
             const shortestCol = findShortestCol(hList);
             const y = hList[shortestCol];
-            console.log(y);
             hList[shortestCol] += images[x].height;
             const image = { ...images[x], y: y };
             if (iList[shortestCol]) {
@@ -114,15 +120,15 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
             setImageIntoList();
             setColsSet(false);
         }
+
         const setHeight = () => {
-            console.log();
             setCurrentHeight(window.scrollY + window.innerHeight);
         };
 
         if (!initial) {
             get();
-            getCols();
-            window.addEventListener("resize", getCols);
+            getCols(true);
+            window.addEventListener("resize", () => getCols(false));
             window.addEventListener("scroll", setHeight);
             setInitial(true);
         }
@@ -133,8 +139,13 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
             {imageList.map((images, i) => (
                 <ImageColumn key={i} numCols={numCols}>
                     {images.map(image => {
-                        if (image.y - 100 < currentHeight) {
-                            console.log(image.y, currentHeight);
+                        const width = window.innerWidth;
+                        if (
+                            width < 1800 &&
+                            (image.y * width) / 1800 < currentHeight
+                        ) {
+                            return <Image key={image.url} src={image.url} />;
+                        } else if (image.y < currentHeight) {
                             return <Image key={image.url} src={image.url} />;
                         }
                     })}
