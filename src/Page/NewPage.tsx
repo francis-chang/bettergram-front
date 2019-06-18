@@ -16,15 +16,22 @@ interface Image {
     height: number;
 }
 
+interface ImageWithY extends Image {
+    y: number;
+}
+
 const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
     props: RouteComponentProps<RouteParams>
 ) => {
     const [images, setImages] = useState<Image[]>([]);
     const [initial, setInitial] = useState<boolean>(false);
     const [numCols, setNumCols] = useState<number>(0);
-    const [imageList, setImageList] = useState<Image[][]>([]);
+    const [imageList, setImageList] = useState<ImageWithY[][]>([]);
     const [heightList, setHeightList] = useState<number[]>([]);
     const [colsSet, setColsSet] = useState<boolean>(true);
+    const [currentHeight, setCurrentHeight] = useState<number>(
+        window.innerHeight
+    );
 
     const get = async () => {
         const res = await axios.get(
@@ -82,17 +89,20 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
     };
 
     const setImageIntoList = () => {
+        //insert into here with y
         let hList = heightList.slice();
         let iList = imageList.slice();
 
         for (let x = 0; x < images.length; x++) {
             const shortestCol = findShortestCol(hList);
-
-            hList[shortestCol] += images[0].height;
+            const y = hList[shortestCol];
+            console.log(y);
+            hList[shortestCol] += images[x].height;
+            const image = { ...images[x], y: y };
             if (iList[shortestCol]) {
-                iList[shortestCol].push(images[x]);
+                iList[shortestCol].push(image);
             } else {
-                iList[shortestCol] = [images[x]];
+                iList[shortestCol] = [image];
             }
         }
         setHeightList(hList);
@@ -104,11 +114,16 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
             setImageIntoList();
             setColsSet(false);
         }
+        const setHeight = () => {
+            console.log();
+            setCurrentHeight(window.scrollY + window.innerHeight);
+        };
 
         if (!initial) {
             get();
             getCols();
             window.addEventListener("resize", getCols);
+            window.addEventListener("scroll", setHeight);
             setInitial(true);
         }
     });
@@ -117,9 +132,12 @@ const NewPage: React.FC<RouteComponentProps<RouteParams>> = (
         <Container>
             {imageList.map((images, i) => (
                 <ImageColumn key={i} numCols={numCols}>
-                    {images.map(image => (
-                        <Image key={image.url} src={image.url} />
-                    ))}
+                    {images.map(image => {
+                        if (image.y - 100 < currentHeight) {
+                            console.log(image.y, currentHeight);
+                            return <Image key={image.url} src={image.url} />;
+                        }
+                    })}
                 </ImageColumn>
             ))}
         </Container>
