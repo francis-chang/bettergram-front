@@ -295,9 +295,7 @@ const Navigation: React.FC<Props> = (props: Props) => {
         };
         try {
             await axios.delete(
-                `http://127.0.0.1:5000/user/${localStorage.getItem(
-                    "username"
-                )}`,
+                `http://127.0.0.1:5000/user/${localStorage.getItem("user_id")}`,
                 headers
             );
             localStorage.clear();
